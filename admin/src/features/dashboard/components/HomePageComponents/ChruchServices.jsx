@@ -72,7 +72,7 @@ export default function ScheduleTable() {
                     <Pencil size={18} />
                   </button>
                   <button
-                    onClick={() => deleteEntry(entry?._id)}
+                    onClick={() => deleteEntry(entry?.id)}
                     className="text-red-600 hover:text-red-800"
                   >
                     <Trash2 size={18} />

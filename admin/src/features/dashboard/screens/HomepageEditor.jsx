@@ -4,7 +4,7 @@ import VideosSection from "../components/HomePageComponents/VideosSection";
 import JoinWeekend from "../components/HomePageComponents/JoinWeekend";
 import ChruchServices from "../components/HomePageComponents/ChruchServices";
 import LastMessage from "../components/HomePageComponents/LastMessage";
-import TimingsForm from "../components/HomePageComponents/TimingsForm";
+
 import { Select } from "../../../components/UI/Form";
 import { useEffect, useState } from "react";
 import { apiRequest } from "../../../services/ApiCalls";
@@ -18,8 +18,7 @@ export default function HomepageEditor() {
     { value: "hero", label: "Hero Section" },
     { value: "pastorIntro", label: "Pastor Intro" },
     { value: "videos", label: "Video Section" },
-    { value: "timings", label: "Service Timings" },
-    { value: "churchServices", label: "Church Services" },
+    { value: "churchServices", label: "Weekly Service Timings" },
     { value: "latestMessage", label: "Latest Message" },
   ];
 
@@ -98,11 +97,7 @@ export default function HomepageEditor() {
               <VideosSection data={data?.videos} refreshData={refreshData} />
             </motion.div>
           )}
-          {selectedSection === "timings" && (
-            <motion.div variants={itemVariants}>
-              <TimingsForm data={data?.timings} refreshData={refreshData} />
-            </motion.div>
-          )}
+
           {selectedSection === "churchServices" && (
             <motion.div variants={itemVariants}>
               <ChruchServices refreshData={refreshData} />

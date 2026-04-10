@@ -55,7 +55,7 @@ export default function UsehomepageChruchServicehook(initial = []) {
 
   // for edit
   const openModal = (index = null) => {
-    setSelectedIndex(index?._id);
+    setSelectedIndex(index?.id);
     if (index !== null) {
       reset(index);
     } else {
