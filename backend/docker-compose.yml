@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  church-server:
+    container_name: church-server
+    build: .
+    ports:
+      - "4040:4040"
+    networks:
+      - realtemple-net
+
+networks:
+  realtemple-net:
+    external: true

@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  church-frontend:
+    container_name: church-frontend
+    build: .
+    ports:
+      - "4041:3000"
+    networks:
+      - frontend-net
+
+networks:
+  frontend-net:
+    external: false

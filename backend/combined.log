@@ -1,0 +1,313 @@
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:29:44.293Z"}
+{"level":"warn","message":"⚠️ Register Validation error: \"password\" length must be at least 6 characters long","service":"auth-services","timestamp":"2025-06-04T05:29:44.315Z"}
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:29:51.763Z"}
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:30:23.988Z"}
+{"level":"error","message":"❌ Failed to create user vamsi@gmail.com: User already exists with this email","service":"auth-services","timestamp":"2025-06-04T05:30:24.030Z"}
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:31:40.797Z"}
+{"level":"error","message":"❌ Failed to create user vamsi@gmail.com: User already exists with this email","service":"auth-services","timestamp":"2025-06-04T05:31:40.840Z"}
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:31:55.812Z"}
+{"level":"error","message":"❌ Failed to create user chinni@gmail.com: E11000 duplicate key error collection: wordb.users index: mobile_1 dup key: { mobile: null }","service":"auth-services","timestamp":"2025-06-04T05:31:55.965Z"}
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:33:33.396Z"}
+{"level":"error","message":"❌ Failed to create user chinni@gmail.com: E11000 duplicate key error collection: wordb.users index: mobile_1 dup key: { mobile: null }","service":"auth-services","timestamp":"2025-06-04T05:33:33.578Z"}
+{"level":"info","message":"ℹ️ SIGNUP API HIT","service":"auth-services","timestamp":"2025-06-04T05:35:16.468Z"}
+{"level":"error","message":"❌ Failed to Login vamsi@gmail.com Error: User not found","service":"auth-services","timestamp":"2025-06-04T05:36:39.177Z"}
+{"level":"warn","message":"⚠️ Login Validation Error: \"password\" length must be at least 6 characters long","service":"auth-services","timestamp":"2025-06-04T05:36:48.283Z"}
+{"level":"error","message":"❌ Failed to Login chinni@gmail.com Error: Invalid credentials","service":"auth-services","timestamp":"2025-06-04T05:36:55.549Z"}
+{"level":"error","message":"❌ Failed to Login chinni@gmail.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2025-06-04T05:36:59.900Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T05:53:48.288Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T05:53:55.907Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T05:54:14.455Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T05:54:19.419Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T05:54:27.211Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T05:54:44.518Z"}
+{"code":"LIMIT_FILE_SIZE","field":"image","level":"error","message":"File too large","name":"MulterError","service":"auth-services","stack":"MulterError: File too large\n    at abortWithCode (C:\\vamsi\\church\\server\\node_modules\\multer\\lib\\make-middleware.js:85:22)\n    at FileStream.<anonymous> (C:\\vamsi\\church\\server\\node_modules\\multer\\lib\\make-middleware.js:150:11)\n    at FileStream.emit (node:events:524:28)\n    at SBMH.ssCb [as _cb] (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\types\\multipart.js:479:32)\n    at feed (C:\\vamsi\\church\\server\\node_modules\\streamsearch\\lib\\sbmh.js:248:10)\n    at SBMH.push (C:\\vamsi\\church\\server\\node_modules\\streamsearch\\lib\\sbmh.js:104:16)\n    at Multipart._write (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\types\\multipart.js:567:19)\n    at writeOrBuffer (node:internal/streams/writable:572:12)\n    at _write (node:internal/streams/writable:501:10)\n    at Writable.write (node:internal/streams/writable:510:10)","storageErrors":[],"timestamp":"2025-06-04T06:27:13.836Z"}
+{"level":"info","message":"ℹ️ TESTIMONIAL API HIT","service":"auth-services","timestamp":"2025-06-04T06:27:48.976Z"}
+{"level":"info","message":"ℹ️ TESTIMONIAL API HIT","service":"auth-services","timestamp":"2025-06-04T06:29:29.869Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-04T06:38:29.707Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:12:23.419Z"}
+{"level":"warn","message":"⚠️ contact Validation error: \"message\" length must be less than or equal to 500 characters long","service":"auth-services","timestamp":"2025-06-04T11:12:23.537Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:18.750Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:38.798Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:44.537Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:46.022Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:47.323Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:48.404Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:49.481Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:50.440Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:51.456Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:52.475Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:53.403Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:54.391Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:17:58.930Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:18:04.391Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-04T11:18:08.356Z"}
+{"level":"error","message":"❌Failed to fetch contact form : Contact.find(...).sort(...).skp is not a function","service":"auth-services","timestamp":"2025-06-04T12:14:33.324Z"}
+{"level":"error","message":"❌Failed to fetch contact form : Contact.find(...).sort(...).skp is not a function","service":"auth-services","timestamp":"2025-06-04T12:14:33.365Z"}
+{"level":"error","message":"❌Failed to fetch contact form : Cannot read properties of undefined (reading 'get')","service":"auth-services","timestamp":"2025-06-04T12:26:52.727Z"}
+{"level":"error","message":"❌Failed to fetch contact form : Cannot read properties of undefined (reading 'get')","service":"auth-services","timestamp":"2025-06-04T12:27:11.756Z"}
+{"level":"error","message":"❌ Failed to fetch contacts: Cannot read properties of undefined (reading 'get')","service":"auth-services","timestamp":"2025-06-04T12:28:19.886Z"}
+{"level":"error","message":"❌ Failed to fetch contacts: Cannot read properties of undefined (reading 'get')","service":"auth-services","timestamp":"2025-06-04T12:30:14.489Z"}
+{"level":"error","message":"❌ Failed to fetch contacts: Cannot read properties of undefined (reading 'get')","service":"auth-services","timestamp":"2025-06-04T12:30:33.044Z"}
+{"level":"error","message":"❌Failed to fetch contact form : BSON field 'skip' value must be >= 0, actual value '-10'","service":"auth-services","timestamp":"2025-06-04T13:02:06.905Z"}
+{"level":"info","message":"ℹ️ TESTIMONIAL API HIT","service":"auth-services","timestamp":"2025-06-05T05:10:30.724Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:44:03.657Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:44:05.363Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:44:06.409Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:44:07.531Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:44:08.362Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:44:09.265Z"}
+{"level":"error","message":"❌Failed to get prayer request : filter is not defined","service":"auth-services","timestamp":"2025-06-05T05:51:30.527Z"}
+{"level":"error","message":"❌Failed to get prayer request : filter is not defined","service":"auth-services","timestamp":"2025-06-05T05:51:30.536Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:53:22.364Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:53:23.761Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:53:25.027Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:53:59.680Z"}
+{"level":"warn","message":"⚠️ prayer request Validation error: \"prayerType\" must be one of [Job, Family, Health, Finance, Other]","service":"auth-services","timestamp":"2025-06-05T05:53:59.687Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:54:13.465Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:54:14.938Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T05:54:30.590Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:05:24.169Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:05:29.723Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:06:17.781Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:06:22.951Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:15.758Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:17.188Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:18.456Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:19.682Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:20.617Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:21.644Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:24.154Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:25.303Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:26.198Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:27.267Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:28.282Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:29.259Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:31:30.194Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:32:01.466Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T06:42:22.102Z"}
+{"level":"error","message":"❌ Unknown error occured while uploading: Multipart: Boundary not found","service":"auth-services","stack":"Error: Multipart: Boundary not found\n    at new Multipart (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\types\\multipart.js:233:13)\n    at getInstance (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\index.js:33:12)\n    at module.exports (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\index.js:56:10)\n    at multerMiddleware (C:\\vamsi\\church\\server\\node_modules\\multer\\lib\\make-middleware.js:38:16)\n    at file:///C:/vamsi/church/server/middlewares/handleMulterUpload.js:5:3\n    at Layer.handleRequest (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\vamsi\\church\\server\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\layer.js:152:17)","timestamp":"2025-06-05T09:51:20.973Z"}
+{"level":"error","message":"❌ Unknown error occured while uploading: Multipart: Boundary not found","service":"auth-services","stack":"Error: Multipart: Boundary not found\n    at new Multipart (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\types\\multipart.js:233:13)\n    at getInstance (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\index.js:33:12)\n    at module.exports (C:\\vamsi\\church\\server\\node_modules\\busboy\\lib\\index.js:56:10)\n    at multerMiddleware (C:\\vamsi\\church\\server\\node_modules\\multer\\lib\\make-middleware.js:38:16)\n    at file:///C:/vamsi/church/server/middlewares/handleMulterUpload.js:5:3\n    at Layer.handleRequest (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\route.js:157:13)\n    at Route.dispatch (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\route.js:117:3)\n    at handle (C:\\vamsi\\church\\server\\node_modules\\router\\index.js:435:11)\n    at Layer.handleRequest (C:\\vamsi\\church\\server\\node_modules\\router\\lib\\layer.js:152:17)","timestamp":"2025-06-05T09:52:07.951Z"}
+{"level":"error","message":"❌ Edit Blog Error: BlogModel is not defined","service":"auth-services","timestamp":"2025-06-05T09:53:11.292Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-05T10:18:31.680Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-05T10:19:14.042Z"}
+{"level":"error","message":"❌Failed to submit contact form undefined: undefined","service":"auth-services","timestamp":"2025-06-05T10:19:14.076Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-05T10:19:28.266Z"}
+{"level":"error","message":"❌Failed to submit contact form undefined: Cannot destructure property 'firstName' of 'undefined' as it is undefined.","service":"auth-services","timestamp":"2025-06-05T10:19:28.302Z"}
+{"level":"info","message":"ℹ️ CONTACT API HIT","service":"auth-services","timestamp":"2025-06-05T10:20:05.909Z"}
+{"level":"error","message":"❌Failed to submit contact form undefined: Cannot destructure property 'firstName' of 'undefined' as it is undefined.","service":"auth-services","timestamp":"2025-06-05T10:20:06.074Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"fdfbrgbgrghf","level":"info","message":"wrqytsdfgewefgfgvb","mobile":"dfbrdfbdfgvdfgb","service":"auth-services","subject":"fbwdcvdbefv b","timestamp":"2025-06-05T10:25:44.971Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:25:45.099Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"sdfgh","level":"info","message":"sadfslj;kjlfdsghfgjkhlkjgfd","mobile":"vbnmkbjklkjhhj","service":"auth-services","subject":"hjkjhgfdghjk","timestamp":"2025-06-05T10:28:20.792Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:28:20.898Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"sdfgh","level":"info","message":"sadfslj;kjlfdsghfgjkhlkjgfd","mobile":"vbnmkbjklkjhhj","service":"auth-services","subject":"hjkjhgfdghjk","timestamp":"2025-06-05T10:28:37.370Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:28:37.378Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"sdfgh","level":"info","message":"sadfslj;kjlfdsghfgjkhlkjgfd","mobile":"vbnmkbjklkjhhj","service":"auth-services","subject":"hjkjhgfdghjk","timestamp":"2025-06-05T10:29:20.379Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:29:20.387Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"sdfgh","level":"info","message":"sadfslj;kjlfdsghfgjkhlkjgfd","mobile":"vbnmkbjklkjhhj","service":"auth-services","subject":"hjkjhgfdghjk","timestamp":"2025-06-05T10:29:54.084Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:29:54.089Z"}
+{"date":"2025-07-15","description":"A fun-filled day with live music, food trucks, and games.","endTime":"22:00","eventName":"Summer Music Festival","eventType":"Festival","level":"info","location":"Central Park","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T10:33:30.061Z"}
+{"date":"2025-07-15","description":"Join industry leaders to discuss the future of technology.","endTime":"22:00","eventName":"Tech Innovators Conference","eventType":"Conference","level":"info","location":"Grand Convention Center","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T10:34:20.837Z"}
+{"date":"2025-07-15","description":"Free yoga session for all skill levels in the park.","endTime":"22:00","eventName":"Community Yoga Session","eventType":"Wellness","level":"info","location":"Sunrise Park","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T10:35:10.750Z"}
+{"email":"dineshmodem5132@gmail.com","firstName":"fghdsfgffdgffgbnghbn","level":"info","message":"wewerewrfregregererfrgregf","mobile":"9992999992","service":"auth-services","subject":"sdfsfsadfsf","timestamp":"2025-06-05T10:36:26.920Z"}
+{"email":"dineshmodem5132@gmail.com","firstName":"fghdsfgffdgffgbnghbn","level":"info","message":"wewerewrfregregererfrgregf","mobile":"9992999992","service":"auth-services","subject":"sdfsfsadfsf","timestamp":"2025-06-05T10:36:50.822Z"}
+{"email":"dineshmodem5132@gmail.com","firstName":"fghdsfgffdgffgbnghbn","level":"info","message":"wewerewrfregregererfrgregf","mobile":"9992999992","service":"auth-services","subject":"sdfsfsadfsf","timestamp":"2025-06-05T10:37:09.083Z"}
+{"email":"dineshmodem5132@gmail.com","firstName":"fghdsfgffdgffgbnghbn","level":"info","message":"wewerewrfregregererfrgregf","mobile":"9992999992","service":"auth-services","subject":"sdfsfsadfsf","timestamp":"2025-06-05T10:39:00.475Z"}
+{"email":"dineshmodem5132@gmail.com","firstName":"fghdsfgffdgffgbnghbn","level":"info","message":"wewerewrfregregererfrgregf","mobile":"9992999992","service":"auth-services","subject":"sdfsfsadfsf","timestamp":"2025-06-05T10:39:20.014Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"asmdnbdman","level":"info","message":"asdfgbnhgsdfvbnmjhgfdfcgvbhjnmmbvcnxxfkbfgevdfhlvbsvjdfgk.hF","mobile":"3456765435","service":"auth-services","subject":"qwertyuiop;';lkjhgfdxcvbnm,","timestamp":"2025-06-05T10:40:16.484Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:40:16.524Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"asmdnbdman","level":"info","message":"asdfgbnhgsdfvbnmjhgfdfcgvbhjnmmbvcnxxfkbfgevdfhlvbsvjdfgk.hF","mobile":"3456765435","service":"auth-services","subject":"qwertyuiop;';lkjhgfdxcvbnm,","timestamp":"2025-06-05T10:40:56.163Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:40:56.294Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"dinesh","level":"info","message":"JBVCBGVCHGBVYGYHGBYGHBVFTGV","mobile":"1234565433","service":"auth-services","subject":"SDVC LKJHNGBVC","timestamp":"2025-06-05T10:43:01.998Z"}
+{"level":"warn","message":"⚠️ contact Validation error: Mobile must be a valid 10-digit Indian number","service":"auth-services","timestamp":"2025-06-05T10:43:02.010Z"}
+{"email":"bunnybunny5132@gmail.com","firstName":"dinesh","level":"info","message":"JBVCBGVCHGBVYGYHGBYGHBVFTGV","mobile":"9876543456","service":"auth-services","subject":"SDVC LKJHNGBVC","timestamp":"2025-06-05T10:43:30.252Z"}
+{"date":"2025-07-15","description":"Run to support local charities and promote health.","endTime":"22:00","eventName":"Charity Run 5K","eventType":"Sports","level":"info","location":"City Stadium","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T11:02:45.594Z"}
+{"level":"info","message":"ℹ️ TESTIMONIAL API HIT","service":"auth-services","timestamp":"2025-06-05T11:34:15.327Z"}
+{"date":"2025-07-15","description":"Run to support local charities and promote health.","endTime":"22:00","eventName":"Charity Run 5K","eventType":"Sports","level":"info","location":"City Stadium","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T11:46:03.530Z"}
+{"date":"2025-06-13","description":"Free yoga session for all skill levels in the park.","endTime":"18:20","eventName":"Community Yoga Session","eventType":"Sport","level":"info","location":"Sunrise Park","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"18:18","timestamp":"2025-06-05T11:47:18.335Z"}
+{"date":"2025-07-15","description":"Learn new crafts and techniques with local artists","endTime":"22:00","eventName":"Art & Craft Workshop","eventType":"Workshop","level":"info","location":"Downtown Art Studio","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T11:53:18.923Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:10:09.307Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:10:42.350Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:13:58.317Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:14:24.138Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:14:35.789Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:15:22.427Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:16:52.281Z"}
+{"level":"warn","message":"⚠️ prayer request Validation error: \"prayerType\" must be one of [Job, Family, Health, Finance, Other]","service":"auth-services","timestamp":"2025-06-05T12:16:52.286Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:18:37.880Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:33:01.227Z"}
+{"level":"warn","message":"⚠️ prayer request Validation error: \"prayerType\" is required","service":"auth-services","timestamp":"2025-06-05T12:33:01.251Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:34:01.357Z"}
+{"level":"warn","message":"⚠️ prayer request Validation error: \"prayerType\" is required","service":"auth-services","timestamp":"2025-06-05T12:34:01.360Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-06-05T12:41:04.659Z"}
+{"date":"2025-07-15","description":"Learn new crafts and techniques with local artists","endTime":"22:00","eventName":"Art & Craft Workshop","eventType":"Workshop","level":"info","location":"Downtown Art Studio","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T13:26:54.484Z"}
+{"date":"2025-10-15","description":"Learn new crafts and techniques with local artists Learn new crafts and techniques with local artists Learn new crafts and techniques with local artists Learn new crafts and techniques with local artists Learn new crafts and techniques with local artists","endTime":"22:00","eventName":"Art & Craft Workshop","eventType":"Workshop","level":"info","location":"Downtown Art Studio","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"14:00","timestamp":"2025-06-05T13:27:49.386Z"}
+{"level":"error","message":"❌ Error fetching blogs text index required for $text query","service":"auth-services","timestamp":"2025-06-06T05:47:36.046Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-08-04T16:39:26.353Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2025-08-04T16:41:55.297Z"}
+{"level":"error","message":"❌ Failed to update Services: Service validation failed: day: Path `day` is required., department: Path `department` is required., service1: Path `service1` is required.","service":"auth-services","timestamp":"2025-08-09T15:39:25.249Z"}
+{"level":"error","message":"❌ Failed to update Services: Service validation failed: day: Path `day` is required., department: Path `department` is required., service1: Path `service1` is required.","service":"auth-services","timestamp":"2025-08-09T15:40:31.671Z"}
+{"level":"info","message":"✅ Service created: 68976c3477d8d6e901fe520f","service":"auth-services","timestamp":"2025-08-09T15:41:40.952Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T15:47:54.344Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T15:47:54.613Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T15:50:22.291Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T15:50:22.764Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T15:51:23.470Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T15:51:23.785Z"}
+{"level":"info","message":"✅ Service created: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T15:52:35.501Z"}
+{"level":"info","message":"✏️ Service updated: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T15:55:38.500Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:56:13.131Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:56:13.381Z"}
+{"level":"info","message":"✏️ Service updated: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T15:56:42.090Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:58:11.300Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:58:12.198Z"}
+{"level":"info","message":"✏️ Service updated: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T15:58:19.373Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:58:39.610Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:58:39.852Z"}
+{"level":"info","message":"✏️ Service updated: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T15:59:43.132Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T15:59:43.419Z"}
+{"level":"info","message":"✏️ Service updated: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T16:02:09.771Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T16:02:10.078Z"}
+{"level":"info","message":"✏️ Service updated: 68976c3477d8d6e901fe520f","service":"auth-services","timestamp":"2025-08-09T16:02:30.966Z"}
+{"level":"info","message":"📦 Retrieved 2 services","service":"auth-services","timestamp":"2025-08-09T16:02:31.377Z"}
+{"level":"info","message":"🗑️ Service deleted: 68976ec377d8d6e901fe523f","service":"auth-services","timestamp":"2025-08-09T16:04:49.619Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T16:04:49.921Z"}
+{"level":"error","message":"❌ Failed to update Service: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Service\"","service":"auth-services","timestamp":"2025-08-09T16:05:26.973Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T16:07:00.208Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T16:07:01.121Z"}
+{"level":"error","message":"❌ Failed to update Service: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Service\"","service":"auth-services","timestamp":"2025-08-09T16:07:20.013Z"}
+{"level":"error","message":"❌ Failed to update Service: Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Service\"","service":"auth-services","timestamp":"2025-08-09T16:08:39.460Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T16:11:13.412Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2025-08-09T16:11:14.260Z"}
+{"level":"info","message":"✅ Service created: 6897732ecca6a1f9a353f22c","service":"auth-services","timestamp":"2025-08-09T16:11:27.638Z"}
+{"level":"error","message":"❌ Failed to update Services: E11000 duplicate key error collection: church.services index: day_1 dup key: { day: \"monday\" }","service":"auth-services","timestamp":"2025-08-09T16:11:46.484Z"}
+{"level":"info","message":"✅ Service created: 689773a5cca6a1f9a353f230","service":"auth-services","timestamp":"2025-08-09T16:13:26.109Z"}
+{"level":"info","message":"✅ Service created: 689773c0cca6a1f9a353f232","service":"auth-services","timestamp":"2025-08-09T16:13:53.768Z"}
+{"level":"info","message":"✅ Service created: 689773d5cca6a1f9a353f234","service":"auth-services","timestamp":"2025-08-09T16:14:13.735Z"}
+{"level":"info","message":"✅ Service created: 689773eacca6a1f9a353f236","service":"auth-services","timestamp":"2025-08-09T16:14:34.990Z"}
+{"level":"info","message":"✅ Service created: 689773fdcca6a1f9a353f238","service":"auth-services","timestamp":"2025-08-09T16:14:54.490Z"}
+{"level":"error","message":"❌ Failed to update Services: E11000 duplicate key error collection: church.services index: day_1 dup key: { day: \"tuesday\" }","service":"auth-services","timestamp":"2025-08-09T16:15:06.572Z"}
+{"level":"error","message":"❌ Failed to update Services: E11000 duplicate key error collection: church.services index: day_1 dup key: { day: \"saturday\" }","service":"auth-services","timestamp":"2025-08-09T16:15:44.667Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:15:59.813Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:16:00.671Z"}
+{"level":"error","message":"❌ Failed to update Services: E11000 duplicate key error collection: church.services index: day_1 dup key: { day: \"friday\" }","service":"auth-services","timestamp":"2025-08-09T16:16:09.734Z"}
+{"level":"error","message":"❌ Failed to update Services: E11000 duplicate key error collection: church.services index: day_1 dup key: { day: \"friday\" }","service":"auth-services","timestamp":"2025-08-09T16:16:37.301Z"}
+{"level":"error","message":"❌ Failed to update Services: E11000 duplicate key error collection: church.services index: day_1 dup key: { day: \"friday\" }","service":"auth-services","timestamp":"2025-08-09T16:17:31.163Z"}
+{"level":"info","message":"✏️ Service updated: 689773eacca6a1f9a353f236","service":"auth-services","timestamp":"2025-08-09T16:18:16.025Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:18:16.473Z"}
+{"level":"info","message":"🗑️ Service deleted: 689773fdcca6a1f9a353f238","service":"auth-services","timestamp":"2025-08-09T16:18:24.936Z"}
+{"level":"info","message":"📦 Retrieved 6 services","service":"auth-services","timestamp":"2025-08-09T16:18:25.156Z"}
+{"level":"info","message":"✅ Service created: 689774e4cca6a1f9a353f252","service":"auth-services","timestamp":"2025-08-09T16:18:44.789Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:22:27.174Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:22:27.280Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:28:59.067Z"}
+{"level":"info","message":"📦 Retrieved 7 services","service":"auth-services","timestamp":"2025-08-09T16:29:32.056Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: HomePageModal is not defined","service":"auth-services","timestamp":"2026-04-10T05:45:40.327Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: HomePageModal is not defined","service":"auth-services","timestamp":"2026-04-10T05:45:40.848Z"}
+{"level":"error","message":"❌Failed to fetch testimonial details : Testimonial.countDocuments is not a function","service":"auth-services","timestamp":"2026-04-10T05:45:56.129Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: HomePageModal is not defined","service":"auth-services","timestamp":"2026-04-10T05:45:56.713Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: HomePageModal is not defined","service":"auth-services","timestamp":"2026-04-10T05:48:06.691Z"}
+{"level":"error","message":"❌Failed to fetch testimonial details : Testimonial.countDocuments is not a function","service":"auth-services","timestamp":"2026-04-10T05:48:06.786Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T05:53:47.187Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Converting circular structure to JSON\n    --> starting at object with constructor 'Sequelize'\n    |     property 'dialect' -> object with constructor 'MysqlDialect'\n    --- property 'sequelize' closes the circle","service":"auth-services","timestamp":"2026-04-10T05:53:47.215Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T05:58:16.428Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Converting circular structure to JSON\n    --> starting at object with constructor 'Sequelize'\n    |     property 'dialect' -> object with constructor 'MysqlDialect'\n    --- property 'sequelize' closes the circle","service":"auth-services","timestamp":"2026-04-10T05:58:16.444Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Converting circular structure to JSON\n    --> starting at object with constructor 'Sequelize'\n    |     property 'dialect' -> object with constructor 'MysqlDialect'\n    --- property 'sequelize' closes the circle","service":"auth-services","timestamp":"2026-04-10T06:03:37.980Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:13:59.215Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:13:59.746Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:13:59.784Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:15:29.423Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:15:30.066Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:15:30.089Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:22:56.428Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:22:57.584Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:22:57.781Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:25:13.313Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:25:13.615Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:25:13.631Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:27:14.236Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:27:14.390Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:27:14.444Z"}
+{"level":"error","message":"❌ Failed to edit Gallery category  : Truncated incorrect INTEGER value: 'undefined'","service":"auth-services","timestamp":"2026-04-10T06:28:26.690Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:29:37.183Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:29:38.329Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:29:38.514Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:36:29.790Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:36:30.210Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:36:30.303Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:36:30.342Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:36:47.533Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:36:47.746Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:37:17.740Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:37:17.834Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:37:17.918Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T06:37:17.986Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T07:07:57.498Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T07:07:57.811Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T07:07:58.059Z"}
+{"level":"info","message":"ℹ️ PRAYER REQUEST API HIT","service":"auth-services","timestamp":"2026-04-10T07:10:29.908Z"}
+{"level":"error","message":"❌Error marking as prayed: Truncated incorrect INTEGER value: 'undefined'","service":"auth-services","timestamp":"2026-04-10T07:15:26.898Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T07:15:59.982Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T07:16:00.094Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T08:58:55.602Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T08:58:55.897Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T08:58:56.023Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T08:58:56.136Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:07:47.932Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:07:48.032Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:07:48.106Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:08:09.132Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:08:09.556Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:08:09.575Z"}
+{"level":"error","message":"❌Error marking as prayed: Truncated incorrect INTEGER value: 'undefined'","service":"auth-services","timestamp":"2026-04-10T09:10:51.048Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:16:16.270Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:16:16.382Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:16:16.407Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:16:41.069Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:16:41.253Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:16:41.294Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:14.347Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:14.374Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:14.386Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:14.396Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:24.588Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:24.813Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:25.117Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:31.498Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:32.566Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:18:32.601Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:26:32.697Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:32:47.454Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:32:47.698Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:32:47.721Z"}
+{"date":"2026-01-01","description":"Good Friday, Ester","endTime":"23:12","eventName":"Good Friday","eventType":"Conference","level":"info","location":"Hyderabad","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"23:10","timestamp":"2026-04-10T09:35:20.214Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:35:30.231Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:35:30.386Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:35:30.415Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:20.724Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:20.824Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:20.982Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:20.994Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:29.993Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:30.182Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T09:37:30.267Z"}
+{"email":"john@gmail.com","firstName":"John","level":"info","message":"Very Calm and composer","mobile":"9090909090","service":"auth-services","subject":"Nothing","timestamp":"2026-04-10T09:40:29.603Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T10:03:11.442Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T10:03:11.771Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T10:03:11.791Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:09:05.491Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:09:05.634Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:09:05.743Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:09:05.759Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:12:31.010Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:12:31.453Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:12:31.524Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:14:37.247Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:14:37.384Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:14:37.439Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:14:37.487Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:15:00.778Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:15:01.403Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:15:01.447Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:17:43.457Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:17:43.751Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-04-10T11:17:43.781Z"}
