@@ -33,10 +33,10 @@ const MagazineCarousel = ({ data }) => {
   const nextRef = useRef(null);
 
   return (
-    <div className="relative max-w-7xl mx-auto px-4 py-0">
-      {/* <h2 className="text-3xl font-bold text-main text-center mb-10">
+    <div className="relative max-w-7xl mx-auto px-4 py-6">
+      <h2 className="text-3xl font-bold text-main text-center mb-10">
         Magazines
-      </h2> */}
+      </h2>
 
       {/* Navigation Buttons */}
       <div

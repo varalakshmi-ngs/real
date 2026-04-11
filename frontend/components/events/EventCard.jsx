@@ -12,9 +12,11 @@ import { CalendarDays, MapPin } from "lucide-react";
 
 const EventCard = ({ event }) => {
   const router = useRouter();
+  const eventId = event?.id || event?._id;
 
   const goToPage = () => {
-    router.push(`/events/${event._id}`);
+    if (!eventId) return;
+    router.push(`/events/${eventId}`);
   };
 
   const image = `${APIURL}/uploads/${event?.image}`;

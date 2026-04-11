@@ -6,6 +6,7 @@ import {
   HandCoins,
   Calendar,
   Newspaper,
+  Play,
   HandHeart,
   Mail,
   LogOut,
@@ -30,9 +31,9 @@ const menuItems = [
     ],
   },
   { name: "Events", icon: Calendar, to: "/event", badge: null },
+  { name: "Watch", icon: Play, to: "/watch", badge: null },
   { name: "Magazines", icon: Newspaper, to: "/magazine", badge: null },
   { name: "Contributions", icon: HandCoins, to: "/contribution", badge: null },
-  { name: "Blogs", icon: Edit, to: "/blogs", badge: null },
   { name: "Prayer Requests", icon: HandHeart, to: "/request-prayer", badge: null },
   { name: "Contact Messages", icon: Mail, to: "/contact", badge: null },
 ];

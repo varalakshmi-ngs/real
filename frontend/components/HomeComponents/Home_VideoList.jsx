@@ -36,7 +36,7 @@ export default function Home_VideoList({ data }) {
                 <Home_Video_Card
                   title={`${e?.description} - ${e?.speakerName}`}
                   subText={e?.subText}
-                  image={`${APIURL}/${e.thumbnailImage}`}
+                  image={e.thumbnailImage && e.thumbnailImage.startsWith("http") ? e.thumbnailImage : `${APIURL}/${e.thumbnailImage}`}
                   link={e?.youtubeLink}
                 />
               </motion.div>

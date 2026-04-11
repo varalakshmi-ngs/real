@@ -1,6 +1,5 @@
 "use client";
 
-import { getblogsApi } from "@/service/blog-server";
 import { singleEventWithSuggestion } from "@/service/event-server";
 import { useEffect, useState } from "react";
 
@@ -10,10 +9,6 @@ export const useSignleEventHook = ({ id }) => {
 
   const [singleEvent, setSingleEvent] = useState({});
   const [suggestionEvent, setSuggestionEvent] = useState([]);
-
-  const [blogLoading, setBlogLoading] = useState(false);
-  const [blogError, setBlogError] = useState("");
-  const [suggestionBlog, setSuggestionBlog] = useState([]);
 
   const fetchSingleEventWithSuggetion = async ({ id }) => {
     setLoading(true);
@@ -28,26 +23,8 @@ export const useSignleEventHook = ({ id }) => {
     setLoading(false);
   };
 
-  const fetchSuggectionBlogs = async ({ page = 1, search = "" }) => {
-    setBlogLoading(true);
-    const data = await getblogsApi({
-      page,
-      token: "",
-      limit: 2,
-      search,
-    });
-
-    if (data?.status) {
-      setSuggestionBlog(data?.res?.data);
-    } else {
-      setBlogError(data?.error);
-    }
-    setBlogLoading(false);
-  };
-
   useEffect(() => {
     fetchSingleEventWithSuggetion({ id });
-    fetchSuggectionBlogs({ page: 1, search: "" });
   }, [id]);
 
   return {
@@ -55,10 +32,5 @@ export const useSignleEventHook = ({ id }) => {
     suggestionEvent,
     loading,
     error,
-    //
-
-    blogLoading,
-    blogError,
-    suggestionBlog,
   };
 };

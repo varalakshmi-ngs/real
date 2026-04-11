@@ -77,7 +77,7 @@ export default function ImagesGrid({ data, selected }) {
     <div className="w-full max-w-7xl mx-auto my-8 md:my-12 px-2 sm:px-4">
       <motion.div 
         layout
-        className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
+        className="columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-4 space-y-4"
       >
         <AnimatePresence>
           {filteredData?.map((e, index) => (

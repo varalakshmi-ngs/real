@@ -1,4 +1,4 @@
-import { AboutPage, SocialLink, TeamMember } from "../models.js";
+import { AboutPage, TeamMember } from "../models.js";
 import logger from "../utils/logger.js";
 import { sendResponse } from "../utils/sendResponse.js";
 
@@ -153,36 +153,3 @@ export const getAllAboutData = async (req, res) => {
   }
 };
 
-export const postSocialLinks = async (req, res) => {
-  try {
-    const { facebook, instagram, youtube, twitter } = req.body;
-
-    const body = {};
-
-    if (facebook) body.facebook = facebook;
-    if (instagram) body.instagram = instagram;
-    if (youtube) body.youtube = youtube; // ✅ Fixed
-    if (twitter) body.twitter = twitter; // ✅ Fixed
-
-    const socialLinks = await SocialLink.findOne();
-
-    if (!socialLinks) {
-      const newLinks = await SocialLink.create(body);
-      return res.status(200).send(newLinks);
-    }
-
-    await socialLinks.update(body);
-    return res.status(200).send(socialLinks);
-  } catch (error) {
-    return sendResponse(res, 500, "Failed to save Social Links", error);
-  }
-};
-export const getSocialLinks = async (req, res) => {
-  try {
-    const socialLinks = await SocialLink.findOne();
-
-    return res.status(200).send(socialLinks);
-  } catch (error) {
-    return sendResponse(res, 500, "Failed to save Social Links", error);
-  }
-};

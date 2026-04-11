@@ -5,8 +5,6 @@ import {
   getAllAboutData,
   deleteTeamMember,
   addTeamMember,
-  postSocialLinks,
-  getSocialLinks,
 } from "../controller/AboutController.js";
 import upload from "../middlewares/fileUpload.js";
 import { handleMulterUpload } from "../middlewares/handleMulterUpload.js";
@@ -34,8 +32,5 @@ router.post(
 router.delete("/deletemember/:id", deleteTeamMember);
 
 router.get("/", getAllAboutData);
-
-router.post("/social-links", postSocialLinks);
-router.get("/social-links", getSocialLinks);
 
 export default router;

@@ -57,16 +57,6 @@ export const Event = sequelize.define("Event", {
   image: { type: DataTypes.STRING },
 });
 
-export const Blog = sequelize.define("Blog", {
-  title: { type: DataTypes.STRING, allowNull: false },
-  author: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.TEXT, allowNull: false },
-  category: { type: DataTypes.STRING, allowNull: false },
-  image: { type: DataTypes.STRING },
-  location: { type: DataTypes.STRING },
-  date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-});
-
 export const GalleryCategory = sequelize.define("GalleryCategory", {
   title: { type: DataTypes.STRING, allowNull: false },
 });
@@ -169,7 +159,6 @@ export const databaseModels = {
   PrayerRequest,
   Donation,
   Event,
-  Blog,
   GalleryCategory,
   GalleryImage,
   HomePage,

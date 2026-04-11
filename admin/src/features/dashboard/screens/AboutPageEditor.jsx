@@ -1,7 +1,5 @@
 import HeroForm from "../components/AboutPageComponents/HeroForm";
 import PastorEditSection from "../components/AboutPageComponents/PastorEditSection";
-import AddTeamMember from "../components/AboutPageComponents/AddTeamMember";
-import SocialLinksForm from "../components/AboutPageComponents/SocialLinksForm";
 import { Select } from "../../../components/UI/Form";
 import { apiRequest } from "../../../services/ApiCalls";
 import { useEffect, useState } from "react";
@@ -14,8 +12,6 @@ export default function AboutPageEditor() {
   const sections = [
     { value: "hero", label: "Hero Section" },
     { value: "pastorMessage", label: "Pastor Message" },
-    { value: "team", label: "Team Members" },
-    { value: "socialLinks", label: "Social Links" },
   ];
 
   const refreshData = async () => {
@@ -86,16 +82,6 @@ export default function AboutPageEditor() {
           {selectedSection === "pastorMessage" && (
             <motion.div variants={itemVariants}>
               <PastorEditSection data={data?.pastarmessage} refreshData={refreshData} />
-            </motion.div>
-          )}
-          {selectedSection === "team" && (
-            <motion.div variants={itemVariants}>
-              <AddTeamMember data={data?.teamMembers} refreshData={refreshData} />
-            </motion.div>
-          )}
-          {selectedSection === "socialLinks" && (
-            <motion.div variants={itemVariants}>
-              <SocialLinksForm />
             </motion.div>
           )}
         </>

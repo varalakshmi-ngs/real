@@ -1,40 +1,10 @@
 "use client";
-import { API } from "@/Core/rl";
-import { errorMsgApi } from "@/Core/tosts";
-import { isAxiosError } from "axios";
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 
-
 export default function Footer() {
-  const [data, setData] = useState({
-    facebook: "",
-    twitter: "",
-    instagram: "",
-    youtube: "",
-  });
-
-  const getLinks = async () => {
-    try {
-      const resp = await API.get("/about/social-links");
-
-      setData(resp.data);
-    } catch (error) {
-      if (isAxiosError(error)) {
-        errorMsgApi(error?.response?.data?.message);
-      } else {
-        errorMsgApi("Unexpected Error");
-      }
-    }
-  };
-
-  useEffect(() => {
-    getLinks();
-  }, []);
-
   const navLinks = [
     {
       key: "Home",
@@ -61,22 +31,6 @@ export default function Footer() {
       link: "/contact",
     },
   ];
-  const socialLinks = [
-    {
-      icon: <Facebook className="w-6 h-6" />,
-      href: data?.facebook,
-    },
-    { icon: <Twitter className="w-6 h-6" />, href: data?.twitter },
-    {
-      icon: <Instagram className="w-6 h-6" />,
-      href: data?.instagram,
-    },
-
-    {
-      icon: <Youtube className="w-6 h-6" />,
-      href: data?.youtube || "https://www.youtube.com/@REALTEMPLE",
-    },
-  ];
 
   return (
     <footer className="bg-second text-white font-sans mt-4">
@@ -92,22 +46,6 @@ export default function Footer() {
               alt="Logo"
             />
             <p>Bringing hope, faith, and community together since 1985.</p>
-            <div className="flex flex-col gap-2">
-              <p>Follow us on social media</p>
-              <div className="flex gap-4">
-                {socialLinks.map(({ icon, href }, index) => (
-                  <Link
-                    key={index}
-                    href={href || "/"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-main p-2 rounded-md hover:bg-white hover:text-main transition"
-                  >
-                    {icon}
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="grid  gap-6  md:grid-cols-3 grid-cols-2 md:gap-8">

@@ -92,15 +92,20 @@ export default function HomePage() {
           <Home_Events limit={2} />
         </motion.div>
 
+        <motion.div variants={sectionVariant}>
+          <ChurchTimings />
+        </motion.div>
+
+
         {/* Gallery --- some images Last updated 5 only */}
         <motion.div variants={sectionVariant}>
           <Home_ChurchGallery limit={5} />
         </motion.div>
 
         {/* Timings */}
-        <motion.div variants={sectionVariant}>
+        {/* <motion.div variants={sectionVariant}>
           <ChurchTimings />
-        </motion.div>
+        </motion.div> */}
 
         {/* Support Section */}
         <motion.div variants={sectionVariant}>

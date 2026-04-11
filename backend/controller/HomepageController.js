@@ -89,12 +89,12 @@ export const updatePastorIntro = async (req, res) => {
 
 export const addVideo = async (req, res) => {
   try {
-    const { youtubeLink, speakerName, description, subText } = req.body;
-    const image = req.file?.path;
+    const { youtubeLink, speakerName, description, subText, thumbnailUrl } = req.body;
+    const image = req.file?.path || thumbnailUrl;
     const homePage = await HomePage.findByPk(1);
 
 
-    if (!youtubeLink || !speakerName || !description || !subText || !req.file) {
+    if (!youtubeLink || !speakerName || !description || !subText || !image) {
       return res.status(400).json({
         message: "Plesase fill all fields",
       });

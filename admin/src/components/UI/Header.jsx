@@ -46,11 +46,12 @@ const Header = () => {
     { name: "Home", path: "/home" },
     { name: "About", path: "/about" },
     { name: "Gallery", path: "/gallery" },
+    { name: "Watch", path: "/watch" },
     { name: "Events", path: "/event" },
     { name: "Magazines", path: "/magazine" },
     { name: "Contributions", path: "/contribution" },
     // { name: "Blogs", path: "/blogs" },
-    { name: "Requests", path: "/request-prayer" },
+    { name: "Prayer Requests", path: "/request-prayer" },
     { name: "Contact", path: "/contact" },
   ];
 

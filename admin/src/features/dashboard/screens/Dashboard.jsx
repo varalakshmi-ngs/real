@@ -5,6 +5,7 @@ import {
   MessageCircle,
   HandHeart,
   Newspaper,
+  Play,
   TrendingUp,
   Activity,
   CheckCircle2,
@@ -70,16 +71,16 @@ const Dashboard = () => {
       path: "/event"
     },
     {
+      title: "Manage Watch",
+      icon: Play,
+      color: "purple",
+      path: "/watch"
+    },
+    {
       title: "Upload Photos",
       icon: Image,
       color: "green",
       path: "/gallery"
-    },
-    {
-      title: "Post Blog",
-      icon: Newspaper,
-      color: "amber",
-      path: "/blogs"
     },
     {
       title: "Messages",

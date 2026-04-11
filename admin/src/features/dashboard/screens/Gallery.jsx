@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RecentPhotos from "../components/GalleryPageComponents/RecentPhotos";
-import GalleryCategory from "../components/GalleryPageComponents/GalleryCategory";
+// import GalleryCategory from "../components/GalleryPageComponents/GalleryCategory";
 import GalleryPhotos from "../components/GalleryPageComponents/GalleryPhotos";
 import { apiRequest } from "../../../services/ApiCalls";
 import { motion } from "framer-motion";
@@ -38,18 +38,19 @@ export default function Gallery() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="show"
       className="flex flex-col gap-8 pb-12"
     >
       <motion.div variants={itemVariants}>
-        <RecentPhotos images={recentImages} />
-      </motion.div>
-      <motion.div variants={itemVariants}>
         <GalleryPhotos />
       </motion.div>
+      <motion.div variants={itemVariants}>
+        <RecentPhotos images={recentImages} />
+      </motion.div>
+
     </motion.div>
   );
 }

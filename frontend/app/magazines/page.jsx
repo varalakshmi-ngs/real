@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BlogHeading from "@/components/blog/BlogHeading";
-import { useBlogHook } from "@/Hooks/blog-event.hook";
 import dynamic from "next/dynamic";
 import { ClipLoader } from "react-spinners";
 import { useHomeDataHook } from "@/Hooks/HomeDataHook";
@@ -47,7 +45,17 @@ const Page = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
-      <BlogHeading />
+      <article className="w-full flex flex-col justify-center items-center py-16 px-6 sm:px-12 bg-gradient-to-b from-gray-50 to-white text-center">
+        <div className="max-w-3xl flex flex-col items-center gap-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-gray-900 tracking-tight">
+            Our <span className="text-red-600">Magazines</span>
+          </h1>
+          <div className="h-1 bg-red-600 w-24 rounded-full mb-2" />
+          <p className="text-lg sm:text-xl text-gray-600 font-sans leading-relaxed">
+            Sermons, devotionals, and inspiring updates from The Real Temple community.
+          </p>
+        </div>
+      </article>
 
       <div className="w-full bg-gray-50 pt-16 pb-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 sm:px-12">

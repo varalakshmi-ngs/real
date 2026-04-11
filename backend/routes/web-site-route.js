@@ -1,14 +1,10 @@
 import express from "express";
 import {
   approvedTestimonialUpload,
-  createBlogWithImage,
   createOrder,
   deletContact,
-  deleteBlogs,
   deleteEvent,
   deletePrayerRequest,
-  getBlogs,
-  getBlogsThroughWebPage,
   getContact,
   getEvents,
   getEventWithSuggestions,
@@ -20,7 +16,6 @@ import {
   postEvent,
   rejectedTestimonialUpload,
   submitPrayerRequest,
-  updateBlog,
   updateEvent,
   verifyPayment,
   getAllCount,
@@ -50,21 +45,6 @@ router.post("/prayer-request", submitPrayerRequest);
 router.get("/prayer-request", getPrayerRequest);
 router.patch("/prayer-request/:id/mark-prayed", markAsPrayed);
 router.delete("/prayer-request/:id", deletePrayerRequest);
-
-router.post(
-  "/blogs",
-  handleMulterUpload(upload.single("image")),
-  createBlogWithImage
-);
-router.get("/blogs", getBlogs);
-router.get("/blogs-webpage", getBlogsThroughWebPage);
-
-router.delete("/blogs/:id", deleteBlogs);
-router.patch(
-  "/blogs/:id",
-  handleMulterUpload(upload.single("image")),
-  updateBlog
-);
 
 router.post("/event", handleMulterUpload(upload.single("image")), postEvent);
 router.get("/event", getEvents);

@@ -1,6 +1,5 @@
 import HeroForm from "../components/HomePageComponents/HeroSectionForm";
 import PastorIntro from "../components/HomePageComponents/PastorIntro";
-import VideosSection from "../components/HomePageComponents/VideosSection";
 import JoinWeekend from "../components/HomePageComponents/JoinWeekend";
 import ChruchServices from "../components/HomePageComponents/ChruchServices";
 import LastMessage from "../components/HomePageComponents/LastMessage";
@@ -17,7 +16,6 @@ export default function HomepageEditor() {
   const sections = [
     { value: "hero", label: "Hero Section" },
     { value: "pastorIntro", label: "Pastor Intro" },
-    { value: "videos", label: "Video Section" },
     { value: "churchServices", label: "Weekly Service Timings" },
     { value: "latestMessage", label: "Latest Message" },
   ];
@@ -90,11 +88,6 @@ export default function HomepageEditor() {
           {selectedSection === "pastorIntro" && (
             <motion.div variants={itemVariants}>
               <PastorIntro data={data?.pasterIntro} />
-            </motion.div>
-          )}
-          {selectedSection === "videos" && (
-            <motion.div variants={itemVariants}>
-              <VideosSection data={data?.videos} refreshData={refreshData} />
             </motion.div>
           )}
 

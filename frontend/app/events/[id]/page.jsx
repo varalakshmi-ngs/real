@@ -1,5 +1,4 @@
 "use client";
-import EventBlog from "@/components/event-details/EventBlog";
 import EventHero from "@/components/event-details/EventHero";
 import EventCard from "@/components/events/EventCard";
 import { useSignleEventHook } from "@/Hooks/single-event.hook";
@@ -40,9 +39,6 @@ const page = () => {
             ))}
           </div>
         </div>
-      </StatusWrapper>
-      <StatusWrapper loading={blogLoading} error={blogError}>
-        <EventBlog suggestionBlog={suggestionBlog} />
       </StatusWrapper>
     </div>
   );

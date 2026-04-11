@@ -8,12 +8,12 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 
 import Contribution from "./features/contribution/Contribution";
-import BlogScreen from "./features/blog/BlogScreen";
 import RequesrForPrayer from "./features/request-for-prayer/RequesrForPrayer";
 import ContactScreen from "./features/contact/ContactScreen";
 
 import HomepageEditor from "./features/dashboard/screens/HomepageEditor";
 import AboutPageEditor from "./features/dashboard/screens/AboutPageEditor";
+import WatchEditor from "./features/dashboard/screens/WatchEditor";
 import Gallery from "./features/dashboard/screens/Gallery";
 import EventScreen from "./features/event/EventScreen";
 import MagzinePage from "./features/Magazine/MagzinePage";
@@ -45,7 +45,7 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
 
               <Route path="/contribution" element={<Contribution />} />
-              <Route path="/blogs" element={<BlogScreen />} />
+              <Route path="/watch" element={<WatchEditor />} />
               <Route path="/request-prayer" element={<RequesrForPrayer />} />
               <Route path="/contact" element={<ContactScreen />} />
               <Route path="/event" element={<EventScreen />} />
