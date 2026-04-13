@@ -80,7 +80,7 @@ export default function GiveNowQRcode() {
               </div>
               <div>
                 <h3 className="text-lg text-red-300 font-medium mb-1 tracking-wide uppercase">Bank Transfer</h3>
-                <h2 className="text-3xl font-serif font-bold text-white">The Real Temple Foundation</h2>
+                <h2 className="text-3xl font-serif font-bold text-white">D. SURESH</h2>
               </div>
             </div>
 
@@ -90,7 +90,7 @@ export default function GiveNowQRcode() {
                   <CreditCard size={18} />
                   <p className="font-medium text-sm tracking-widest uppercase">Account No</p>
                 </div>
-                <p className="text-2xl font-mono font-medium text-white tracking-wider">59100411230413</p>
+                <p className="text-2xl font-mono font-medium text-white tracking-wider">50100286369360</p>
               </div>
               
               <div className="flex flex-col gap-2">
@@ -98,7 +98,7 @@ export default function GiveNowQRcode() {
                   <Landmark size={18} />
                   <p className="font-medium text-sm tracking-widest uppercase">IFSC Code</p>
                 </div>
-                <p className="text-2xl font-mono font-medium text-white tracking-wider">HDFC0003777</p>
+                <p className="text-2xl font-mono font-medium text-white tracking-wider">HDFC0001990</p>
               </div>
               
               <div className="flex flex-col gap-2">
@@ -106,7 +106,7 @@ export default function GiveNowQRcode() {
                   <Building2 size={18} />
                   <p className="font-medium text-sm tracking-widest uppercase">Branch</p>
                 </div>
-                <p className="text-xl font-sans font-medium text-white tracking-wide mt-1">Hydernagar</p>
+                <p className="text-xl font-sans font-medium text-white tracking-wide mt-1">HAYATNAGAR</p>
               </div>
             </div>
 

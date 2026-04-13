@@ -6,7 +6,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Heart, X } from "lucide-react";
 import { API } from "@/Core/rl";
 
-const SuccessModal = ({ isOpen, onClose, donorName, amount }) => {
+const ManualDonationModal = ({ isOpen, onClose, donorName, amount, onConfirm }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleConfirm = async () => {
+    setIsSubmitting(true);
+    try {
+      const success = await onConfirm();
+      if (success) {
+        setIsSuccess(true);
+        setTimeout(() => {
+          onClose();
+          setIsSuccess(false);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Confirmation error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -16,54 +37,111 @@ const SuccessModal = ({ isOpen, onClose, donorName, amount }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl overflow-hidden"
           >
-            <div className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer transition-colors" onClick={onClose}>
+            <div className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer transition-colors z-20" onClick={onClose}>
               <X size={24} />
             </div>
 
-            <div className="p-8 pt-12 flex flex-col items-center text-center">
-              <div className="relative mb-6">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", damping: 12, delay: 0.2 }}
-                  className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600"
-                >
-                  <CheckCircle2 size={40} />
-                </motion.div>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                  className="absolute -top-1 -right-1 w-6 h-6 bg-red-100 rounded-full flex items-center justify-center text-red-500"
-                >
-                  <Heart size={14} fill="currentColor" />
-                </motion.div>
-              </div>
+            <div className="p-6 pt-8 flex flex-col items-center">
+              {isSuccess ? (
+                <div className="py-12 flex flex-col items-center text-center space-y-4">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                    <CheckCircle2 size={48} />
+                  </div>
+                  <h3 className="text-2xl font-serif font-bold text-gray-900">Contribution Recorded!</h3>
+                  <p className="text-gray-600">Thank you, {donorName}. Your support means a lot to our ministry.</p>
+                </div>
+              ) : (
+                <>
+                  <h3 className="text-2xl font-serif font-bold text-gray-900 mb-1">
+                    Support Our Ministry
+                  </h3>
+                  <p className="text-gray-500 mb-6 text-sm font-medium text-center">
+                    Please use any payment method below and click the button to finish 🙏
+                  </p>
 
-              <h3 className="text-2xl font-serif font-bold text-gray-900 mb-2">
-                Thank You, <span className="text-red-600">{donorName}</span>!
-              </h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                Your generous donation of <span className="font-bold text-gray-900">₹{amount}</span> has been received. 
-                Thank you for supporting the light of Christ and help us building the Kingdom of God.
-              </p>
+                  <div className="flex flex-col md:flex-row gap-8 w-full mb-8">
+                    {/* Left Side: Details */}
+                    <div className="flex-1 space-y-4">
+                      <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 flex flex-col items-center justify-center">
+                        <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold mb-0.5">Donation Amount</p>
+                        <p className="text-2xl font-bold text-green-600">₹ {amount}</p>
+                      </div>
 
-              <button
-                onClick={onClose}
-                className="w-full bg-gray-900 text-white font-medium py-4 rounded-2xl hover:bg-gray-800 transition-colors shadow-lg"
-              >
-                Close
-              </button>
+                      <div className="bg-white border-2 border-gray-900 rounded-xl p-3 text-center">
+                        <p className="text-base font-bold text-gray-900">
+                          UPI ID: <span className="font-mono text-sm">rgwm.withds1@ybl</span>
+                        </p>
+                      </div>
+
+                      <div className="bg-gray-50 rounded-2xl p-5 space-y-2">
+                        <h4 className="text-lg font-bold text-gray-900 border-b border-gray-200 pb-1.5">Bank Details:</h4>
+                        <div className="space-y-1 text-sm">
+                          <p className="text-gray-900 font-semibold flex justify-between">
+                            <span className="text-gray-500 font-medium">Account Holder:</span> D. SURESH
+                          </p>
+                          <p className="text-gray-900 font-semibold flex justify-between">
+                            <span className="text-gray-500 font-medium">Account Number:</span> 50100286369360
+                          </p>
+                          <p className="text-gray-900 font-semibold flex justify-between">
+                            <span className="text-gray-500 font-medium">IFSC:</span> HDFC0001990
+                          </p>
+                          <p className="text-gray-900 font-semibold flex justify-between">
+                            <span className="text-gray-500 font-medium">Branch:</span> HAYATNAGAR
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Side: QR Code */}
+                    <div className="flex-1 flex flex-col items-center justify-center space-y-4">
+                      <div className="p-3 bg-white rounded-3xl shadow-inner border border-gray-100">
+                        <img 
+                          src="/images/manual-donation-qr.jpeg" 
+                          alt="QR Code" 
+                          className="w-40 h-40 object-contain"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "/images/GiveNowQr.png";
+                          }}
+                        />
+                      </div>
+                      
+                      <div className="flex items-center gap-5">
+                        <img src="https://www.vectorlogo.zone/logos/google_pay/google_pay-official.svg" alt="GPay" className="h-5" />
+                        <img src="https://www.vectorlogo.zone/logos/phonepe/phonepe-icon.svg" alt="PhonePe" className="h-6" />
+                        <img src="https://www.vectorlogo.zone/logos/paytm/paytm-icon.svg" alt="Paytm" className="h-3" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <motion.button
+                    onClick={handleConfirm}
+                    disabled={isSubmitting}
+                    className={`w-full py-4 rounded-xl text-white font-bold text-lg transition-all shadow-lg ${
+                      isSubmitting ? "bg-gray-400" : "bg-red-600 hover:bg-red-700"
+                    }`}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  >
+                    {isSubmitting ? "Processing..." : "Transaction Completed"}
+                  </motion.button>
+
+                  <div className="mt-6 pt-4 border-t border-gray-100 w-full text-center">
+                    <p className="text-gray-500 text-xs font-medium italic">
+                      Thank you for your Contribution 🙏
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
-            
-            <div className="h-2 bg-gradient-to-r from-red-500 via-green-500 to-blue-500" />
           </motion.div>
         </div>
       )}
@@ -90,24 +168,10 @@ export const GiveNowWaysToGive = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
+  const handleConfirmDonation = async () => {
     try {
-      // Step 1: Save the donation to the database
       const response = await API.post("/web/submit-donation", formData);
-      
       if (response.data.success) {
-        // Step 2: Set success data for modal
-        setSuccessData({
-          name: formData.fullName,
-          amount: formData.amount
-        });
-        
-        // Step 3: Show the Success Modal
-        setShowSuccess(true);
-
-        // Step 4: Resetting form after successful submission
         setFormData({
           purpose: "",
           fullName: "",
@@ -115,20 +179,33 @@ export const GiveNowWaysToGive = () => {
           email: "",
           amount: "",
         });
+        return true;
       }
+      return false;
     } catch (error) {
       console.error("Donation submission error:", error);
       alert("Failed to process donation. Please try again later.");
+      return false;
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSuccessData({
+      name: formData.fullName,
+      amount: formData.amount
+    });
+    setShowSuccess(true);
   };
 
   return (
     <>
-      <SuccessModal 
+      <ManualDonationModal 
         isOpen={showSuccess} 
         onClose={() => setShowSuccess(false)}
         donorName={successData.name}
         amount={successData.amount}
+        onConfirm={handleConfirmDonation}
       />
       
       <section id="contribution" className="bg-gray-50 py-24 px-6 sm:px-12 overflow-hidden">
