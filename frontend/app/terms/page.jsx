@@ -2,6 +2,12 @@
 import React from "react";
 
 export default function TermsAndConditions() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="bg-gray-50 text-gray-800 py-10 px-4 md:px-16 mt-[40px]">
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-2xl p-6 md:p-10">
@@ -11,7 +17,7 @@ export default function TermsAndConditions() {
         </h1>
 
         <p className="mb-4 text-sm text-gray-500 text-center">
-          Last Updated: {new Date().toLocaleDateString()}
+          Last Updated: {mounted ? new Date().toLocaleDateString('en-IN') : ""}
         </p>
 
         {/* Introduction */}
