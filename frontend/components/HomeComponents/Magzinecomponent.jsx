@@ -13,7 +13,7 @@ const normalizePdfUrl = (pdf) => {
   if (!pdf) return null;
   if (/^https?:\/\//i.test(pdf)) return pdf;
 
-  const baseUrl = APIURL || "http://localhost:4040";
+  const baseUrl = APIURL || "";
   let path = pdf.replace(/\\/g, "/");
 
   const uploadsIndex = path.indexOf("uploads/");

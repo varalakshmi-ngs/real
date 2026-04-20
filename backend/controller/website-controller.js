@@ -14,9 +14,18 @@ import { testimonialValidator } from "../validater/testimonial/testimonialValida
 import { validatePrayerRequest } from "../validater/web/prayerRequest.js";
 import { createHmac } from "crypto";
 
+const razorpayKeyId = process.env.YOUR_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID;
+const razorpayKeySecret = process.env.YOUR_RAZORPAY_KEY_SECRET || process.env.RAZORPAY_KEY_SECRET;
+
+if (!razorpayKeyId || !razorpayKeySecret) {
+  throw new Error(
+    "Missing Razorpay credentials. Set YOUR_RAZORPAY_KEY_ID and YOUR_RAZORPAY_KEY_SECRET in backend/.env"
+  );
+}
+
 const razorpay = new Razorpay({
-  key_id: process.env.YOUR_RAZORPAY_KEY_ID,
-  key_secret: process.env.YOUR_RAZORPAY_KEY_SECRET,
+  key_id: razorpayKeyId,
+  key_secret: razorpayKeySecret,
 });
 
 export const handleContact = async (req, res) => {

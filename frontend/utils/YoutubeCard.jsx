@@ -7,8 +7,10 @@ import { motion } from "framer-motion";
 const getThumbnailSrc = (thumbnail) => {
   if (!thumbnail) return "/watchbanner.jpg";
   if (thumbnail.startsWith("http")) return thumbnail;
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4040";
-  return `${baseUrl}${thumbnail.startsWith("/") ? "" : "/"}${thumbnail}`;
+
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  const normalizedPath = `${thumbnail.startsWith("/") ? "" : "/"}${thumbnail}`;
+  return baseUrl ? `${baseUrl}${normalizedPath}` : normalizedPath;
 };
 
 export default function YoutubeCard({ video }) {
