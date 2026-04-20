@@ -14,8 +14,6 @@ import HomePageRoute from "./routes/HomePageRoute.js";
 import AboutRoute from "./routes/AboutRoute.js";
 import GalleryRoute from "./routes/GalleryRoute.js";
 import MagazineRoute from "./routes/MagazineRoute.js";
-
-import YoutubeRoute from "./routes/YoutubeRoute.js";
 import ServiceRoute from "./routes/ServiceRoute.js";
 
 import errorHandler from "./middlewares/errorHandle.js";
@@ -24,8 +22,12 @@ import errorHandler from "./middlewares/errorHandle.js";
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
+// Security middleware - configure helmet to not interfere with CORS
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Allow cross-origin requests for static files
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
@@ -34,20 +36,36 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, please try again later.",
 });
 app.use(limiter);
+
+// CORS configuration
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN 
+    ? process.env.CORS_ORIGIN.split(",").map((url) => url.trim())
+    : ["http://localhost:3000", "http://localhost:5173"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : [], // Allow specific origins from env only
-    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
-  })
-);
 
 app.use(express.json());
 
-app.use("/uploads", express.static("uploads"));
+// Static file serving with explicit CORS headers
+app.use("/uploads", (req, res, next) => {
+  const origin = req.get("origin");
+  const allowedOrigins = corsOptions.origin;
 
-// Remove manual CORS headers as cors middleware handles it
+  if (Array.isArray(allowedOrigins) && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else if (typeof allowedOrigins === "string") {
+    res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
+  }
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+}, express.static("uploads"));
 
 // app.use(errorHandler);
 
@@ -84,9 +102,8 @@ app.use("/about", AboutRoute);
 app.use("/gallery", GalleryRoute);
 app.use("/magazine", MagazineRoute);
 
-app.use("/youtube-data", YoutubeRoute);
 app.use("/services", ServiceRoute);
 
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

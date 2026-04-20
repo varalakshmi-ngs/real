@@ -80,7 +80,7 @@ export default function Home_ChurchGallery({ limit = 5 }) {
                 src={`${APIURL}/${img.image?.replace(/^\/+/, "")}`}
                 alt="Church Gallery"
                 onError={(e) => {
-                  e.target.src = "/fallback.jepg"; // add a fallback image in public folder
+                  e.target.src = "/fallback.jpeg"; // add a fallback image in public folder
                 }}
               />
             </motion.div>

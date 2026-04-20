@@ -50,6 +50,21 @@ export const getChannelIdByHandle = async (req, res) => {
 
 export const getLiveStreams = async (req, res) => {
   try {
+    // Validate required environment variables
+    if (!process.env.GOOGLE_API_KEY) {
+      console.error("Missing GOOGLE_API_KEY in environment variables");
+      return res.status(500).json({ 
+        message: "YouTube API not configured. Missing GOOGLE_API_KEY." 
+      });
+    }
+    
+    if (!process.env.CHANNEL_ID) {
+      console.error("Missing CHANNEL_ID in environment variables");
+      return res.status(500).json({ 
+        message: "YouTube API not configured. Missing CHANNEL_ID." 
+      });
+    }
+
     const response = await axios.get(BASE_URL, {
       params: {
         channelId: process.env.CHANNEL_ID,
@@ -63,6 +78,12 @@ export const getLiveStreams = async (req, res) => {
           "items(snippet(title,channelTitle,liveBroadcastContent,thumbnails),id(videoId))",
       },
     });
+
+    // Handle case where no items are returned
+    if (!response.data.items || !Array.isArray(response.data.items)) {
+      console.warn("No items returned from YouTube API");
+      return res.status(200).json([]);
+    }
 
     // Format each live stream with custom fields
     const formattedStreams = response.data.items.map((item) => {
@@ -88,7 +109,10 @@ export const getLiveStreams = async (req, res) => {
       "Error fetching live streams:",
       error.response?.data || error.message
     );
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ 
+      message: "Failed to fetch live streams from YouTube",
+      details: error.response?.data?.error?.message || error.message 
+    });
   }
 };
 
@@ -121,8 +145,22 @@ export const getPlayListId = async (req, res) => {
 
 export const getPopularVideos = async (req, res) => {
   try {
-    const maxResults = parseInt(req.query.maxResults) || 10;
+    // Validate required environment variables
+    if (!process.env.GOOGLE_API_KEY) {
+      console.error("Missing GOOGLE_API_KEY in environment variables");
+      return res.status(500).json({ 
+        message: "YouTube API not configured. Missing GOOGLE_API_KEY." 
+      });
+    }
+    
+    if (!process.env.PLAYLIST_ID) {
+      console.error("Missing PLAYLIST_ID in environment variables");
+      return res.status(500).json({ 
+        message: "YouTube API not configured. Missing PLAYLIST_ID." 
+      });
+    }
 
+    const maxResults = parseInt(req.query.maxResults) || 10;
     const apiKey = process.env.GOOGLE_API_KEY;
 
     // 2. Get all video IDs from the uploads playlist
@@ -184,15 +222,29 @@ export const getPopularVideos = async (req, res) => {
     );
     return res.status(500).json({
       message: "Failed to fetch popular videos from your channel.",
-      error,
+      details: error.response?.data?.error?.message || error.message,
     });
   }
 };
 
 export const getRecentVideos = async (req, res) => {
   try {
-    const maxResults = parseInt(req.query.maxResults) || 10;
+    // Validate required environment variables
+    if (!process.env.GOOGLE_API_KEY) {
+      console.error("Missing GOOGLE_API_KEY in environment variables");
+      return res.status(500).json({ 
+        message: "YouTube API not configured. Missing GOOGLE_API_KEY." 
+      });
+    }
+    
+    if (!process.env.PLAYLIST_ID) {
+      console.error("Missing PLAYLIST_ID in environment variables");
+      return res.status(500).json({ 
+        message: "YouTube API not configured. Missing PLAYLIST_ID." 
+      });
+    }
 
+    const maxResults = parseInt(req.query.maxResults) || 10;
     const apiKey = process.env.GOOGLE_API_KEY;
 
     // 1. Get all video items from the uploads playlist
@@ -255,7 +307,7 @@ export const getRecentVideos = async (req, res) => {
     );
     return res.status(500).json({
       message: "Failed to fetch recent videos from your channel.",
-      error,
+      details: error.response?.data?.error?.message || error.message,
     });
   }
 };

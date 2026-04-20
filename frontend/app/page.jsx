@@ -7,7 +7,6 @@ import Home_HeroSection from "@/components/HomeComponents/Home_HeroSection";
 import Home_Pastor_Info from "@/components/HomeComponents/Home_Pastor_Info";
 import Home_Support_Mission from "@/components/HomeComponents/Home_Support_Mission";
 import Home_VideoList from "@/components/HomeComponents/Home_VideoList";
-import LiveNotification from "@/components/HomeComponents/LiveNotification";
 
 import { useHomeDataHook } from "@/Hooks/HomeDataHook";
 import dynamic from "next/dynamic";
@@ -23,7 +22,7 @@ const MagazineCarousel = dynamic(
 );
 
 export default function HomePage() {
-  const { data, loading, error, magazine, ytLink, navToYoutube } =
+  const { data, loading, error, magazine } =
     useHomeDataHook();
 
   if (loading) {
@@ -53,14 +52,6 @@ export default function HomePage() {
 
   return (
     <main className="overflow-hidden">
-      {ytLink && (
-        <div className="relative w-full">
-          <div className="absolute top-24 right-0 px-6 sm:px-12 z-30">
-            <LiveNotification onClick={navToYoutube} />
-          </div>
-        </div>
-      )}
-
       {/* Hero Section */}
       <Home_HeroSection data={data?.hero} />
 

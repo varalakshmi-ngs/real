@@ -8,7 +8,6 @@ export const useHomeDataHook = () => {
   const [magazine, setMagazine] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [ytLink, setYtLink] = useState(null);
 
   const getdata = async () => {
     try {
@@ -49,29 +48,13 @@ export const useHomeDataHook = () => {
     }
   };
 
-  const getYoutubeLive = async () => {
-    try {
-      setLoading(true);
-      const response = await API.get("/youtube-data/get-live-streams");
-      setYtLink(response.data?.[0]?.watchUrl);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const navToYoutube = () => {
-    const url = ytLink || "https://www.youtube.com/@REALTEMPLE";
-
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
 
   useEffect(() => {
     getdata();
     getTestimonials();
     getMagazines();
-    getYoutubeLive();
   }, []);
 
-  return { data, testimonials, loading, error, magazine, ytLink, navToYoutube };
+  return { data, testimonials, loading, error, magazine };
 };
