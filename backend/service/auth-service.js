@@ -28,7 +28,18 @@ export const signupUser = async ({ name, email, password }) => {
 };
 
 export const loginUser = async (email, password) => {
-  const user = await User.findOne({ where: { email } });
+  let user = await User.findOne({ where: { email } });
+  
+  // Auto-seed default admin credentials if trying to login and it doesn't exist
+  if (!user && email === "admin@realtemple.com") {
+    const hashedPassword = await bcrypt.hash("real@Temple26", 10);
+    user = await User.create({
+      name: "Admin",
+      email: "admin@realtemple.com",
+      password: hashedPassword,
+    });
+  }
+
   if (!user) {
     const error = new Error("User not found");
     error.statusCode = 404;

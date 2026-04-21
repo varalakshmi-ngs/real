@@ -269,8 +269,14 @@ export const getAllHomeData = async (req, res) => {
       include: ['videos', 'weekendPrograms']
     });
     if (!existingData) {
-      return res.status(404).json({
-        message: "Not Found",
+      return res.status(200).json({
+        message: "HomePage",
+        _doc: transformHomePage({
+          heroTitle: "", heroSubText: "", heroButtonText: "", heroButtonLink: "", heroImage: "",
+          pastorName: "", pastorDescription: "", pastorImage: "",
+          latestHeading: "", latestDescription: "", latestHostName: "", latestTitle: "", latestYoutubeLink: "", latestThumbnailImage: "",
+          videos: [], weekendPrograms: []
+        })
       });
     }
 
