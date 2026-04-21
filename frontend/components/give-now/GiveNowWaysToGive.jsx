@@ -5,6 +5,7 @@ import { useRazorpayPayment } from "@/Hooks/useRazorpayPayment";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Heart, X } from "lucide-react";
 import { API } from "@/Core/rl";
+import ImageLoader from "@/utils/ImageLoader";
 
 const ManualDonationModal = ({ isOpen, onClose, donorName, amount, onConfirm }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -103,14 +104,11 @@ const ManualDonationModal = ({ isOpen, onClose, donorName, amount, onConfirm }) 
                     {/* Right Side: QR Code */}
                     <div className="flex-1 flex flex-col items-center justify-center space-y-4">
                       <div className="p-3 bg-white rounded-3xl shadow-inner border border-gray-100">
-                        <img 
+                        <ImageLoader
                           src="/images/manual-donation-qr.jpeg" 
                           alt="QR Code" 
-                          className="w-40 h-40 object-contain"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = "/images/GiveNowQr.png";
-                          }}
+                          containerClassName="w-40 h-40"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                       

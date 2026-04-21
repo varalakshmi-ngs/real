@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { API, APIURL } from "@/Core/rl";
+import ImageLoader from "@/utils/ImageLoader";
 
 export default function Home_ChurchGallery({ limit = 5 }) {
   const route = useRouter();
@@ -75,13 +76,11 @@ export default function Home_ChurchGallery({ limit = 5 }) {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               whileHover={{ scale: 1.02 }}
             >
-              <img
+              <ImageLoader
+                containerClassName="h-[300px] w-full"
                 className="h-[300px] w-full object-cover transition-transform duration-500 hover:scale-110"
                 src={`${APIURL}/${img.image?.replace(/^\/+/, "")}`}
                 alt="Church Gallery"
-                onError={(e) => {
-                  e.target.src = "/fallback.jpeg"; // add a fallback image in public folder
-                }}
               />
             </motion.div>
           );

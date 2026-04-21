@@ -104,7 +104,7 @@ const LoginScreen = () => {
           className='bg-white border border-gray-200 rounded-3xl p-8 shadow-lg'
         >
           <div className='space-y-6'>
-            <div className='rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800'>
+            {/* <div className='rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800'>
               <div className='flex items-center gap-2'>
                 <AlertCircle size={16} />
                 <span className='font-medium'>Demo Credentials:</span>
@@ -113,7 +113,7 @@ const LoginScreen = () => {
                 Email: admin@realtemple.com<br />
                 Password: real@Temple26
               </div>
-            </div>
+            </div> */}
 
             <Input
               label='Email Address'
