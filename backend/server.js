@@ -38,10 +38,17 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
+const defaultOrigins = [
+  "http://localhost:3000", 
+  "http://localhost:5173",
+  "https://realtemple-admin.nuhvin.com",
+  "https://realtemple.nuhvin.com"
+];
+
 const corsOptions = {
   origin: process.env.CORS_ORIGIN 
-    ? process.env.CORS_ORIGIN.split(",").map((url) => url.trim())
-    : ["http://localhost:3000", "http://localhost:5173"],
+    ? [...defaultOrigins, ...process.env.CORS_ORIGIN.split(",").map((url) => url.trim())]
+    : defaultOrigins,
   credentials: true,
   optionsSuccessStatus: 200,
 };
