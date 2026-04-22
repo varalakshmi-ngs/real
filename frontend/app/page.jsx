@@ -68,12 +68,14 @@ export default function HomePage() {
 
         {/* Watch Message (From the About Page, Fields has to take from the Admin panel) -- Only last updated 4 */}
         <motion.div variants={sectionVariant}>
+          <h1 className="text-3xl font-bold mb-4">Watch Message</h1>
           <Home_VideoList data={data?.videos?.slice(0, 4)} />
         </motion.div>
 
         {/* Magazines -- Only last updated 4 */}
         {(magazine ?? []).length > 0 && (
           <motion.div variants={sectionVariant}>
+            <h1 className="text-3xl font-bold mb-4">Latest Magazines</h1>
             <MagazineCarousel data={(magazine ?? []).slice(0, 4)} />
           </motion.div>
         )}

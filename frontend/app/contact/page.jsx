@@ -6,7 +6,7 @@ import AddressCard from "@/components/contact/AddressCard";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactHeading from "@/components/contact/ContactHeading";
 import FrequentAskQuestion from "@/components/contact/FrequentAskQuestion";
-import Home_Download_App from "@/components/HomeComponents/Home_Download_App";
+// import Home_Download_App from "@/components/HomeComponents/Home_Download_App";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -65,14 +65,14 @@ const page = () => {
         <AddComment />
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         variants={fadeUp}
         custom={5}
       >
         <Home_Download_App />
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };

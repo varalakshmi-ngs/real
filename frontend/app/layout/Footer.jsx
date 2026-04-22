@@ -72,11 +72,11 @@ export default function Footer() {
             className="flex flex-col gap-6"
           >
             <Link href="/" className="inline-block">
-              <Image src="/footerlogo.png" height={100} width={100} className="w-20 h-auto filter brightness-0 invert" alt="Logo" />
+              <Image src="/logo2.png" height={100} width={100} className="w-20 h-auto filter brightness-0 invert" alt="Logo" />
             </Link>
-            <p className="text-gray-400 leading-relaxed text-sm max-w-xs text-justify">
+            {/* <p className="text-gray-400 leading-relaxed text-sm max-w-xs text-justify">
               Bringing hope, faith, and community together. Dedicated to spreading the message of love and building a spiritual home for everyone.
-            </p>
+            </p> */}
             <div className="flex gap-4">
               {socialLinks.map((social, idx) => (
                 <motion.a
