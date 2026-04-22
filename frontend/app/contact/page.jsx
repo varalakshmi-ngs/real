@@ -56,14 +56,14 @@ const page = () => {
         <FrequentAskQuestion />
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         variants={fadeUp}
         custom={4}
       >
         <AddComment />
-      </motion.div>
+      </motion.div> */}
 
       {/* <motion.div
         initial="hidden"
