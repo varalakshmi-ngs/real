@@ -34,23 +34,23 @@ export default function Footer() {
   ];
 
   const contactDetails = [
-    { 
-      icon: <Mail className="w-5 h-5" />, 
-      title: "E-mail", 
-      value: "rgwm.withds@gmail.com", 
-      href: "mailto:rgwm.withds@gmail.com" 
+    {
+      icon: <Mail className="w-5 h-5" />,
+      title: "E-mail",
+      value: "rgwm.withds@gmail.com",
+      href: "mailto:rgwm.withds@gmail.com"
     },
-    { 
-      icon: <Phone className="w-5 h-5" />, 
-      title: "Phone", 
-      value: "+91 73999 93536", 
-      href: "tel:+917399993536" 
+    {
+      icon: <Phone className="w-5 h-5" />,
+      title: "Phone",
+      value: "+91 73999 93536",
+      href: "tel:+917399993536"
     },
-    { 
-      icon: <MapPin className="w-5 h-5" />, 
-      title: "Address", 
-      value: "REAL TEMPLE, LB Nagar, Hyderabad, India", 
-      href: "https://www.google.com/maps/search/?api=1&query=LB+Nagar+Hyderabad" 
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      title: "Address",
+      value: "REAL TEMPLE, LB Nagar, Hyderabad, India",
+      href: "https://www.google.com/maps/search/?api=1&query=LB+Nagar+Hyderabad"
     }
   ];
 
@@ -62,9 +62,9 @@ export default function Footer() {
 
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
-          
+
           {/* Column 1: Brand Info */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -72,7 +72,7 @@ export default function Footer() {
             className="flex flex-col gap-6"
           >
             <Link href="/" className="inline-block">
-              <Image src="/logo2.png" height={100} width={100} className="w-20 h-auto filter brightness-0 invert" alt="Logo" />
+              <Image src="/logo2.png" height={100} width={100} className="w-20 h-auto" alt="Logo" />
             </Link>
             {/* <p className="text-gray-400 leading-relaxed text-sm max-w-xs text-justify">
               Bringing hope, faith, and community together. Dedicated to spreading the message of love and building a spiritual home for everyone.
@@ -100,7 +100,7 @@ export default function Footer() {
           </motion.div>
 
           {/* Column 2: Quick Links */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,7 +122,7 @@ export default function Footer() {
           </motion.div>
 
           {/* Column 3: Explore */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -144,7 +144,7 @@ export default function Footer() {
           </motion.div>
 
           {/* Column 4: Contact */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -183,11 +183,14 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
             <p>© {new Date().getFullYear()} Real Temple. All Rights Reserved.</p>
             <div className="flex gap-6">
-              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              {/* <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link> */}
             </div>
           </div>
-          <p className="text-xs text-gray-600">Established for the glory of His name 🙏</p>
+          <div className="flex gap-6">
+            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+          </div>
         </div>
       </div>
     </footer>

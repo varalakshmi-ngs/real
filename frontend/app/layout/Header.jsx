@@ -177,7 +177,7 @@ export default function Header() {
                     <Image src="/logo2.png" alt="Logo" fill className="object-contain" priority />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-slate-900">Real Temple</p>
+                    {/* <p className="text-sm font-semibold text-slate-900">Real Temple</p> */}
                     <p className="text-xs text-slate-500">Navigation</p>
                   </div>
                 </div>
