@@ -44,8 +44,36 @@ const corsOptions = {
   credentials: true,
   optionsSuccessStatus: 200,
 };
+app.set("trust proxy", true);
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
+
+app.use((req, res, next) => {
+  const origin = req.get("origin");
+  const allowedOrigins = corsOptions.origin;
+  const isAllowed =
+    typeof allowedOrigins === "string"
+      ? allowedOrigins === origin
+      : Array.isArray(allowedOrigins) && origin && allowedOrigins.includes(origin);
+
+  if (isAllowed) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    req.get("Access-Control-Request-Headers") || "Content-Type,Authorization"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
 
 // Rate limiting
 const limiter = rateLimit({
@@ -65,13 +93,16 @@ app.use("/uploads", (req, res, next) => {
   const origin = req.get("origin");
   const allowedOrigins = corsOptions.origin;
 
-  if (Array.isArray(allowedOrigins) && allowedOrigins.includes(origin)) {
+  if (origin && Array.isArray(allowedOrigins) && allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
-  } else if (typeof allowedOrigins === "string") {
+  } else if (typeof allowedOrigins === "string" && origin === allowedOrigins) {
     res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
   }
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    req.get("Access-Control-Request-Headers") || "Content-Type,Authorization"
+  );
   next();
 }, express.static("uploads"));
 
