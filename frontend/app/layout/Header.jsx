@@ -70,7 +70,7 @@ export default function Header() {
           </Link>
 
           <h1 className="font-black tracking-tight text-[12px] xs:text-[16px] sm:text-[32px] md:text-[42px] lg:text-[52px] text-[#022147] uppercase text-center flex-grow px-2">
-            Real Temple
+            Real Templ
           </h1>
 
           <MainBtn
