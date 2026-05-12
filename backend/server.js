@@ -20,15 +20,6 @@ import errorHandler from "./middlewares/errorHandle.js";
 
 // import { pubClient } from "./redis/redis-publisher.js";
 
-const app = express();
-
-// Security middleware - configure helmet to not interfere with CORS
-app.use(
-  helmet({
-    crossOriginResourcePolicy: { policy: "cross-origin" }, // Allow cross-origin requests for static files
-  })
-);
-
 // CORS configuration
 const defaultOrigins = [
   "http://localhost:3000", 
@@ -38,40 +29,38 @@ const defaultOrigins = [
 ];
 
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN 
-    ? [...defaultOrigins, ...process.env.CORS_ORIGIN.split(",").map((url) => url.trim())]
-    : defaultOrigins,
+  origin: (origin, callback) => {
+    const allowedOrigins = process.env.CORS_ORIGIN 
+      ? [...defaultOrigins, ...process.env.CORS_ORIGIN.split(",").map((url) => url.trim())]
+      : defaultOrigins;
+    
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization,X-Requested-With,Accept,Origin",
   optionsSuccessStatus: 200,
 };
+
+const app = express();
 app.set("trust proxy", true);
+
 app.use(cors(corsOptions));
 app.options("(.*)", cors(corsOptions));
 
+// Security middleware - configure helmet to not interfere with CORS
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" }, // Allow cross-origin requests for static files
+  })
+);
+
+// Standard CORS handling is now managed by the cors package above.
 app.use((req, res, next) => {
-  const origin = req.get("origin");
-  const allowedOrigins = corsOptions.origin;
-  const isAllowed =
-    typeof allowedOrigins === "string"
-      ? allowedOrigins === origin
-      : Array.isArray(allowedOrigins) && origin && allowedOrigins.includes(origin);
-
-  if (isAllowed) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    req.get("Access-Control-Request-Headers") || "Content-Type,Authorization"
-  );
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
   next();
 });
 
@@ -89,22 +78,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(express.json());
 
 // Static file serving with explicit CORS headers
-app.use("/uploads", (req, res, next) => {
-  const origin = req.get("origin");
-  const allowedOrigins = corsOptions.origin;
-
-  if (origin && Array.isArray(allowedOrigins) && allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  } else if (typeof allowedOrigins === "string" && origin === allowedOrigins) {
-    res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
-  }
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    req.get("Access-Control-Request-Headers") || "Content-Type,Authorization"
-  );
-  next();
-}, express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 
 // app.use(errorHandler);
 
