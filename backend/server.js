@@ -50,7 +50,6 @@ const app = express();
 app.set("trust proxy", true);
 
 app.use(cors(corsOptions));
-app.options("(.*)", cors(corsOptions));
 
 // Security middleware - configure helmet to not interfere with CORS
 app.use(
@@ -88,14 +87,25 @@ const startServer = async () => {
   try {
     await sequelize.authenticate();
     console.log("✅ MySQL database connected successfully!");
-    await sequelize.sync(); // Remove alter: true for production safety
-    server.listen(process.env.PORT, "0.0.0.0", () =>
-      console.log(`Server listening on ${process.env.PORT} .....!`)
+    await sequelize.sync(); 
+    
+    const port = process.env.PORT || 4000;
+    server.listen(port, "0.0.0.0", () =>
+      console.log(`🚀 Server listening on port ${port} .....!`)
     );
   } catch (error) {
     console.error("❌ Unable to connect to MySQL database:", error);
+    process.exit(1);
   }
 };
+
+process.on("uncaughtException", (err) => {
+  console.error("🔥 Uncaught Exception:", err);
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("🌊 Unhandled Rejection at:", promise, "reason:", reason);
+});
 
 startServer();
 
