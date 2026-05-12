@@ -46,7 +46,7 @@ const corsOptions = {
 };
 app.set("trust proxy", true);
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options("(.*)", cors(corsOptions));
 
 app.use((req, res, next) => {
   const origin = req.get("origin");
