@@ -3,20 +3,36 @@
 import React, { useState } from "react";
 import { useRazorpayPayment } from "@/Hooks/useRazorpayPayment";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Heart, X } from "lucide-react";
+import {
+  CheckCircle2,
+  Heart,
+  X,
+  ShieldCheck,
+  HandHeart,
+} from "lucide-react";
+
 import { API } from "@/Core/rl";
 import ImageLoader from "@/utils/ImageLoader";
 
-const ManualDonationModal = ({ isOpen, onClose, donorName, amount, onConfirm }) => {
+const ManualDonationModal = ({
+  isOpen,
+  onClose,
+  donorName,
+  amount,
+  onConfirm,
+}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleConfirm = async () => {
     setIsSubmitting(true);
+
     try {
       const success = await onConfirm();
+
       if (success) {
         setIsSuccess(true);
+
         setTimeout(() => {
           onClose();
           setIsSuccess(false);
@@ -38,104 +54,197 @@ const ManualDonationModal = ({ isOpen, onClose, donorName, amount, onConfirm }) 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-md"
           />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl overflow-hidden"
-          >
-            <div className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer transition-colors z-20" onClick={onClose}>
-              <X size={24} />
-            </div>
 
-            <div className="p-6 pt-8 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.92, y: 30 }}
+            transition={{ duration: 0.4 }}
+            className="relative w-full max-w-2xl overflow-hidden rounded-[32px] bg-white shadow-2xl"
+          >
+            <button
+              onClick={onClose}
+              className="absolute right-5 top-5 z-20 text-gray-400 hover:text-gray-700 transition"
+            >
+              <X size={24} />
+            </button>
+
+            <div className="p-8 sm:p-10">
               {isSuccess ? (
-                <div className="py-12 flex flex-col items-center text-center space-y-4">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                    <CheckCircle2 size={48} />
+                <div className="py-16 flex flex-col items-center text-center">
+                  <div className="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-6">
+                    <CheckCircle2 size={54} />
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-gray-900">Contribution Recorded!</h3>
-                  <p className="text-gray-600">Thank you, {donorName}. Your support means a lot to our ministry.</p>
+
+                  <h2 className="text-3xl font-serif font-bold text-gray-900">
+                    Donation Successful
+                  </h2>
+
+                  <p className="text-gray-600 mt-4 max-w-md leading-relaxed">
+                    Thank you, {donorName}. Your generous support helps us
+                    continue serving communities with faith and compassion.
+                  </p>
                 </div>
               ) : (
                 <>
-                  <h3 className="text-2xl font-serif font-bold text-gray-900 mb-1">
-                    Support Our Ministry
-                  </h3>
-                  <p className="text-gray-500 mb-6 text-sm font-medium text-center">
-                    Please use any payment method below and click the button to finish 🙏
-                  </p>
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                      <Heart size={16} />
+                      Support Our Ministry
+                    </div>
 
-                  <div className="flex flex-col md:flex-row gap-8 w-full mb-8">
-                    {/* Left Side: Details */}
-                    <div className="flex-1 space-y-4">
-                      <div className="bg-gray-50 border border-gray-100 rounded-2xl p-3 flex flex-col items-center justify-center">
-                        <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold mb-0.5">Donation Amount</p>
-                        <p className="text-2xl font-bold text-green-600">₹ {amount}</p>
-                      </div>
+                    <h2 className="text-4xl font-serif font-bold text-gray-900">
+                      Complete Your Contribution
+                    </h2>
 
-                      <div className="bg-white border-2 border-gray-900 rounded-xl p-3 text-center">
-                        <p className="text-base font-bold text-gray-900">
-                          UPI ID: <span className="font-mono text-sm">rgwm.withds1@ybl</span>
+                    <p className="text-gray-500 mt-3 leading-relaxed max-w-lg mx-auto">
+                      Use any payment method below and confirm once the
+                      transaction is completed.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* LEFT */}
+                    <div className="space-y-5">
+                      <div className="rounded-3xl bg-gradient-to-br from-red-600 to-red-500 p-6 text-white shadow-xl">
+                        <p className="uppercase tracking-[3px] text-xs opacity-80 mb-2">
+                          Contribution Amount
                         </p>
+
+                        <h3 className="text-4xl font-bold">
+                          ₹ {amount}
+                        </h3>
                       </div>
 
-                      <div className="bg-gray-50 rounded-2xl p-5 space-y-2">
-                        <h4 className="text-lg font-bold text-gray-900 border-b border-gray-200 pb-1.5">Bank Details:</h4>
-                        <div className="space-y-1 text-sm">
-                          <p className="text-gray-900 font-semibold flex justify-between">
-                            <span className="text-gray-500 font-medium">Account Holder:</span> D. SURESH
+                      <div className="rounded-3xl border border-gray-200 p-5 bg-gray-50">
+                        <h4 className="text-lg font-bold text-gray-900 mb-4">
+                          UPI Payment
+                        </h4>
+
+                        <div className="bg-white rounded-2xl px-4 py-3 border border-gray-200">
+                          <p className="text-sm text-gray-500 mb-1">
+                            UPI ID
                           </p>
-                          <p className="text-gray-900 font-semibold flex justify-between">
-                            <span className="text-gray-500 font-medium">Account Number:</span> 50100286369360
+
+                          <p className="font-semibold text-gray-900">
+                            rgwm.withds1@ybl
                           </p>
-                          <p className="text-gray-900 font-semibold flex justify-between">
-                            <span className="text-gray-500 font-medium">IFSC:</span> HDFC0001990
-                          </p>
-                          <p className="text-gray-900 font-semibold flex justify-between">
-                            <span className="text-gray-500 font-medium">Branch:</span> HAYATNAGAR
-                          </p>
+                        </div>
+                      </div>
+
+                      <div className="rounded-3xl border border-gray-200 p-5 bg-gray-50">
+                        <h4 className="text-lg font-bold text-gray-900 mb-4">
+                          Bank Details
+                        </h4>
+
+                        <div className="space-y-3 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-gray-500">
+                              Account Holder
+                            </span>
+
+                            <span className="font-semibold text-gray-900">
+                              D. SURESH
+                            </span>
+                          </div>
+
+                          <div className="flex justify-between">
+                            <span className="text-gray-500">
+                              Account Number
+                            </span>
+
+                            <span className="font-semibold text-gray-900">
+                              50100286369360
+                            </span>
+                          </div>
+
+                          <div className="flex justify-between">
+                            <span className="text-gray-500">
+                              IFSC
+                            </span>
+
+                            <span className="font-semibold text-gray-900">
+                              HDFC0001990
+                            </span>
+                          </div>
+
+                          <div className="flex justify-between">
+                            <span className="text-gray-500">
+                              Branch
+                            </span>
+
+                            <span className="font-semibold text-gray-900">
+                              HAYATNAGAR
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Right Side: QR Code */}
-                    <div className="flex-1 flex flex-col items-center justify-center space-y-4">
-                      <div className="p-3 bg-white rounded-3xl shadow-inner border border-gray-100">
-                        <ImageLoader
-                          src="/images/manual-donation-qr.jpeg" 
-                          alt="QR Code" 
-                          containerClassName="w-40 h-40"
-                          className="w-full h-full object-contain"
+                    {/* RIGHT */}
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-red-500/20 blur-3xl rounded-full" />
+
+                        <div className="relative p-5 bg-white rounded-[30px] shadow-2xl border border-gray-100">
+                          <ImageLoader
+                            src="/images/manual-donation-qr.jpeg"
+                            alt="QR Code"
+                            containerClassName="w-56 h-56"
+                            className="w-full h-full object-contain rounded-2xl"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-6 mt-6">
+                        <img
+                          src="https://www.vectorlogo.zone/logos/google_pay/google_pay-official.svg"
+                          alt="GPay"
+                          className="h-6"
+                        />
+
+                        <img
+                          src="https://www.vectorlogo.zone/logos/phonepe/phonepe-icon.svg"
+                          alt="PhonePe"
+                          className="h-7"
+                        />
+
+                        <img
+                          src="https://www.vectorlogo.zone/logos/paytm/paytm-icon.svg"
+                          alt="Paytm"
+                          className="h-4"
                         />
                       </div>
-                      
-                      <div className="flex items-center gap-5">
-                        <img src="https://www.vectorlogo.zone/logos/google_pay/google_pay-official.svg" alt="GPay" className="h-5" />
-                        <img src="https://www.vectorlogo.zone/logos/phonepe/phonepe-icon.svg" alt="PhonePe" className="h-6" />
-                        <img src="https://www.vectorlogo.zone/logos/paytm/paytm-icon.svg" alt="Paytm" className="h-3" />
+
+                      <div className="mt-8 w-full">
+                        <motion.button
+                          onClick={handleConfirm}
+                          disabled={isSubmitting}
+                          whileHover={{
+                            scale: isSubmitting ? 1 : 1.02,
+                          }}
+                          whileTap={{
+                            scale: isSubmitting ? 1 : 0.98,
+                          }}
+                          className={`w-full rounded-2xl py-4 text-lg font-semibold shadow-xl transition-all ${
+                            isSubmitting
+                              ? "bg-gray-400 text-white"
+                              : "bg-red-600 hover:bg-red-700 text-white"
+                          }`}
+                        >
+                          {isSubmitting
+                            ? "Processing..."
+                            : "Transaction Completed"}
+                        </motion.button>
                       </div>
                     </div>
                   </div>
 
-                  <motion.button
-                    onClick={handleConfirm}
-                    disabled={isSubmitting}
-                    className={`w-full py-4 rounded-xl text-white font-bold text-lg transition-all shadow-lg ${
-                      isSubmitting ? "bg-gray-400" : "bg-red-600 hover:bg-red-700"
-                    }`}
-                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  >
-                    {isSubmitting ? "Processing..." : "Transaction Completed"}
-                  </motion.button>
-
-                  <div className="mt-6 pt-4 border-t border-gray-100 w-full text-center">
-                    <p className="text-gray-500 text-xs font-medium italic">
-                      Thank you for your Contribution 🙏
-                    </p>
+                  <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-center gap-2 text-sm text-gray-500">
+                    <ShieldCheck size={18} className="text-green-600" />
+                    Secure Contribution • Trusted Payment Process
                   </div>
                 </>
               )}
@@ -157,18 +266,30 @@ export const GiveNowWaysToGive = () => {
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
-  const [successData, setSuccessData] = useState({ name: "", amount: "" });
+
+  const [successData, setSuccessData] = useState({
+    name: "",
+    amount: "",
+  });
 
   const { initiatePayment } = useRazorpayPayment();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleConfirmDonation = async () => {
     try {
-      const response = await API.post("/web/submit-donation", formData);
+      const response = await API.post(
+        "/web/submit-donation",
+        formData
+      );
+
       if (response.data.success) {
         setFormData({
           purpose: "",
@@ -177,199 +298,304 @@ export const GiveNowWaysToGive = () => {
           email: "",
           amount: "",
         });
+
         return true;
       }
+
       return false;
     } catch (error) {
-      console.error("Donation submission error:", error);
-      alert("Failed to process donation. Please try again later.");
+      console.error(error);
+
+      alert("Failed to process donation.");
+
       return false;
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setSuccessData({
       name: formData.fullName,
-      amount: formData.amount
+      amount: formData.amount,
     });
+
     setShowSuccess(true);
   };
 
   return (
     <>
-      <ManualDonationModal 
-        isOpen={showSuccess} 
+      <ManualDonationModal
+        isOpen={showSuccess}
         onClose={() => setShowSuccess(false)}
         donorName={successData.name}
         amount={successData.amount}
         onConfirm={handleConfirmDonation}
       />
-      
-      <section id="contribution" className="bg-gray-50 py-24 px-6 sm:px-12 overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
-          
-          <motion.div 
-            className="flex flex-col items-center gap-4 mb-16"
-            initial={{ opacity: 0, y: 30 }}
+
+      <section
+        id="contribution"
+        className="bg-[#f6f7fb] py-24 px-6 sm:px-12 overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* HEADING */}
+          <motion.div
+            className="flex flex-col items-center gap-5 mb-16"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 bg-white px-8 py-3 rounded-xl shadow-sm border border-gray-100">
+            <div className="bg-red-50 text-red-600 px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+              <HandHeart size={16} />
+              Support With Love
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-gray-900">
               Ways to <span className="text-red-600">Give</span>
             </h2>
-            <div className="bg-red-600 h-1 w-24 rounded-full" />
+
+            <div className="h-1 w-24 bg-red-600 rounded-full" />
           </motion.div>
 
-          <div className="w-full bg-white rounded-3xl shadow-xl border border-gray-100 flex flex-col lg:flex-row overflow-hidden">
-            
-            <motion.div 
-              className="flex-1 p-8 sm:p-12 lg:pr-16"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+          {/* MAIN CARD */}
+          <div className="overflow-hidden rounded-[40px] bg-white border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.08)] flex flex-col lg:flex-row">
+            {/* FORM */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                x: -80,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="flex-1 p-8 sm:p-12 lg:p-16"
             >
-              <h3 className="text-2xl font-serif font-bold text-gray-900 mb-8 border-b border-gray-100 pb-4">
-                Enter Details
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-1">
-                  <label htmlFor="purpose" className="block text-sm font-medium text-gray-700">
+              <div className="mb-10">
+                <h3 className="text-4xl font-serif font-bold text-gray-900">
+                  Enter Details
+                </h3>
+
+                <p className="text-gray-500 mt-3 text-lg">
+                  Fill in your information to continue your
+                  contribution securely.
+                </p>
+              </div>
+
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-7"
+              >
+                {/* PURPOSE */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-gray-700">
                     Purpose
                   </label>
+
                   <select
-                    id="purpose"
                     name="purpose"
                     value={formData.purpose}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all text-gray-800"
+                    className="w-full h-14 rounded-2xl border border-gray-200 bg-gray-50 px-5 text-gray-800 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-100"
                     required
                   >
-                    <option value="" disabled>Select Purpose</option>
-                    <option value="community-outreach">Community Outreach</option>
-                    <option value="global-missions">Global Missions</option>
-                    <option value="church-growth">Church Growth</option>
+                    <option value="">
+                      Select Purpose
+                    </option>
+
+                    <option value="community-outreach">
+                      Community Outreach
+                    </option>
+
+                    <option value="global-missions">
+                      Global Missions
+                    </option>
+
+                    <option value="church-growth">
+                      Church Growth
+                    </option>
                   </select>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="space-y-1">
-                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                {/* NAME + MOBILE */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-gray-700">
                       Full Name
                     </label>
+
                     <input
                       type="text"
-                      id="fullName"
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleChange}
-                      placeholder="Enter Your Full Name"
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all"
+                      placeholder="Enter Full Name"
+                      className="w-full h-14 rounded-2xl border border-gray-200 bg-gray-50 px-5 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-100"
                       required
                     />
                   </div>
 
-                  <div className="space-y-1">
-                    <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-gray-700">
                       Mobile Number
                     </label>
+
                     <input
                       type="tel"
-                      id="mobile"
                       name="mobile"
                       value={formData.mobile}
                       onChange={handleChange}
                       placeholder="Enter Mobile Number"
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all"
+                      className="w-full h-14 rounded-2xl border border-gray-200 bg-gray-50 px-5 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-100"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                {/* EMAIL */}
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-gray-700">
                     Email Address
                   </label>
+
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter Email Address"
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all"
+                    className="w-full h-14 rounded-2xl border border-gray-200 bg-gray-50 px-5 outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-100"
                   />
                 </div>
 
-                <div className="space-y-3 pt-4 border-t border-gray-100">
-                  <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
+                {/* DONATION */}
+                <div className="pt-4 border-t border-gray-100">
+                  <label className="text-sm font-semibold text-gray-700">
                     Donation Amount
                   </label>
-                  
-                  <div className="flex flex-wrap gap-3">
+
+                  <div className="flex flex-wrap gap-4 mt-4">
                     {[50, 100, 200, 500, 2000].map((value) => (
-                      <button
+                      <motion.button
+                        whileHover={{
+                          y: -3,
+                        }}
+                        whileTap={{
+                          scale: 0.96,
+                        }}
                         key={value}
                         type="button"
-                        onClick={() => setFormData((prev) => ({ ...prev, amount: value }))}
-                        className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                        onClick={() =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            amount: value,
+                          }))
+                        }
+                        className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
                           Number(formData.amount) === value
-                            ? "bg-red-600 text-white shadow-md shadow-red-200"
-                            : "bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 hover:border-gray-300"
+                            ? "bg-red-600 text-white shadow-lg shadow-red-200"
+                            : "bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700"
                         }`}
                       >
                         ₹{value}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
 
-                  <div className="relative mt-2">
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500">₹</span>
+                  <div className="relative mt-5">
+                    <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                      ₹
+                    </span>
+
                     <input
                       type="number"
-                      id="amount"
                       name="amount"
                       value={formData.amount}
                       onChange={handleChange}
-                      placeholder="Custom Amount"
-                      className="w-full pl-8 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all text-lg font-medium text-gray-900"
+                      placeholder="Enter Custom Amount"
+                      className="w-full h-16 rounded-2xl border border-gray-200 bg-gray-50 pl-10 pr-5 text-lg font-semibold outline-none transition-all focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-100"
                       required
-                      min="1"
                     />
                   </div>
                 </div>
 
+                {/* BUTTON */}
                 <motion.button
+                  whileHover={{
+                    scale: 1.01,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
                   type="submit"
-                  className="w-full bg-gray-900 text-white font-medium py-4 rounded-xl hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors shadow-lg mt-8 text-lg"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="w-full h-16 rounded-2xl bg-red-600 hover:bg-red-700 text-white text-lg font-semibold shadow-xl shadow-red-200 transition-all"
                 >
                   Complete Donation
                 </motion.button>
 
-                <p className="text-gray-400 text-xs text-center flex items-center justify-center gap-2 mt-4">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path></svg>
-                  Your contribution is appreciated and secure.
-                </p>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-400 pt-2">
+                  <ShieldCheck
+                    size={18}
+                    className="text-green-600"
+                  />
+
+                  Secure Contribution • Encrypted & Protected
+                </div>
               </form>
             </motion.div>
 
-            <motion.div 
-              className="hidden lg:block flex-1 relative bg-gray-900"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            {/* IMAGE */}
+            <motion.div
+              className="hidden lg:block flex-1 relative overflow-hidden bg-black"
+              initial={{
+                opacity: 0,
+                x: 80,
+              }}
+              whileInView={{
+                opacity: 1,
+                x: 0,
+              }}
               viewport={{ once: true }}
-              transition={{ duration: 1 }}
+              transition={{
+                duration: 1,
+              }}
             >
-              <div className="absolute inset-0 bg-red-900/20 mix-blend-multiply z-10" />
-              <img
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
+
+              <div className="absolute -top-20 -left-20 w-72 h-72 bg-red-500/30 blur-[120px] rounded-full z-10" />
+
+              <motion.img
                 src="/images/GiveNowWaysToGive.png"
                 alt="Donation"
+                initial={{
+                  scale: 1.12,
+                }}
+                whileInView={{
+                  scale: 1,
+                }}
+                transition={{
+                  duration: 2,
+                }}
                 className="absolute inset-0 w-full h-full object-cover"
               />
+
+              <div className="absolute bottom-10 left-10 z-20 max-w-md">
+                <p className="text-red-400 uppercase tracking-[4px] text-sm mb-4">
+                  Real Temple Church
+                </p>
+
+                <h3 className="text-5xl font-serif font-bold text-white leading-tight">
+                  Every Gift Changes Lives
+                </h3>
+
+                <p className="text-white/80 mt-5 text-lg leading-relaxed">
+                  Your generosity empowers missions, supports
+                  outreach, and brings hope to families around the
+                  world.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>

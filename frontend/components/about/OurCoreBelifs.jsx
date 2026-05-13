@@ -13,7 +13,9 @@ import {
 const OurCoreBeliefs = () => {
   return (
     <section className="bg-gray-50 w-full px-6 sm:px-12 py-20 flex flex-col items-center overflow-hidden">
-      <motion.div 
+      
+      {/* Heading */}
+      <motion.div
         className="flex flex-col items-center gap-4 mb-16"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -23,20 +25,32 @@ const OurCoreBeliefs = () => {
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 bg-white px-8 py-3 rounded-xl shadow-sm border border-gray-100">
           Our Core <span className="text-red-600">Beliefs</span>
         </h2>
-        <div className="bg-red-600 h-1 w-24 rounded-full" />
+
+        <motion.div
+          className="bg-red-600 h-1 rounded-full"
+          initial={{ width: 0 }}
+          whileInView={{ width: "6rem" }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        />
       </motion.div>
 
-      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+      {/* Cards */}
+      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
         {beliefs.map((item, index) => (
           <motion.div
             key={item.title}
-            className="w-full h-full"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: index * 0.12 }}
+            viewport={{ once: true }}
+            className="w-full"
           >
-            <Card title={item.title} text={item.text} icon={item.icon} />
+            <Card
+              title={item.title}
+              text={item.text}
+              icon={item.icon}
+            />
           </motion.div>
         ))}
       </div>
@@ -48,15 +62,45 @@ export default OurCoreBeliefs;
 
 const Card = ({ title, text, icon }) => {
   return (
-    <motion.div 
-      className="bg-white rounded-2xl p-8 flex flex-col items-center gap-6 h-full shadow-sm border border-gray-100 hover:shadow-xl transition-shadow duration-300"
-      whileHover={{ y: -5 }}
+    <motion.div
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
+      className="group relative w-full min-h-[420px] rounded-[28px] overflow-hidden"
     >
-      <div className="w-16 h-16 rounded-2xl bg-red-50 flex justify-center items-center text-red-600 shadow-inner">
-        {icon}
+      {/* Animated Gradient Border */}
+      <div className="absolute inset-0 rounded-[28px] p-[1.5px] bg-gradient-to-br from-red-500 via-red-200 to-red-500 animate-gradientMove">
+        
+        {/* Inner Card */}
+        <div className="relative h-full w-full rounded-[27px] bg-white p-8 flex flex-col items-center text-center overflow-hidden">
+          
+          {/* Shine Effect */}
+          <div className="absolute inset-0 overflow-hidden rounded-[27px]">
+            <div className="absolute top-0 left-[-120%] h-full w-[60%] bg-white/20 skew-x-[-20deg] group-hover:left-[140%] transition-all duration-1000" />
+          </div>
+
+          {/* Top Glow Line */}
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-70" />
+
+          {/* Icon */}
+          <motion.div
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.3 }}
+            className="relative z-10 w-20 h-20 rounded-2xl bg-red-50 flex justify-center items-center text-red-600 shadow-sm mb-6 border border-red-100"
+          >
+            {icon}
+          </motion.div>
+
+          {/* Title */}
+          <h3 className="relative z-10 text-3xl font-serif font-bold text-[#07182E] mb-5">
+            {title}
+          </h3>
+
+          {/* Text */}
+          <p className="relative z-10 text-gray-600 leading-relaxed text-[17px]">
+            {text}
+          </p>
+        </div>
       </div>
-      <h3 className="text-2xl font-serif font-bold text-gray-900 text-center">{title}</h3>
-      <p className="text-center text-gray-600 leading-relaxed font-sans text-base">{text}</p>
     </motion.div>
   );
 };
@@ -64,32 +108,36 @@ const Card = ({ title, text, icon }) => {
 const beliefs = [
   {
     title: "Scripture",
-    icon: <BookOpenCheck size={32} strokeWidth={1.5} />,
-    text: "The Bible is God's Word, divinely inspired, infallible, and without error. It is the ultimate authority for our faith, life, and decisions. “All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.” – 2 Timothy 3:16",
+    icon: <BookOpenCheck size={34} strokeWidth={1.5} />,
+    text: "The Bible is God's Word, divinely inspired, infallible, and without error. It is the ultimate authority for our faith, life, and decisions.",
   },
   {
     title: "Salvation",
-    icon: <span className="text-4xl font-serif font-bold leading-none -mt-2">✝</span>,
-    text: "Salvation comes through faith in Jesus Christ alone. His death on the cross and resurrection bring forgiveness of sins and eternal life to all who believe. “For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God.” – Ephesians 2:8",
+    icon: (
+      <span className="text-4xl font-serif font-bold leading-none -mt-2">
+        ✝
+      </span>
+    ),
+    text: "Salvation comes through faith in Jesus Christ alone. His death and resurrection bring forgiveness of sins and eternal life.",
   },
   {
     title: "Holy Spirit",
-    icon: <Flame size={32} strokeWidth={1.5} />,
-    text: "The Holy Spirit, who lives in every believer. He empowers us to live holy lives, reveals spiritual truths, and equips us with gifts for service and ministry. “But you will receive power when the Holy Spirit comes on you.” – Acts 1:8",
+    icon: <Flame size={34} strokeWidth={1.5} />,
+    text: "The Holy Spirit empowers believers to live holy lives, reveals spiritual truths, and equips us for ministry and service.",
   },
   {
     title: "The Church",
-    icon: <Church size={32} strokeWidth={1.5} />,
-    text: "Church is the body of Christ, united to worship God, nurture believers, and reach the world with the Gospel. Every member has a role in building God’s Kingdom. “Now you are the body of Christ, and each one of you is a part of it.” – 1 Corinthians 12:27",
+    icon: <Church size={34} strokeWidth={1.5} />,
+    text: "The Church is the body of Christ, united to worship God, nurture believers, and reach the world with the Gospel.",
   },
   {
     title: "Service",
-    icon: <HelpingHand size={32} strokeWidth={1.5} />,
-    text: "Every Christian is called to serve others with love, humility, and compassion—just as Jesus served. Serving is not a duty, but an act of worship and love. “Each of you should use whatever gift you have received to serve others.” – 1 Peter 4:10",
+    icon: <HelpingHand size={34} strokeWidth={1.5} />,
+    text: "Every Christian is called to serve others with love, humility, and compassion—just as Jesus served.",
   },
   {
     title: "Mission",
-    icon: <Globe size={32} strokeWidth={1.5} />,
-    text: "Our purpose is to share the Good News of Jesus Christ locally and globally—bringing light into dark places and hope to the lost. “Go into all the world and preach the gospel to all creation.” – Mark 16:15",
+    icon: <Globe size={34} strokeWidth={1.5} />,
+    text: "Our mission is to share the Good News of Jesus Christ locally and globally, bringing hope and light to the world.",
   },
 ];

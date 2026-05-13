@@ -23,8 +23,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
+<html lang="en" suppressHydrationWarning={true}>
+          <body suppressHydrationWarning={true}
         className={`${inter.variable} ${dmSerifText.variable} antialiased`}
       >
         <ToastContainer
@@ -39,8 +39,8 @@ export default function RootLayout({ children }) {
           pauseOnHover
         />
         <Header />
-        <main className="pt-[95px] xs:pt-[110px] sm:pt-[130px] md:pt-[130px] lg:pt-[160px]">
-          {children}
+<main className="pt-[70px] sm:pt-[80px] md:pt-[90px]">
+            {children}
         </main>
         <Footer />
       </body>

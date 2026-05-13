@@ -56,3 +56,277 @@ body {
 .shadow {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+@keyframes gradientMove {
+  0% {
+    background-position: left;
+  }
+
+  50% {
+    background-position: right;
+  }
+
+  100% {
+    background-position: left;
+  }
+}
+
+.animate-gradient {
+  animation: gradientMove 4s ease infinite;
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradientMove {
+  background-size: 300% 300%;
+  animation: gradientMove 5s ease infinite;
+}
+/* REQUEST PRAYER BUTTON */
+
+.frutiger-button {
+  cursor: pointer;
+  position: relative;
+  padding: 2px;
+  border-radius: 12px;
+  border: none;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    #c40024,
+    #ff2348
+  );
+
+  box-shadow:
+    0 4px 12px rgba(230, 0, 35, 0.22),
+    0 2px 5px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.3s ease;
+}
+
+.frutiger-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(230, 0, 35, 0.28),
+    0 3px 8px rgba(0, 0, 0, 0.14);
+}
+
+.frutiger-button .inner {
+  position: relative;
+  padding: 9px 18px;
+  border-radius: 10px;
+
+  background:
+    radial-gradient(
+      circle at 50% -40%,
+      rgba(255,255,255,0.22),
+      transparent 58%
+    ),
+    linear-gradient(
+      180deg,
+      #ff1f44,
+      #d90429
+    );
+
+  overflow: hidden;
+}
+
+.frutiger-button .inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    -70deg,
+    transparent 40%,
+    rgba(255,255,255,0.25) 50%,
+    transparent 60%
+  );
+
+  background-size: 220% 100%;
+  animation: prayerShine 4s linear infinite;
+}
+
+.frutiger-button .top-white {
+  position: absolute;
+  inset: 0 -8em;
+
+  border-radius: inherit;
+
+  background: radial-gradient(
+    circle at 50% -280%,
+    rgba(255,255,255,0.5) 35%,
+    rgba(255,255,255,0.15) 52%,
+    transparent 65%
+  );
+}
+
+.frutiger-button .text {
+  position: relative;
+  z-index: 2;
+
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+
+/* Shine Movement */
+
+@keyframes prayerShine {
+  0% {
+    background-position: 150%;
+    opacity: 1;
+  }
+
+  100% {
+    background-position: -150%;
+    opacity: 1;
+  }
+}
+/* ======================================= */
+/* WHITE HOLOGRAM CARD */
+/* ======================================= */
+
+.holographic-card {
+  position: relative;
+  background: white;
+
+  border: 1px solid rgba(255, 0, 76, 0.08);
+
+  overflow: hidden;
+
+  transition: all 0.45s ease;
+
+  border-radius: 22px;
+}
+
+/* Animated Light Sweep */
+
+.holographic-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -150%;
+  left: -120%;
+
+  width: 220%;
+  height: 220%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255, 0, 76, 0.04) 45%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 0, 76, 0.08) 55%,
+    transparent 65%
+  );
+
+  transform: rotate(25deg);
+
+  transition: all 0.9s ease;
+
+  opacity: 0;
+}
+
+/* Hover Animation */
+
+.holographic-card:hover::before {
+  opacity: 1;
+
+  top: -40%;
+  left: -30%;
+}
+
+/* Elegant Glow */
+
+.holographic-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 10px 30px rgba(255, 0, 76, 0.08),
+    0 0 18px rgba(255, 0, 76, 0.08);
+
+  border-color: rgba(255, 0, 76, 0.16);
+}
+
+/* ======================================= */
+/* BUTTON */
+/* ======================================= */
+
+.hologram-btn {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #ff003c,
+    #ff2f63
+  );
+
+  color: white;
+
+  font-weight: 600;
+
+  transition: all 0.35s ease;
+
+  box-shadow:
+    0 6px 18px rgba(255, 0, 76, 0.18);
+}
+
+/* Shine Effect */
+
+.hologram-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+
+  transition: all 0.7s ease;
+}
+
+.hologram-btn:hover::before {
+  left: 120%;
+}
+
+/* Hover */
+
+.hologram-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 24px rgba(255, 0, 76, 0.28);
+}
+
+iframe::-webkit-scrollbar {
+  display: none;
+}

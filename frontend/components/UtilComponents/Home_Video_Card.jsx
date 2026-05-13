@@ -6,15 +6,16 @@ export default function Home_Video_Card({
   subText = "LBNAGAR",
   link,
 }) {
-  const shareVideo = (link) => {
+  const shareVideo = (videoLink) => {
     if (navigator.share) {
       navigator
         .share({
-          title: "Page Title",
-          url: window.location.href,
+          title: title,
+          text: "Watch this video",
+          url: videoLink,
         })
-        .then(() => {})
-        .catch(() => {});
+        .then(() => { })
+        .catch(() => { });
     }
   };
 
@@ -34,7 +35,7 @@ export default function Home_Video_Card({
       <div className="p-2 flex items-center gap-2 justify-between">
         <LinkBtn main={true} onClick={() => (window.location.href = link)} />
         {/* <LinkBtn title="View All Messages" /> */}
-        <LinkBtn title="share" onClick={shareVideo} />
+        <LinkBtn title="share" onClick={() => shareVideo(link)} />
       </div>
     </div>
   );
@@ -44,11 +45,10 @@ function LinkBtn({ title = "Watch Now", onClick, main = false }) {
   return (
     <button
       onClick={onClick}
-      className={`rounded-full w-full h-11  hover:scale-[103%] duration-300 cursor-pointer text-sm ${
-        main
+      className={`rounded-full w-full h-11  hover:scale-[103%] duration-300 cursor-pointer text-sm ${main
           ? "bg-myblue text-white hover:bg-white hover:border-myblue hover:border hover:text-myblue"
           : "bg-white text-second border-main border hover:bg-main hover:text-white"
-      }`}
+        }`}
     >
       {title}
     </button>
