@@ -16,8 +16,8 @@ const AboutHeading = ({ data }) => {
                 items-center
                 px-6
                 sm:px-12
-                pt-28
-                sm:pt-5
+                pt-0
+                sm:pt-0
                 pb-10
                 md:pb-14
                 bg-gradient-to-br
@@ -25,8 +25,8 @@ const AboutHeading = ({ data }) => {
                 via-red-50/30
                 to-white
                 overflow-hidden
-                relative
-"    >
+                relative"    
+    >
       {/* BACKGROUND GLOW */}
       {/* <div className="absolute top-0 left-0 w-60 h-60 bg-red-200/20 rounded-full blur-3xl"></div>
 

@@ -62,7 +62,7 @@ const AboutPage = () => {
       {/* Hero Image (ONLY if exists) */}
       {data?.hero?.image && (
         <motion.div
-          className="w-full px-4 sm:px-12 pb-12 pt-10"
+          className="w-full px-4 sm:px-12 pb-12 pt-5"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}

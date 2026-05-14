@@ -248,7 +248,7 @@ export default function Header() {
               {/* TOP */}
               <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
                 <div className="flex items-center gap-3">
-                  <div className="relative h-9 w-9 overflow-hidden rounded-1xl bg-red-600">
+                  <div className="relative h-9 w-9 overflow-hidden rounded-1xl bg-white-600">
                     <Image
                       src="/logo2.png"
                       alt="Logo"

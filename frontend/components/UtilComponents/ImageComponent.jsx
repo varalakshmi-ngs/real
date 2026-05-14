@@ -25,7 +25,7 @@ const ImageComponent = ({
 
   return (
     <motion.div
-      className={`relative overflow-hidden rounded-lg ${className}`}
+      className={`relative overflow-hidden rounded-lg bg-[#111] ${className}`}
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -35,7 +35,7 @@ const ImageComponent = ({
         src={imageUrl}
         alt="Dynamic image"
         fill
-        className="object-cover"
+        className="object-contain sm:object-cover object-center"
       />
     </motion.div>
   );
