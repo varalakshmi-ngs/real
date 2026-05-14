@@ -248,43 +248,50 @@ const Page = () => {
 
                     {/* READ NOW */}
 
-                    <button
-                      onClick={() => {
-                        setSelectedPdf(item.pdf);
-                        setSelectedTitle(item.title);
-                      }}
-                      className="
-                        group/read
-                        flex
-                        items-center
-                        gap-2
-                        bg-red-600
-                        hover:bg-[#07142b]
-                        text-white
-                        px-4
-                        py-2
-                        rounded-full
-                        text-sm
-                        font-semibold
-                        shadow-md
-                        hover:shadow-xl
-                        transition-all
-                        duration-300
-                        hover:scale-105
-                      "
-                    >
+                    {/* READ NOW */}
+<button
+  onClick={() => {
+    setSelectedPdf(item.pdf);
+    setSelectedTitle(item.title);
+  }}
+  className="
+    group/read
+    flex
+    items-center
+    gap-1.5
+    rounded-full
+    bg-red-600
+    px-3
+    py-1.5
+    text-[11px]
+    font-semibold
+    text-white
+    shadow-sm
+    transition-all
+    duration-300
+    hover:scale-105
+    hover:bg-[#07142b]
+    hover:shadow-md
 
-                      Read Now
+    sm:px-4
+    sm:py-2
+    sm:text-sm
+  "
+>
+  Read Now
 
-                      <ArrowRight
-                        size={16}
-                        className="
-                          transition-transform
-                          duration-300
-                          group-hover/read:translate-x-1
-                        "
-                      />
-                    </button>
+  <ArrowRight
+    size={14}
+    className="
+      transition-transform
+      duration-300
+      group-hover/read:translate-x-1
+
+      sm:h-4
+      sm:w-4
+    "
+  />
+</button>
                   </div>
                 </div>
               </motion.div>

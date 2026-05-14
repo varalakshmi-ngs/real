@@ -89,27 +89,121 @@ export default function Home_Support_Mission() {
               contribution helps us fulfill our calling.
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div
-              className="flex flex-wrap gap-4 lg:w-1/3 lg:justify-end"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <MainBtn
-                onClick={() => route.push("/contribution")}
-                text="Contribute Now"
-                customStyl="bg-red-600 hover:bg-red-700 hover:scale-105 transition-all duration-300 text-white shadow-md text-base px-6 py-3 rounded-lg"
-              />
+           {/* Buttons */}
+<motion.div
+  className="flex flex-wrap gap-4 lg:w-1/3 lg:justify-end"
+  initial={{ opacity: 0, x: 20 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ delay: 0.6 }}
+  viewport={{ once: true }}
+>
+  {/* CONTRIBUTE BUTTON */}
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.03,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    onClick={() => route.push("/contribution")}
+    className="
+      group
+      relative
+      cursor-pointer
+      overflow-hidden
+      rounded-2xl
+      bg-gradient-to-r
+      from-red-600
+      to-pink-600
+      px-7
+      py-3.5
+      font-semibold
+      text-white
+      shadow-md
+      transition-all
+      duration-500
+      hover:shadow-[0_8px_20px_rgba(255,0,85,0.12)]
+    "
+  >
+    {/* Shine Effect */}
+    <span
+      className="
+        absolute
+        left-[-120%]
+        top-0
+        h-full
+        w-[50%]
+        rotate-12
+        bg-white/30
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
 
-              <MainBtn
-                text="Contact Us"
-                invert
-                customStyl="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white hover:scale-105 transition-all duration-300 shadow-sm text-base px-6 py-3 rounded-lg"
-                onClick={() => route.push("/contact")}
-              />
-            </motion.div>
+    <span className="relative z-10">
+      Contribute Now
+    </span>
+  </motion.button>
+
+  {/* CONTACT BUTTON */}
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.03,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    onClick={() => route.push("/contact")}
+    className="
+      group
+      relative
+      cursor-pointer
+      overflow-hidden
+      rounded-2xl
+      border-2
+      border-red-500
+      bg-white
+      px-7
+      py-3
+      font-semibold
+      text-red-600
+      shadow-sm
+      transition-all
+      duration-500
+      hover:border-pink-500
+      hover:bg-gradient-to-r
+      hover:from-red-500
+      hover:to-pink-500
+      hover:text-white
+      hover:shadow-[0_8px_20px_rgba(255,0,85,0.10)]
+    "
+  >
+    {/* Shine Effect */}
+    <span
+      className="
+        absolute
+        left-[-120%]
+        top-0
+        h-full
+        w-[50%]
+        rotate-12
+        bg-white/40
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+
+    <span className="relative z-10">
+      Contact Us
+    </span>
+  </motion.button>
+</motion.div>
           </div>
         </motion.div>
       </div>

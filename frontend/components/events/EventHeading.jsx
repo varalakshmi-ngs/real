@@ -25,20 +25,122 @@ const EventHeading = () => {
           Whether it's Sunday service or a midweek event, you're always welcome here. Experience community, worship, and growth.
         </p>
 
-        <div className="flex gap-4 items-center mt-4">
-          <button 
-            onClick={() => router.push("/contribution#contribution")}
-            className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md hover:shadow-lg"
-          >
-            Contribute Now
-          </button>
-          <button 
-            onClick={() => router.push("/watch")}
-            className="bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-8 rounded-full transition-colors border border-gray-200 shadow-sm hover:shadow-md"
-          >
-            Watch Online
-          </button>
-        </div>
+        <div
+  className="
+    mt-6
+    flex
+    flex-col
+    items-center
+    gap-3
+
+    sm:flex-row
+    sm:justify-center
+  "
+>
+  
+  {/* CONTRIBUTE BUTTON */}
+  <button
+    onClick={() =>
+      router.push("/contribution#contribution")
+    }
+    className="
+      group
+      relative
+      overflow-hidden
+      cursor-pointer
+      rounded-full
+      bg-red-600
+      px-5
+      py-2.5
+      sm:px-7
+      sm:py-3
+      text-sm
+      sm:text-base
+      font-semibold
+      text-white
+      shadow-md
+      transition-all
+      duration-300
+      hover:-translate-y-1
+      hover:bg-red-700
+      hover:shadow-red-300/40
+      hover:shadow-xl
+      active:scale-95
+    "
+  >
+    <span
+      className="
+        absolute
+        left-[-75%]
+        top-0
+        h-full
+        w-1/2
+        rotate-12
+        bg-white/30
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+
+    <span className="relative z-10">
+      Contribute Now
+    </span>
+  </button>
+
+  {/* WATCH BUTTON */}
+  <button
+    onClick={() => router.push("/watch")}
+    className="
+      group
+      relative
+      overflow-hidden
+      cursor-pointer
+      rounded-full
+      border
+      border-gray-300
+      bg-white
+      px-5
+      py-2.5
+      sm:px-7
+      sm:py-3
+      text-sm
+      sm:text-base
+      font-semibold
+      text-gray-900
+      shadow-sm
+      transition-all
+      duration-300
+      hover:-translate-y-1
+      hover:border-red-200
+      hover:bg-red-50
+      hover:text-red-600
+      hover:shadow-lg
+      active:scale-95
+    "
+  >
+    <span
+      className="
+        absolute
+        left-[-75%]
+        top-0
+        h-full
+        w-1/2
+        rotate-12
+        bg-red-100/60
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+
+    <span className="relative z-10">
+      Watch Online
+    </span>
+  </button>
+</div>
       </motion.div>
     </article>
   );

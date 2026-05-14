@@ -61,47 +61,110 @@ export default function Home_HeroSection({ data }) {
             {data?.subText}
           </motion.p>
 
-          {/* BUTTONS */}
-          <motion.div
-            className="flex flex-wrap gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            viewport={{ once: true }}
-          >
-            {/* REQUEST BUTTON */}
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                y: -3,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <MainBtn
-                text="Request a Prayer"
-                customStyl="rounded-xl bg-red-600 px-6 py-3 text-white shadow-lg transition hover:bg-red-700"
-                onClick={() =>
-                  router.push("/request-for-prayer")
-                }
-              />
-            </motion.div>
+{/* BUTTONS */}
+<motion.div
+  className="flex flex-wrap gap-4"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.7 }}
+  viewport={{ once: true }}
+>
+  {/* REQUEST BUTTON */}
+  <button
+    onClick={() =>
+      router.push("/request-for-prayer")
+    }
+    className="
+      relative
+      group
+      cursor-pointer
+      overflow-hidden
+      rounded-xl
+      border
+      border-red-500
+      bg-red-600
+      px-7
+      py-3
+      font-semibold
+      tracking-wide
+      text-white
+      shadow-lg
+      transition-all
+      duration-300
+      hover:bg-red-500
+      hover:shadow-[0_0_20px_rgba(255,0,85,0.6)]
+      active:scale-95
+    "
+  >
+    <span className="relative z-10">
+      Request a Prayer
+    </span>
 
-            {/* CONTACT BUTTON */}
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                y: -3,
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <MainBtn
-                text="Contact Us"
-                invert
-                customStyl="rounded-xl border-2 border-red-600 px-6 py-3 text-red-600 transition hover:bg-red-600 hover:text-white"
-                onClick={() => router.push("/contact")}
-              />
-            </motion.div>
-          </motion.div>
+    {/* Shine Effect */}
+    <span
+      className="
+        absolute
+        left-[-75%]
+        top-0
+        h-full
+        w-1/2
+        rotate-12
+        bg-white/40
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+  </button>
+
+  {/* CONTACT BUTTON */}
+  <button
+    onClick={() => router.push("/contact")}
+    className="
+      group
+      relative
+      cursor-pointer
+      overflow-hidden
+      rounded-xl
+      border-2
+      border-red-600
+      bg-transparent
+      px-7
+      py-3
+      font-semibold
+      tracking-wide
+      text-red-600
+      transition-all
+      duration-300
+      hover:bg-red-600
+      hover:text-white
+      hover:shadow-[0_0_30px_rgba(255,0,85,0.45)]
+      active:scale-95
+    "
+  >
+    <span className="relative z-10">
+      Contact Us
+    </span>
+
+    {/* Shine */}
+    <span
+      className="
+        absolute
+        left-[-75%]
+        top-0
+        h-full
+        w-1/2
+        rotate-12
+        bg-white/50
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+  </button>
+</motion.div>
 
           {/* PRAYER CARD */}
           <motion.div

@@ -75,7 +75,7 @@ const Page = () => {
 
           <div className="flex flex-col items-center mb-14">
 
-            <h2 className="text-4xl font-bold text-[#07142b]">
+            <h2 className="text-3xl font-bold text-[#07142b]">
               Latest{" "}
               <span className="text-red-600">
                 Magazines
@@ -170,14 +170,25 @@ const Page = () => {
 
                   {/* DATE + READ NOW */}
 
-                  <div className="mt-5 flex items-center justify-between">
+                  <div
+                    className="
+    mt-5
+    flex
+    flex-col
+    gap-4
+
+    sm:flex-row
+    sm:items-center
+    sm:justify-between
+  "
+                  >
 
                     {/* DATE */}
 
                     <div className="flex items-center gap-2 text-gray-500">
-                      <CalendarDays size={16} />
+                      <CalendarDays size={15} />
 
-                      <p className="text-sm font-medium">
+                      <p className="text-sm font-medium leading-none">
                         {item.date}
                       </p>
                     </div>
@@ -192,27 +203,36 @@ const Page = () => {
                       className="
       group/read
       flex
+      w-fit
       items-center
+      justify-center
       gap-2
+      self-start
+
+      rounded-full
       bg-red-600
-      hover:bg-[#07142b]
-      text-white
       px-4
       py-2
-      rounded-full
-      text-sm
+
+      text-xs
+      sm:text-sm
       font-semibold
+      text-white
+
       shadow-md
-      hover:shadow-xl
       transition-all
       duration-300
-      hover:scale-105
+
+      hover:bg-[#07142b]
+      hover:shadow-lg
+      active:scale-95
+      cursor-pointer
     "
                     >
                       Read Now
 
                       <ArrowRight
-                        size={16}
+                        size={15}
                         className="
         transition-transform
         duration-300
@@ -220,8 +240,11 @@ const Page = () => {
       "
                       />
                     </button>
-
                   </div>
+
+
+
+
                 </div>
               </motion.div>
             ))}
@@ -296,7 +319,7 @@ const Page = () => {
             </div>
 
             {/* CLOSE BTN */}
-{/* 
+            {/* 
             <button
               onClick={() =>
                 setSelectedPdf(null)

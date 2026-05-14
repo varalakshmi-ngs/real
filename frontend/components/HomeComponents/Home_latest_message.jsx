@@ -129,45 +129,117 @@ export default function Home_latest_message({ data }) {
                 </div>
               </div>
 
-              {/* BUTTONS */}
-              <div className="flex flex-col gap-4 pt-2 sm:flex-row">
-                <motion.div
-                  whileHover={{
-                    scale: 1.04,
-                    y: -2,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                >
-                  <MainBtn
-                    text="Watch Full Sermon"
-                    customStyl="bg-red-600 hover:bg-red-700 text-white rounded-xl px-6 py-3 shadow-lg"
-                    onClick={() =>
-                      window.open(
-                        data?.youtubeLink,
-                        "_blank"
-                      )
-                    }
-                  />
-                </motion.div>
+             {/* BUTTONS */}
+<div className="flex flex-col gap-4 pt-4 sm:flex-row">
+  
+  {/* WATCH BUTTON */}
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.02,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    onClick={() =>
+      window.open(
+        data?.youtubeLink,
+        "_blank"
+      )
+    }
+    className="
+      group
+      relative
+      overflow-hidden
+      rounded-2xl
+      bg-gradient-to-r
+      from-red-600
+      via-red-500
+      to-pink-500
+      px-7
+      py-4
+      font-semibold
+      text-white
+      shadow-[0_10px_30px_rgba(255,0,85,0.25)]
+      transition-all
+      duration-500
+      hover:shadow-[0_15px_40px_rgba(255,0,85,0.4)]
+    "
+  >
+    {/* SHINE */}
+    <span
+      className="
+        absolute
+        left-[-120%]
+        top-0
+        h-full
+        w-20
+        rotate-12
+        bg-white/40
+        blur-xl
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
 
-                <motion.div
-                  whileHover={{
-                    scale: 1.04,
-                    y: -2,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                >
-                  <button className="flex items-center gap-2 rounded-xl border-2 border-[#022147] px-6 py-3 font-medium text-[#022147] transition hover:bg-[#022147] hover:text-white">
-                    Browse All Sermons
+    <span className="relative z-10 flex items-center gap-3">
+      <PlayCircle size={22} />
+      Watch Full Sermon
+    </span>
+  </motion.button>
 
-                    <ArrowRight size={18} />
-                  </button>
-                </motion.div>
-              </div>
+  {/* BROWSE BUTTON */}
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.02,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    className="
+      group
+      relative
+      overflow-hidden
+      rounded-2xl
+      border
+      border-[#022147]/20
+      bg-white
+      px-7
+      py-4
+      font-semibold
+      text-[#022147]
+      shadow-md
+      transition-all
+      duration-500
+      hover:border-[#022147]
+      hover:shadow-xl
+    "
+  >
+    {/* HOVER BG */}
+    <span
+      className="
+        absolute
+        inset-0
+        origin-left
+        scale-x-0
+        bg-[#022147]
+        transition-transform
+        duration-500
+        group-hover:scale-x-100
+      "
+    />
+
+    <span className="relative z-10 flex items-center gap-3 transition-colors duration-500 group-hover:text-white">
+      Browse All Sermons
+      <ArrowRight
+        size={18}
+        className="transition-transform duration-300 group-hover:translate-x-1"
+      />
+    </span>
+  </motion.button>
+</div>
             </motion.div>
           </div>
         </motion.div>

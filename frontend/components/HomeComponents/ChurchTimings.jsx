@@ -78,33 +78,128 @@ export default function ChurchTimings() {
           </div>
         </motion.div>
 
+   
         {/* Buttons */}
-        <motion.div
-          className="mx-auto w-fit flex flex-wrap justify-center mt-6 gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <MainBtn
-            text="Get Directions"
-            customStyl="bg-red-600 hover:bg-red-700 hover:shadow-lg transition-all duration-300 text-white rounded-xl px-6 py-3"
-            onClick={() =>
-              window.open(
-                "https://maps.app.goo.gl/CTuqhu8mGWtsgVLk8",
-                "_blank"
-              )
-            }
-          />
+<motion.div
+  className="mx-auto mt-6 flex w-fit flex-wrap justify-center gap-4"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5 }}
+>
+  {/* GET DIRECTIONS */}
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.03,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    onClick={() =>
+      window.open(
+        "https://maps.app.goo.gl/CTuqhu8mGWtsgVLk8",
+        "_blank"
+      )
+    }
+    className="
+      group
+      relative
+      cursor-pointer
+      overflow-hidden
+      rounded-2xl
+      bg-gradient-to-r
+      from-red-600
+      to-pink-600
+      px-7
+      py-3.5
+      font-semibold
+      text-white
+      shadow-[0_10px_25px_rgba(255,0,85,0.18)]
+      transition-all
+      duration-500
+      hover:shadow-[0_15px_35px_rgba(255,0,85,0.35)]
+    "
+  >
+    {/* Shine Effect */}
+    <span
+      className="
+        absolute
+        left-[-120%]
+        top-0
+        h-full
+        w-[50%]
+        rotate-12
+        bg-white/30
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
 
-          <MainBtn
-            invert
-            text="Share"
-            icon={<Share2 />}
-            customStyl="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all duration-300 rounded-xl px-6 py-3"
-            onClick={handleImageDownload}
-          />
-        </motion.div>
+    <span className="relative z-10">
+      Get Directions
+    </span>
+  </motion.button>
+
+  {/* SHARE BUTTON */}
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.03,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    onClick={handleImageDownload}
+    className="
+      group
+      relative
+      cursor-pointer
+      overflow-hidden
+      rounded-2xl
+      border-2
+      border-red-500
+      bg-white
+      px-7
+      py-3.5
+      font-semibold
+      text-red-600
+      shadow-[0_10px_25px_rgba(0,0,0,0.06)]
+      transition-all
+      duration-500
+      hover:border-pink-500
+      hover:bg-gradient-to-r
+      hover:from-red-500
+      hover:to-pink-500
+      hover:text-white
+      hover:shadow-[0_15px_35px_rgba(255,0,85,0.25)]
+    "
+  >
+    {/* Shine Effect */}
+    <span
+      className="
+        absolute
+        left-[-120%]
+        top-0
+        h-full
+        w-[50%]
+        rotate-12
+        bg-white/40
+        blur-md
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+
+    <span className="relative z-10 flex items-center gap-2">
+      <Share2 size={18} />
+      Share
+    </span>
+  </motion.button>
+</motion.div>
       </div>
     </section>
   );

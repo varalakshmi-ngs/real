@@ -64,54 +64,204 @@ export default function GiveNowQRcode() {
         </div> */}
 
         {/* Bank Details Section */}
-        <motion.div 
-          className="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl relative"
-          variants={itemVariants}
+        <motion.div
+  className="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl relative"
+  variants={itemVariants}
+>
+  <div className="absolute inset-0 bg-gradient-to-br from-red-900/40 to-black/80 z-0" />
+  <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-600 rounded-full mix-blend-multiply blur-3xl opacity-40 z-0" />
+  <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-red-800 rounded-full mix-blend-multiply blur-3xl opacity-40 z-0" />
+
+  <div
+    className="
+      relative
+      z-10
+      p-6
+      sm:p-10
+      md:p-12
+      flex
+      flex-col
+      md:flex-row
+      items-start
+      md:items-center
+      justify-between
+      gap-10
+    "
+  >
+    {/* LEFT SIDE */}
+    <div className="flex items-center gap-4 sm:gap-6 flex-shrink-0">
+      
+      {/* ICON */}
+      <div
+        className="
+          h-16
+          w-16
+          sm:h-20
+          sm:w-20
+          rounded-2xl
+          bg-white
+          flex
+          items-center
+          justify-center
+          text-red-600
+          shadow-inner
+          shrink-0
+          rotate-3
+          transition-transform
+          duration-300
+          hover:rotate-0
+        "
+      >
+        <Building2
+          size={32}
+          strokeWidth={1.5}
+          className="sm:h-10 sm:w-10"
+        />
+      </div>
+
+      {/* TEXT */}
+      <div>
+        <h3
+          className="
+            text-sm
+            sm:text-lg
+            text-red-300
+            font-medium
+            tracking-wide
+            uppercase
+            mb-1
+          "
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-red-900/40 to-black/80 z-0" />
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-50 z-0" />
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-red-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 z-0" />
+          Bank Transfer
+        </h3>
 
-          <div className="relative z-10 p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-12">
-            
-            <div className="flex items-center gap-6 flex-shrink-0">
-              <div className="h-20 w-20 bg-white rounded-2xl flex items-center justify-center text-red-600 shadow-inner shrink-0 rotate-3 transition-transform hover:rotate-0">
-                <Building2 size={40} strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="text-lg text-red-300 font-medium mb-1 tracking-wide uppercase">Bank Transfer</h3>
-                <h2 className="text-3xl font-serif font-bold text-white">D. SURESH</h2>
-              </div>
-            </div>
+        <h2
+          className="
+            text-2xl
+            sm:text-3xl
+            font-serif
+            font-bold
+            text-white
+            break-words
+          "
+        >
+          D. SURESH
+        </h2>
+      </div>
+    </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 w-full md:w-auto">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-red-300/80 mb-1">
-                  <CreditCard size={18} />
-                  <p className="font-medium text-sm tracking-widest uppercase">Account No</p>
-                </div>
-                <p className="text-2xl font-mono font-medium text-white tracking-wider">50100286369360</p>
-              </div>
-              
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-red-300/80 mb-1">
-                  <Landmark size={18} />
-                  <p className="font-medium text-sm tracking-widest uppercase">IFSC Code</p>
-                </div>
-                <p className="text-2xl font-mono font-medium text-white tracking-wider">HDFC0001990</p>
-              </div>
-              
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-red-300/80 mb-1">
-                  <Building2 size={18} />
-                  <p className="font-medium text-sm tracking-widest uppercase">Branch</p>
-                </div>
-                <p className="text-xl font-sans font-medium text-white tracking-wide mt-1">HAYATNAGAR</p>
-              </div>
-            </div>
+    {/* BANK DETAILS */}
+    <div
+      className="
+        grid
+        w-full
+        grid-cols-1
+        gap-6
+        sm:grid-cols-2
+        md:w-auto
+        md:grid-cols-3
+        md:gap-10
+      "
+    >
+      {/* ACCOUNT */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-red-300/80">
+          <CreditCard size={16} />
 
-          </div>
-        </motion.div>
+          <p
+            className="
+              text-[11px]
+              sm:text-sm
+              font-medium
+              tracking-[3px]
+              uppercase
+            "
+          >
+            Account No
+          </p>
+        </div>
+
+        <p
+          className="
+            text-xl
+            sm:text-2xl
+            font-mono
+            font-medium
+            tracking-wide
+            text-white
+            break-all
+          "
+        >
+          50100286369360
+        </p>
+      </div>
+
+      {/* IFSC */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-red-300/80">
+          <Landmark size={16} />
+
+          <p
+            className="
+              text-[11px]
+              sm:text-sm
+              font-medium
+              tracking-[3px]
+              uppercase
+            "
+          >
+            IFSC Code
+          </p>
+        </div>
+
+        <p
+          className="
+            text-xl
+            sm:text-2xl
+            font-mono
+            font-medium
+            tracking-wide
+            text-white
+            break-all
+          "
+        >
+          HDFC0001990
+        </p>
+      </div>
+
+      {/* BRANCH */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-red-300/80">
+          <Building2 size={16} />
+
+          <p
+            className="
+              text-[11px]
+              sm:text-sm
+              font-medium
+              tracking-[3px]
+              uppercase
+            "
+          >
+            Branch
+          </p>
+        </div>
+
+        <p
+          className="
+            text-lg
+            sm:text-xl
+            font-medium
+            tracking-wide
+            text-white
+          "
+        >
+          HAYATNAGAR
+        </p>
+      </div>
+    </div>
+  </div>
+</motion.div>
 
       </motion.div>
     </section>

@@ -49,18 +49,59 @@ export default function Home_ChurchGallery({ limit = 5 }) {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <MainBtn
-            onClick={() => route.push("/gallery")}
-            text="View Full Gallery"
-            customStyl="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl shadow-md transition-colors"
-          />
-        </motion.div>
+        <motion.button
+  initial={{ opacity: 0, x: 50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  whileHover={{
+    y: -3,
+    scale: 1.03,
+  }}
+  whileTap={{
+    scale: 0.97,
+  }}
+  onClick={() => route.push("/gallery")}
+  className="
+    group
+    relative
+    cursor-pointer
+    overflow-hidden
+    rounded-2xl
+    bg-gradient-to-r
+    from-red-600
+    to-pink-600
+    px-8
+    py-3.5
+    font-semibold
+    text-white
+    shadow-[0_10px_25px_rgba(255,0,85,0.18)]
+    transition-all
+    duration-500
+    hover:shadow-[0_8px_20px_rgba(255,0,85,0.35)]
+  "
+>
+  {/* Shine Effect */}
+  <span
+    className="
+      absolute
+      left-[-120%]
+      top-0
+      h-full
+      w-[50%]
+      rotate-12
+      bg-white/30
+      blur-md
+      transition-all
+      duration-700
+      group-hover:left-[130%]
+    "
+  />
+
+  <span className="relative z-10">
+    View Full Gallery
+  </span>
+</motion.button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full">

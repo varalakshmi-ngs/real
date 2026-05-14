@@ -26,21 +26,81 @@ export default function Home_Events({ limit = 3 }) {
             </h2>
             <div className="h-1 bg-white/50 w-32 rounded-full" />
           </motion.div>
+<motion.div
+  className="w-full md:w-auto"
+  initial={{ opacity: 0, x: 50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+>
+  <motion.button
+    whileHover={{
+      y: -3,
+      scale: 1.03,
+    }}
+    whileTap={{
+      scale: 0.97,
+    }}
+    onClick={() => router.push("/events")}
+    className="
+      group
+      relative
+      cursor-pointer
+      overflow-hidden
+      rounded-2xl
+      bg-gradient-to-r
+      from-white
+      to-red-50
+      px-7
+      py-4
+      font-bold
+      text-red-600
+      shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+      transition-all
+      duration-500
+      hover:text-white
+      hover:shadow-[0_15px_40px_rgba(255,0,85,0.25)]
+    "
+  >
+    {/* Animated Background */}
+    <span
+      className="
+        absolute
+        inset-0
+        origin-left
+        scale-x-0
+        bg-gradient-to-r
+        from-red-600
+        to-pink-500
+        transition-transform
+        duration-500
+        group-hover:scale-x-100
+      "
+    />
 
-          <motion.div
-            className="w-full md:w-auto"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <button
-              onClick={() => router.push("/events")}
-              className="px-6 py-3 bg-white text-red-600 rounded-xl shadow-md hover:bg-red-800 hover:text-white cursor-pointer transition-colors duration-300 font-bold"
-            >
-              View More Events
-            </button>
-          </motion.div>
+    {/* Shine */}
+    <span
+      className="
+        absolute
+        left-[-120%]
+        top-0
+        h-full
+        w-20
+        rotate-12
+        bg-white/40
+        blur-xl
+        transition-all
+        duration-700
+        group-hover:left-[130%]
+      "
+    />
+
+    {/* Text */}
+    <span className="relative z-10 flex items-center gap-2">
+      View More Events
+    </span>
+  </motion.button>
+</motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
