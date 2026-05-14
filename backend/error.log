@@ -41,3 +41,9 @@
 {"level":"error","message":"❌Error marking as prayed: Truncated incorrect INTEGER value: 'undefined'","service":"auth-services","timestamp":"2026-04-10T07:15:26.898Z"}
 {"level":"error","message":"❌Error marking as prayed: Truncated incorrect INTEGER value: 'undefined'","service":"auth-services","timestamp":"2026-04-10T09:10:51.048Z"}
 {"level":"error","message":"❌ Failed to update Services: Validation error","service":"auth-services","timestamp":"2026-04-11T05:20:06.834Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:20:46.290Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:24:50.960Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:27:49.425Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:29:10.904Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:30:29.421Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:31:21.141Z"}

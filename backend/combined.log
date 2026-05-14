@@ -567,3 +567,18 @@
 {"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T07:02:30.075Z"}
 {"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T07:03:26.053Z"}
 {"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:02:09.489Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:06:48.057Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:06:50.328Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:07:29.772Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:07:32.322Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:12:26.874Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:40:46.396Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:45:13.327Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T11:48:45.566Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:20:46.290Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:24:50.960Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:27:49.425Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:29:10.904Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:30:29.421Z"}
+{"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:31:21.141Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-14T15:29:34.374Z"}

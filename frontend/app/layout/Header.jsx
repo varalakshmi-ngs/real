@@ -172,6 +172,27 @@ export default function Header() {
 
             {/* SOCIAL ICONS */}
             <div className="hidden items-center gap-2 lg:flex">
+              {/* YOUTUBE */}
+              <a
+                href="https://www.youtube.com/@REALTEMPLE"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="YouTube"
+                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#FF0000] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#e10000]"
+              >
+                <Youtube className="h-4 w-4 transition duration-200 group-hover:scale-110" />
+              </a>
+
+              {/* WHATSAPP */}
+              <a
+                href="https://wa.me/1234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="WhatsApp"
+                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#1aba4b]"
+              >
+                <WhatsappIcon />
+              </a>
               {/* FACEBOOK */}
               <a
                 href="https://facebook.com"
@@ -194,27 +215,7 @@ export default function Header() {
                 <X className="h-4 w-4 transition duration-200 group-hover:scale-110" />
               </a>
 
-              {/* YOUTUBE */}
-              <a
-                href="https://www.youtube.com/@REALTEMPLE"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="YouTube"
-                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#FF0000] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#e10000]"
-              >
-                <Youtube className="h-4 w-4 transition duration-200 group-hover:scale-110" />
-              </a>
-
-              {/* WHATSAPP */}
-              <a
-                href="https://wa.me/1234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="WhatsApp"
-                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#1aba4b]"
-              >
-                <WhatsappIcon />
-              </a>
+              
             </div>
           </nav>
         </div>

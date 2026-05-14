@@ -28,19 +28,30 @@ const EventScreen = () => {
     handleEventCloseModal,
   } = useBlogHook();
 
-  const { column } = useEventScreenDataHook({ deletEvent, editBlog });
+  const { column } = useEventScreenDataHook({
+    deletEvent,
+    editBlog,
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+    },
   };
 
   return (
@@ -49,9 +60,13 @@ const EventScreen = () => {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="w-full h-full flex flex-col gap-6 pb-8"
+        className="w-full h-full flex flex-col gap-4 sm:gap-6 pb-6 sm:pb-8"
       >
-        <motion.div variants={itemVariants}>
+        {/* Header */}
+        <motion.div
+          variants={itemVariants}
+          className="w-full overflow-hidden"
+        >
           <HeaderWithActions
             title="Manage Events"
             subtitle="Create, edit and manage church events"
@@ -60,29 +75,59 @@ const EventScreen = () => {
             onFilterClick={handleEventOpenModal}
             filterButtonText="Add New Event"
             FilterIcon={Plus}
-            btnWidth="w-[200px] bg-red-600 text-white hover:bg-red-700 transition-colors"
-            showBtn={true}   // ✅ ADD THIS
+            btnWidth="
+              w-full
+              sm:w-auto
+              sm:min-w-[220px]
+              px-4
+              py-3
+              bg-red-600
+              text-white
+              hover:bg-red-700
+              transition-all
+              duration-300
+            "
+            showBtn={true}
           />
         </motion.div>
 
-        <motion.div variants={itemVariants} className="flex-1 bg-white text-slate-900 rounded-xl shadow-sm border border-slate-200 p-2 overflow-hidden">
-          <StatusWrapper loading={loading} error={error}>
-            <Table
-              columns={column}
-              data={event}
-              handlePageClick={handlePageClick}
-              totalPages={totalPages}
-              currentPage={currentPage}
-            />
-          </StatusWrapper>
+        {/* Table Section */}
+        <motion.div
+          variants={itemVariants}
+          className="
+            flex-1
+            bg-white
+            text-slate-900
+            rounded-xl
+            shadow-sm
+            border
+            border-slate-200
+            p-2
+            sm:p-4
+            overflow-hidden
+          "
+        >
+          <div className="w-full overflow-x-auto">
+            <StatusWrapper loading={loading} error={error}>
+              <Table
+                columns={column}
+                data={event}
+                handlePageClick={handlePageClick}
+                totalPages={totalPages}
+                currentPage={currentPage}
+              />
+            </StatusWrapper>
+          </div>
         </motion.div>
       </motion.div>
 
+      {/* Modal */}
       {addEventModal && (
         <ModalLayout
           title="Add Event"
           height="90%"
-          width="70%"
+          width="95%"
+          mdWidth="70%"
           onCloseModal={handleEventCloseModal}
         >
           <EventAddModal

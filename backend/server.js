@@ -22,10 +22,15 @@ import errorHandler from "./middlewares/errorHandle.js";
 
 // CORS configuration
 const defaultOrigins = [
-  "http://localhost:3000", 
+  "http://localhost:3000",
   "http://localhost:5173",
-  "https://realtemple-admin.nuhvin.com",
-  "https://realtemple.nuhvin.com"
+
+  "https://realtemple.com",
+  "https://www.realtemple.com",
+
+  "https://admin.realtemple.com",
+
+  "https://backend.realtemple.com",
 ];
 
 const corsOptions = {

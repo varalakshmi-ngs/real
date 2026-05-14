@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 import {
   Facebook,
   Instagram,
   Youtube,
-  MessageCircle,
+  MessageCircleMore,
   Mail,
   Phone,
   MapPin,
@@ -40,17 +41,20 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-black text-white">
+      
       {/* Background Glow */}
       <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-red-700/10 blur-3xl" />
 
       <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-pink-600/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-14">
+        
         {/* MAIN GRID */}
         <div className="grid grid-cols-1 gap-14 md:grid-cols-[1.1fr_0.8fr_0.8fr_1.6fr]">
 
           {/* LEFT LOGO SECTION */}
           <div>
+
             {/* LOGO */}
             <Link href="/">
               <Image
@@ -58,48 +62,69 @@ export default function Footer() {
                 alt="Real Temple Logo"
                 width={130}
                 height={130}
-                className="h-auto w-32 object-contain"
+                className="h-auto w-32 object-contain bg-white"
               />
             </Link>
 
-            {/* TEXT */}
-            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-gray-400">
-              Bringing faith, hope, and spiritual guidance through worship,
-              prayer, and community.
-            </p>
-
             {/* SOCIAL ICONS */}
             <div className="mt-8 flex items-center gap-4">
+
               {[
-                {
-                  icon: Facebook,
-                  bg: "bg-blue-600",
-                },
+                
 
                 {
                   icon: Youtube,
                   bg: "bg-red-600",
+                  link: "https://www.youtube.com/@REALTEMPLE",
+                },
+                
+                {
+  icon: FaWhatsapp,
+  bg: "bg-green-500",
+  link: "https://wa.me/917399993536",
+},
+
+                {
+                  icon: Facebook,
+                  bg: "bg-blue-600",
+                  link: "https://facebook.com",
                 },
 
                 {
                   icon: Instagram,
                   bg: "bg-pink-500",
+                  link: "https://instagram.com",
                 },
 
-                {
-                  icon: MessageCircle,
-                  bg: "bg-green-500",
-                },
               ].map((item, index) => {
                 const Icon = item.icon;
 
                 return (
-                  <div
+                  <a
                     key={index}
-                    className={`${item.bg} flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110`}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`
+                      ${item.bg}
+                      flex
+                      h-11
+                      w-11
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      shadow-lg
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:scale-110
+                    `}
                   >
-                    <Icon size={24} />
-                  </div>
+                    <Icon
+                      size={24}
+                      className="text-white"
+                    />
+                  </a>
                 );
               })}
             </div>
@@ -107,6 +132,7 @@ export default function Footer() {
 
           {/* QUICK LINKS */}
           <div className="border-l border-white/10 pl-8">
+
             <h2 className="text-[20px] font-bold">
               Quick Links
             </h2>
@@ -115,13 +141,19 @@ export default function Footer() {
             <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
 
             <div className="mt-7 flex flex-col gap-4 text-[15px] text-gray-400">
-              {["Home", "About", "Watch", "Gallery"].map((item) => (
+
+              {[
+                { name: "Home", href: "/" },
+                { name: "About", href: "/about" },
+                { name: "Watch", href: "/watch" },
+                { name: "Gallery", href: "/gallery" },
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href="/"
+                  key={item.name}
+                  href={item.href}
                   className="transition-all duration-300 hover:translate-x-1 hover:text-white"
                 >
-                  {item}
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -129,6 +161,7 @@ export default function Footer() {
 
           {/* EXPLORE */}
           <div className="border-l border-white/10 pl-8">
+
             <h2 className="text-[20px] font-bold">
               Explore
             </h2>
@@ -137,18 +170,19 @@ export default function Footer() {
             <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
 
             <div className="mt-7 flex flex-col gap-4 text-[15px] text-gray-400">
+
               {[
-                "Events",
-                "Magazines",
-                "Contact",
-                "Contribution",
+                { name: "Events", href: "/events" },
+                { name: "Magazines", href: "/magazines" },
+                { name: "Contact", href: "/contact" },
+                { name: "Contribution", href: "/contribution" },
               ].map((item) => (
                 <Link
-                  key={item}
-                  href="/"
+                  key={item.name}
+                  href={item.href}
                   className="transition-all duration-300 hover:translate-x-1 hover:text-white"
                 >
-                  {item}
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -156,6 +190,7 @@ export default function Footer() {
 
           {/* CONTACT SECTION */}
           <div className="border-l border-white/10 pl-8">
+
             <h2 className="text-[20px] font-bold">
               Contact Us
             </h2>
@@ -165,6 +200,7 @@ export default function Footer() {
 
             {/* CONTACT CARDS */}
             <div className="mt-5 flex flex-col gap-3">
+
               {contactDetails.map((item, idx) => (
                 <a
                   key={idx}
@@ -176,25 +212,26 @@ export default function Footer() {
                   }
                   rel="noopener noreferrer"
                   className="
-          group
-          flex
-          min-h-[70px]
-          w-full
-          items-center
-          justify-between
-          rounded-2xl
-          border
-          border-white/10
-          bg-white/[0.04]
-          px-4
-          backdrop-blur-xl
-          transition-all
-          duration-500
-          hover:border-red-500/40
-          hover:bg-white/[0.07]
-          hover:shadow-[0_0_20px_rgba(255,0,85,0.12)]
-        "
+                    group
+                    flex
+                    min-h-[70px]
+                    w-full
+                    items-center
+                    justify-between
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/[0.04]
+                    px-4
+                    backdrop-blur-xl
+                    transition-all
+                    duration-500
+                    hover:border-red-500/40
+                    hover:bg-white/[0.07]
+                    hover:shadow-[0_0_20px_rgba(255,0,85,0.12)]
+                  "
                 >
+
                   {/* LEFT */}
                   <div className="flex items-center gap-3">
 
@@ -220,17 +257,20 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>  
+          </div>
         </div>
 
         {/* BOTTOM LINE */}
         <div className="mt-16 border-t border-white/10 pt-8">
+
           <div className="flex flex-col items-center justify-between gap-5 text-gray-500 md:flex-row">
+
             <p className="text-base">
               © 2026 Real Temple. All Rights Reserved.
             </p>
 
             <div className="flex items-center gap-8">
+
               <Link
                 href="/terms"
                 className="transition-colors duration-300 hover:text-white"
