@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const ImageComponent = ({
   imageUrl,
-  className = "h-[500px] w-full",
+  className = "h-[600px] w-full",
 }) => {
 
   // LOADING UI
