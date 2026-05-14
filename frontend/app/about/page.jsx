@@ -57,20 +57,12 @@ const AboutPage = () => {
   return (
     <div className="w-full flex flex-col bg-white overflow-hidden">
       
-      {/* Hero Heading */}
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        variants={sectionVariant}
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        <AboutHeading data={data?.hero || {}} />
-      </motion.div>
+     
 
       {/* Hero Image (ONLY if exists) */}
       {data?.hero?.image && (
         <motion.div
-          className="w-full px-4 sm:px-12 pb-12"
+          className="w-full px-4 sm:px-12 pb-12 pt-10"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}

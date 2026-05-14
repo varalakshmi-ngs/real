@@ -2,89 +2,36 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import {
+  Facebook,
+  Instagram,
+  Youtube,
+  MessageCircle,
   Mail,
   Phone,
   MapPin,
-  Facebook,
-  Youtube,
-  Instagram,
+  ArrowUpRight,
 } from "lucide-react";
 
-import { motion } from "framer-motion";
-
-function WhatsappIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-5 w-5"
-    >
-      <path d="M20.5 3.5a9.7 9.7 0 0 0-17.15 7.05c0 1.36.35 2.7 1.02 3.88L3 21l6.64-1.72a9.73 9.73 0 0 0 4.86 1.18h.01c5.37 0 9.73-4.36 9.73-9.73 0-2.6-1.02-5.04-2.86-6.81z" />
-    </svg>
-  );
-}
-
 export default function Footer() {
-  const navLinks = [
-    { key: "Home", link: "/" },
-    { key: "About", link: "/about" },
-    { key: "Watch", link: "/watch" },
-    { key: "Gallery", link: "/gallery" },
-    { key: "Events", link: "/events" },
-    { key: "Magazines", link: "/magazines" },
-    { key: "Contact", link: "/contact" },
-    { key: "Contribution", link: "/contribution" },
-  ];
-
-  const socialLinks = [
-    {
-      icon: <Facebook className="h-5 w-5" />,
-      link: "https://facebook.com",
-      color: "#1877F2",
-    },
-
-    {
-      icon: <Youtube className="h-5 w-5" />,
-      link: "https://www.youtube.com/@REALTEMPLE",
-      color: "#FF0000",
-    },
-
-    {
-      icon: <Instagram className="h-5 w-5" />,
-      link: "https://instagram.com",
-      color: "#E4405F",
-    },
-
-    {
-      icon: <WhatsappIcon />,
-      link: "https://wa.me/917399993536",
-      color: "#25D366",
-    },
-  ];
-
   const contactDetails = [
     {
-      icon: <Mail className="h-5 w-5" />,
+      icon: <Mail size={20} />,
       title: "Email",
       value: "rgwm.withds@gmail.com",
       href: "mailto:rgwm.withds@gmail.com",
     },
 
     {
-      icon: <Phone className="h-5 w-5" />,
+      icon: <Phone size={20} />,
       title: "Phone",
       value: "+91 73999 93536",
       href: "tel:+917399993536",
     },
 
     {
-      icon: <MapPin className="h-5 w-5" />,
+      icon: <MapPin size={20} />,
       title: "Address",
       value: "REAL TEMPLE, LB Nagar, Hyderabad, India",
       href: "https://maps.google.com",
@@ -92,191 +39,214 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-[#0f0f11] text-white">
-      {/* GLOW EFFECTS */}
-      <div className="absolute left-[-120px] top-[-120px] h-[300px] w-[300px] rounded-full bg-red-600/10 blur-3xl"></div>
+    <footer className="relative overflow-hidden bg-black text-white">
+      {/* Background Glow */}
+      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-red-700/10 blur-3xl" />
 
-      <div className="absolute bottom-[-120px] right-[-120px] h-[300px] w-[300px] rounded-full bg-red-500/10 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-pink-600/10 blur-3xl" />
 
-      <div className="container relative z-10 mx-auto px-6 py-5 lg:px-12">
-        {/* TOP GRID */}
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {/* BRAND */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-14">
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-[1.1fr_0.8fr_0.8fr_1.6fr]">
+
+          {/* LEFT LOGO SECTION */}
+          <div>
+            {/* LOGO */}
             <Link href="/">
               <Image
                 src="/logo2.png"
-                width={90}
-                height={90}
-                alt="Logo"
-                className="h-auto w-20"
+                alt="Real Temple Logo"
+                width={130}
+                height={130}
+                className="h-auto w-32 object-contain"
               />
             </Link>
 
-            <p className="max-w-xs text-sm leading-relaxed text-gray-400">
-              Bringing faith, hope, and spiritual guidance
-              through worship, prayer, and community.
+            {/* TEXT */}
+            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-gray-400">
+              Bringing faith, hope, and spiritual guidance through worship,
+              prayer, and community.
             </p>
 
-            {/* SOCIALS */}
-            <div className="flex gap-4">
-              {socialLinks.map((social, idx) => (
-                <motion.a
-                  key={idx}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{
-                    y: -6,
-                    scale: 1.1,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    backgroundColor: social.color,
-                  }}
-                  className="flex h-11 w-11 items-center justify-center rounded-2xl text-white shadow-lg"
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+            {/* SOCIAL ICONS */}
+            <div className="mt-8 flex items-center gap-4">
+              {[
+                {
+                  icon: Facebook,
+                  bg: "bg-blue-600",
+                },
+
+                {
+                  icon: Youtube,
+                  bg: "bg-red-600",
+                },
+
+                {
+                  icon: Instagram,
+                  bg: "bg-pink-500",
+                },
+
+                {
+                  icon: MessageCircle,
+                  bg: "bg-green-500",
+                },
+              ].map((item, index) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={index}
+                    className={`${item.bg} flex h-11 w-11 cursor-pointer items-center justify-center rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110`}
+                  >
+                    <Icon size={24} />
+                  </div>
+                );
+              })}
             </div>
-          </motion.div>
+          </div>
 
           {/* QUICK LINKS */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="mb-8 text-xl font-bold">
+          <div className="border-l border-white/10 pl-8">
+            <h2 className="text-[20px] font-bold">
               Quick Links
-            </h3>
+            </h2>
 
-            <ul className="space-y-4">
-              {navLinks.slice(0, 4).map((link, idx) => (
-                <motion.li
-                  key={idx}
-                  whileHover={{ x: 8 }}
+            {/* UNDERLINE */}
+            <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
+
+            <div className="mt-7 flex flex-col gap-4 text-[15px] text-gray-400">
+              {["Home", "About", "Watch", "Gallery"].map((item) => (
+                <Link
+                  key={item}
+                  href="/"
+                  className="transition-all duration-300 hover:translate-x-1 hover:text-white"
                 >
-                  <Link
-                    href={link.link}
-                    className="text-gray-400 transition hover:text-red-400"
-                  >
-                    {link.key}
-                  </Link>
-                </motion.li>
+                  {item}
+                </Link>
               ))}
-            </ul>
-          </motion.div>
+            </div>
+          </div>
 
           {/* EXPLORE */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="mb-8 text-xl font-bold">
+          <div className="border-l border-white/10 pl-8">
+            <h2 className="text-[20px] font-bold">
               Explore
-            </h3>
+            </h2>
 
-            <ul className="space-y-4">
-              {navLinks.slice(4).map((link, idx) => (
-                <motion.li
-                  key={idx}
-                  whileHover={{ x: 8 }}
+            {/* UNDERLINE */}
+            <div className="mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
+
+            <div className="mt-7 flex flex-col gap-4 text-[15px] text-gray-400">
+              {[
+                "Events",
+                "Magazines",
+                "Contact",
+                "Contribution",
+              ].map((item) => (
+                <Link
+                  key={item}
+                  href="/"
+                  className="transition-all duration-300 hover:translate-x-1 hover:text-white"
                 >
-                  <Link
-                    href={link.link}
-                    className="text-gray-400 transition hover:text-red-400"
-                  >
-                    {link.key}
-                  </Link>
-                </motion.li>
+                  {item}
+                </Link>
               ))}
-            </ul>
-          </motion.div>
-
-          {/* CONTACT */}
-          {/* CONTACT */}
-<motion.div
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.7, delay: 0.3 }}
-  viewport={{ once: true }}
->
-  <h3 className="mb-6 text-xl font-bold">
-    Contact Us
-  </h3>
-
-  <div className="space-y-4">
-    {contactDetails.map((item, idx) => (
-      <motion.a
-        key={idx}
-        href={item.href}
-        target="_blank"
-        whileHover={{
-          x: 6,
-        }}
-        className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition-all duration-300 hover:border-red-500/30 hover:bg-white/10"
-      >
-        {/* ICON */}
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-600 text-white shadow-lg transition group-hover:scale-110">
-          {item.icon}
-        </div>
-
-        {/* TEXT */}
-        <div className="flex-1">
-          <p className="text-[11px] uppercase tracking-widest text-gray-500">
-            {item.title}
-          </p>
-
-          <p className="mt-1 text-sm font-medium leading-snug text-white">
-            {item.value}
-          </p>
-        </div>
-      </motion.a>
-    ))}
-  </div>
-</motion.div>
-        </div>
-
-        {/* BOTTOM BAR */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 text-sm text-gray-500 md:flex-row"
-        >
-          <p>
-            © {new Date().getFullYear()} Real Temple. All
-            Rights Reserved.
-          </p>
-
-          <div className="flex gap-6">
-            <Link
-              href="/terms"
-              className="transition hover:text-white"
-            >
-              Terms
-            </Link>
-
-            <Link
-              href="/privacy"
-              className="transition hover:text-white"
-            >
-              Privacy
-            </Link>
+            </div>
           </div>
-        </motion.div>
+
+          {/* CONTACT SECTION */}
+          <div className="border-l border-white/10 pl-8">
+            <h2 className="text-[20px] font-bold">
+              Contact Us
+            </h2>
+
+            {/* UNDERLINE */}
+            <div className="mt-2 h-[3px] w-14 rounded-full bg-gradient-to-r from-red-500 to-pink-500" />
+
+            {/* CONTACT CARDS */}
+            <div className="mt-5 flex flex-col gap-3">
+              {contactDetails.map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.href}
+                  target={
+                    item.title === "Address"
+                      ? "_blank"
+                      : "_self"
+                  }
+                  rel="noopener noreferrer"
+                  className="
+          group
+          flex
+          min-h-[70px]
+          w-full
+          items-center
+          justify-between
+          rounded-2xl
+          border
+          border-white/10
+          bg-white/[0.04]
+          px-4
+          backdrop-blur-xl
+          transition-all
+          duration-500
+          hover:border-red-500/40
+          hover:bg-white/[0.07]
+          hover:shadow-[0_0_20px_rgba(255,0,85,0.12)]
+        "
+                >
+                  {/* LEFT */}
+                  <div className="flex items-center gap-3">
+
+                    {/* ICON */}
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-pink-500 shadow-lg transition-all duration-300 group-hover:scale-105">
+                      {item.icon}
+                    </div>
+
+                    {/* TEXT */}
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[2px] text-gray-500">
+                        {item.title}
+                      </p>
+
+                      <h3 className="mt-[2px] text-[14px] font-medium leading-snug text-white">
+                        {item.value}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* RIGHT ICON */}
+                  <ArrowUpRight className="h-4 w-4 text-pink-500 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
+              ))}
+            </div>
+          </div>  
+        </div>
+
+        {/* BOTTOM LINE */}
+        <div className="mt-16 border-t border-white/10 pt-8">
+          <div className="flex flex-col items-center justify-between gap-5 text-gray-500 md:flex-row">
+            <p className="text-base">
+              © 2026 Real Temple. All Rights Reserved.
+            </p>
+
+            <div className="flex items-center gap-8">
+              <Link
+                href="/terms"
+                className="transition-colors duration-300 hover:text-white"
+              >
+                Terms
+              </Link>
+
+              <Link
+                href="/privacy"
+                className="transition-colors duration-300 hover:text-white"
+              >
+                Privacy
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

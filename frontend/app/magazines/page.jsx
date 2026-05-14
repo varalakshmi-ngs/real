@@ -58,17 +58,18 @@ const Page = () => {
 
             <div className="mt-4 h-1 w-24 rounded-full bg-red-600" />
 
-            <p className="mt-6 max-w-3xl text-lg text-gray-600 leading-relaxed">
+            <p className="mt-5 max-w-3xl text-lg text-gray-600 leading-relaxed">
               Sermons, devotionals, and inspiring
               updates from The Real Temple
               community.
             </p>
           </div>
+
         </section>
 
         {/* MAGAZINES */}
 
-        <section className="max-w-7xl mx-auto px-6 sm:px-12 py-20">
+        <section className="max-w-7xl mx-auto px-6 sm:px-12 py-10">
 
           {/* TITLE */}
 
@@ -169,26 +170,26 @@ const Page = () => {
 
                   {/* DATE + READ NOW */}
 
-<div className="mt-5 flex items-center justify-between">
+                  <div className="mt-5 flex items-center justify-between">
 
-  {/* DATE */}
+                    {/* DATE */}
 
-  <div className="flex items-center gap-2 text-gray-500">
-    <CalendarDays size={16} />
+                    <div className="flex items-center gap-2 text-gray-500">
+                      <CalendarDays size={16} />
 
-    <p className="text-sm font-medium">
-      {item.date}
-    </p>
-  </div>
+                      <p className="text-sm font-medium">
+                        {item.date}
+                      </p>
+                    </div>
 
-  {/* READ NOW */}
+                    {/* READ NOW */}
 
-  <button
-    onClick={() => {
-      setSelectedPdf(item.pdf);
-      setSelectedTitle(item.title);
-    }}
-    className="
+                    <button
+                      onClick={() => {
+                        setSelectedPdf(item.pdf);
+                        setSelectedTitle(item.title);
+                      }}
+                      className="
       group/read
       flex
       items-center
@@ -207,20 +208,20 @@ const Page = () => {
       duration-300
       hover:scale-105
     "
-  >
-    Read Now
+                    >
+                      Read Now
 
-    <ArrowRight
-      size={16}
-      className="
+                      <ArrowRight
+                        size={16}
+                        className="
         transition-transform
         duration-300
         group-hover/read:translate-x-1
       "
-    />
-  </button>
+                      />
+                    </button>
 
-</div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -277,7 +278,7 @@ const Page = () => {
 
               </div>
 
-            
+
             </div>
 
             {/* PDF VIEW */}
@@ -295,7 +296,7 @@ const Page = () => {
             </div>
 
             {/* CLOSE BTN */}
-
+{/* 
             <button
               onClick={() =>
                 setSelectedPdf(null)
@@ -303,7 +304,7 @@ const Page = () => {
               className="fixed top-27 right-34 z-[1000] bg-white rounded-full p-2 shadow-xl hover:scale-110 transition"
             >
               <X size={22} />
-            </button>
+            </button> */}
           </motion.div>
         )}
       </AnimatePresence>

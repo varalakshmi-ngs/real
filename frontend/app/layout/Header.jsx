@@ -87,16 +87,15 @@ export default function Header() {
         <div className="container mx-auto flex items-center justify-between px-4 py-1 sm:px-6">
           {/* LOGO */}
           <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/logo2.png"
-              height={30}
-              width={40}
-              alt="Logo"
-              className="object-contain sm:h-[55px] sm:w-[45px]"
-              style={{ width: "auto" }}
-              priority
-            />
-          </Link>
+  <Image
+    src="/logo2.png"
+    alt="Logo"
+    width={120}
+    height={120}
+    priority
+    className="h-[45px] w-auto sm:h-[80px]"
+  />
+</Link>
 
           {/* TITLE */}
 <h1 className="flex-grow px-2 text-center text-[18px] font-extrabold uppercase tracking-wide text-[#022147] xs:text-[24px] sm:text-[34px] md:text-[44px] lg:text-[56px]">

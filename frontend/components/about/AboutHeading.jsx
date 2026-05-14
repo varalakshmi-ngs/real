@@ -16,7 +16,7 @@ const AboutHeading = ({ data }) => {
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-red-300/10 rounded-full blur-3xl"></div>
 
       {/* HEADING */}
-      <motion.h1
+      {/* <motion.h1
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -37,27 +37,9 @@ const AboutHeading = ({ data }) => {
             </span>
           );
         })}
-      </motion.h1>
+      </motion.h1> */}
 
-      {/* SUBTEXT */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        viewport={{ once: true }}
-        className="relative z-10 w-full md:w-[80%] lg:w-[60%] font-sans text-gray-600 text-base md:text-lg text-center leading-relaxed"
-      >
-        {data?.subText}
-      </motion.p>
-
-      {/* UNDERLINE */}
-      <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: "120px" }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-        viewport={{ once: true }}
-        className="relative z-10 mt-6 h-1.5 rounded-full bg-red-600"
-      />
+     
     </motion.article>
   );
 };
