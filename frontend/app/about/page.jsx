@@ -70,7 +70,7 @@ const AboutPage = () => {
         >
           <ImageComponent
             imageUrl={`${APIURL}/${data.hero.image}`}
-            className="h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl shadow-xl w-[100%-30px] max-w-7xl mx-auto object-cover"
+            className="h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px] rounded-2xl shadow-xl w-full max-w-7xl mx-auto object-cover"
           />
         </motion.div>
       )}
