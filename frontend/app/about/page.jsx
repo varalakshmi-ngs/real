@@ -57,7 +57,7 @@ const AboutPage = () => {
   return (
     <div className="w-full flex flex-col bg-white overflow-hidden">
       
-     
+     <AboutHeading />
 
       {/* Hero Image (ONLY if exists) */}
       {data?.hero?.image && (
