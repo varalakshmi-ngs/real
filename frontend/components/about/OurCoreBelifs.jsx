@@ -65,46 +65,111 @@ const Card = ({ title, text, icon }) => {
     <motion.div
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      className="group relative w-full min-h-[420px] rounded-[28px] overflow-hidden"
+      className="
+        group
+        relative
+        w-full
+        min-h-[420px]
+        rounded-[28px]
+        overflow-hidden
+        bg-white
+        border
+        border-red-200
+        shadow-sm
+      "
     >
-      {/* Animated Gradient Border */}
-      <div className="absolute inset-0 rounded-[28px] p-[1.5px] bg-gradient-to-br from-red-500 via-red-200 to-red-500 animate-gradientMove">
-        
-        {/* Inner Card */}
-        <div className="relative h-full w-full rounded-[27px] bg-white p-8 flex flex-col items-center text-center overflow-hidden">
-          
-          {/* Shine Effect */}
-          <div className="absolute inset-0 overflow-hidden rounded-[27px]">
-            <div className="absolute top-0 left-[-120%] h-full w-[60%] bg-white/20 skew-x-[-20deg] group-hover:left-[140%] transition-all duration-1000" />
-          </div>
+      {/* Hover Expanding Background */}
+      <div
+        className="
+          absolute
+          top-[-30px]
+          right-[-30px]
+          h-24
+          w-24
+          rounded-full
+          bg-gradient-to-br
+          from-red-500 via-red-600 to-red-700
+          transition-all
+          duration-500
+          scale-100
+          group-hover:scale-[18]
+          z-0
+        "
+      />
 
-          {/* Top Glow Line */}
-          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-70" />
+      {/* Content */}
+      <div
+        className="
+          relative
+          z-10
+          h-full
+          p-8
+          flex
+          flex-col
+          items-center
+          text-center
+        "
+      >
+        {/* Icon */}
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          transition={{ duration: 0.3 }}
+          className="
+            w-20
+            h-20
+            rounded-2xl
+            bg-red-50
+            border
+            border-red-100
+            flex
+            items-center
+            justify-center
+            text-red-600
+            shadow-sm
+            mb-6
+            transition-all
+            duration-500
+            group-hover:bg-white/10
+            group-hover:text-white
+            group-hover:border-white/20
+          "
+        >
+          {icon}
+        </motion.div>
 
-          {/* Icon */}
-          <motion.div
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-10 w-20 h-20 rounded-2xl bg-red-50 flex justify-center items-center text-red-600 shadow-sm mb-6 border border-red-100"
-          >
-            {icon}
-          </motion.div>
+        {/* Title */}
+        <h3
+          className="
+            text-3xl
+            font-serif
+            font-bold
+            text-[#07182E]
+            mb-5
+            transition-all
+            duration-500
+            group-hover:text-white
+          "
+        >
+          {title}
+        </h3>
 
-          {/* Title */}
-          <h3 className="relative z-10 text-3xl font-serif font-bold text-[#07182E] mb-5">
-            {title}
-          </h3>
-
-          {/* Text */}
-          <p className="relative z-10 text-gray-600 leading-relaxed text-[17px]">
-            {text}
-          </p>
-        </div>
+        {/* Text */}
+        <p
+          className="
+            text-gray-600
+            leading-relaxed
+            text-[17px]
+            transition-all
+            duration-500
+            group-hover:text-white/90
+          "
+        >
+          {text}
+        </p>
       </div>
     </motion.div>
   );
 };
-
 const beliefs = [
   {
     title: "Scripture",
