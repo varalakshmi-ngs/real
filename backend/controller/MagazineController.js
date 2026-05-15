@@ -2,7 +2,7 @@ import { Magazine } from "../models.js";
 import fs from "fs";
 export const postNewMagazine = async (req, res) => {
   try {
-    const pdf = req.file?.path;
+    const pdf = `/uploads/${req.file.filename}`;
 
     const { title, subTitle } = req.body;
 
@@ -27,6 +27,7 @@ export const postNewMagazine = async (req, res) => {
       title: title,
       subTitle: subTitle,
     });
+    console.log(newPdf);
 
     return res.status(200).send(newPdf.toJSON());
   } catch (error) {

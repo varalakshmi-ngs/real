@@ -47,7 +47,7 @@ export const useMagazineGetHook = () => {
         <div className="flex gap-2 items-center">
           <button
             title="Delete"
-            onClick={() => deleteMagizine(row._id)}
+            onClick={() => deleteMagizine(row.id)}
             className="text-red-600 hover:text-red-800"
           >
             <Trash size={18} />

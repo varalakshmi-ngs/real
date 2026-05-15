@@ -11,6 +11,7 @@ import { apiRequest } from "../../../../services/ApiCalls";
 
 export default function LastMessage({ data }) {
   const [ImageFile, setImageFile] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -22,14 +23,11 @@ export default function LastMessage({ data }) {
 
   useEffect(() => {
     reset(data);
-  }, [data]);
+  }, [data, reset]);
 
   const submitForm = async (formdata) => {
-    console.log(formdata);
-
     const formDataToSend = new FormData();
 
-    // Correctly loop through key-value pairs
     Object.entries(formdata).forEach(([key, value]) => {
       formDataToSend.append(key, value);
     });
@@ -38,77 +36,126 @@ export default function LastMessage({ data }) {
       formDataToSend.append("image", ImageFile);
     }
 
-    console.log(formDataToSend);
-
-    const data = await apiRequest({
+    const response = await apiRequest({
       method: "put",
       url: "/home/latestmessage",
       data: formDataToSend,
     });
 
-    console.log(data);
-
-    // reset();
+    console.log(response);
   };
 
   return (
     <OpenCloseLayout title="Latest Message">
-      <div className="flex gap-10 w-full">
-        <div className="w-full">
-          <form onSubmit={handleSubmit(submitForm)} className="space-y-4">
-            <div className="flex gap-10 justify-center ">
-              <div className="w-full ">
-                {" "}
-                <CustomInput
-                  name="heading"
-                  label="Heading"
-                  placeholder="Finding Peace in Troubled Times"
-                  register={register}
-                  error={errors.heading}
-                />
-                <CustomInput
-                  name="description"
-                  label="Description"
-                  placeholder="Sermon description here..."
-                  register={register}
-                  error={errors.description}
-                  type="textarea"
-                />
-                <CustomInput
-                  name="hostName"
-                  label="Host Name"
-                  placeholder="Pastor Michael Johnson"
-                  register={register}
-                  error={errors.hostName}
-                />
-                <CustomInput
-                  name="title"
-                  label="Title"
-                  placeholder="Pastor"
-                  register={register}
-                  error={errors.title}
-                />
-                <CustomInput
-                  name="youtubeLink"
-                  label="YouTube Channel Link"
-                  placeholder="Real temple"
-                  register={register}
-                  error={errors.youtubeLink}
-                />
-              </div>
+      <div className="w-full">
+        <form
+          onSubmit={handleSubmit(submitForm)}
+          className="w-full"
+        >
+          {/* Main Responsive Layout */}
+          <div
+            className="
+              flex
+              flex-col
+              lg:flex-row
+              gap-6
+              lg:gap-10
+              w-full
+            "
+          >
+            {/* LEFT SIDE */}
+            <div className="w-full lg:w-[60%] space-y-4">
+              <CustomInput
+                name="heading"
+                label="Heading"
+                placeholder="Finding Peace in Troubled Times"
+                register={register}
+                error={errors.heading}
+              />
 
-              <div className="w-full justify-center ">
+              <CustomInput
+                name="description"
+                label="Description"
+                placeholder="Sermon description here..."
+                register={register}
+                error={errors.description}
+                type="textarea"
+              />
+
+              <CustomInput
+                name="hostName"
+                label="Host Name"
+                placeholder="Pastor Michael Johnson"
+                register={register}
+                error={errors.hostName}
+              />
+
+              <CustomInput
+                name="title"
+                label="Title"
+                placeholder="Pastor"
+                register={register}
+                error={errors.title}
+              />
+
+              <CustomInput
+                name="youtubeLink"
+                label="YouTube Channel Link"
+                placeholder="Real temple"
+                register={register}
+                error={errors.youtubeLink}
+              />
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div
+              className="
+                w-full
+                lg:w-[40%]
+                flex
+                flex-col
+                items-center
+                justify-start
+              "
+            >
+              <div
+                className="
+                  w-full
+                  max-w-[350px]
+                  border
+                  border-slate-200
+                  rounded-2xl
+                  p-4
+                  bg-white
+                  shadow-sm
+                "
+              >
                 <ImageEditContainer
-                  existingImage={`
-                       ${APIURL}/${data?.thumbnailImage}
-                     `}
+                  existingImage={`${APIURL}/${data?.thumbnailImage}`}
                   onImageChange={setImageFile}
                 />
-                <FormBtn type="submit" icon={null} style="mt-4" />
+
+                <div className="mt-5">
+                  <FormBtn
+                    type="submit"
+                    icon={null}
+                    style="
+                      w-full
+                      h-[48px]
+                      rounded-xl
+                      bg-blue-600
+                      hover:bg-blue-700
+                      text-white
+                      font-semibold
+                      transition-all
+                      duration-300
+                    "
+                  />
+                </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </OpenCloseLayout>
   );
