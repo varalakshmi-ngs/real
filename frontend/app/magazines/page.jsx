@@ -17,8 +17,8 @@ export default function MagazinePage() {
   const getMagazines = async () => {
     try {
       const response = await fetch(
-        "http://localhost:4000/magazine"
-      );
+  `${process.env.NEXT_PUBLIC_API_URL}/magazine`
+);
 
       const data = await response.json();
 
@@ -95,24 +95,26 @@ export default function MagazinePage() {
 
         {/* PDF PREVIEW */}
         <iframe
-          src={`https://docs.google.com/gview?embedded=true&url=http://localhost:4000${item.pdf}`}
-          className="w-full h-full pointer-events-none scale-[1.15]"
-          title={item.title}
-        />
+  src={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(
+    `${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`
+  )}`}
+  className="w-full h-full pointer-events-none scale-[1.15]"
+  title={item.title}
+/>
 
         {/* DARK OVERLAY */}
         <div className="absolute inset-0 bg-black/10"></div>
 
         {/* BADGE */}
         <div className="absolute top-4 left-4">
-          <span className="bg-red-600 text-white text-[10px] font-semibold px-4 py-3 rounded-full uppercase tracking-wide">
+          <span className="bg-red-600 text-white text-[10px] font-semibold px-4 py- rounded-full uppercase tracking-wide">
             Magazines
           </span>
         </div>
 
         {/* OPEN ICON */}
         <a
-          href={`http://localhost:4000${item.pdf}`}
+          href={`${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`}
           target="_blank"
           rel="noopener noreferrer"
           className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-lg shadow-md transition"
@@ -154,7 +156,7 @@ export default function MagazinePage() {
 
           {/* BUTTON */}
           <a
-            href={`http://localhost:4000${item.pdf}`}
+            href={`${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-[13px] font-semibold flex items-center gap-2 transition"
