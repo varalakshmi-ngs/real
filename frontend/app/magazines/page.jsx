@@ -87,7 +87,7 @@ export default function MagazinePage() {
 
     <div
       key={item.id}
-      className="w-full max-w-[360px] bg-white rounded-[18px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+      className="w-full max-w-[420px] bg-white rounded-[18px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
     >
 
       {/* IMAGE / PDF PREVIEW */}
@@ -107,7 +107,7 @@ export default function MagazinePage() {
 
         {/* BADGE */}
         <div className="absolute top-4 left-4">
-          <span className="bg-red-600 text-white text-[10px] font-semibold px-4 py- rounded-full uppercase tracking-wide">
+          <span className="bg-red-600 text-white text-[10px] font-semibold px-4 py-2 py- rounded-full uppercase tracking-wide">
             Magazines
           </span>
         </div>
