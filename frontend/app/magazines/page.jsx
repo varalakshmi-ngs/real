@@ -87,11 +87,11 @@ export default function MagazinePage() {
 
     <div
       key={item.id}
-      className="w-full max-w-[420px] bg-white rounded-[18px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+      className="w-full max-w-[360px] bg-white rounded-[18px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
     >
 
       {/* IMAGE / PDF PREVIEW */}
-      <div className="relative h-[270px] overflow-hidden bg-[#ececec]">
+      <div className="relative h-[320px] overflow-hidden bg-[#ececec]">
 
         {/* PDF PREVIEW */}
         <iframe
