@@ -9,7 +9,7 @@ export const getEventApi = async ({
 }) => {
   try {
     const query = `/web/event?page=${page}&limit=${limit}${
-      search ? `&search=${search}` : ""
+      search ? `&search=${encodeURIComponent(search)}` : ""
     }`;
 
     const res = await API.get(query, {

@@ -136,12 +136,6 @@ export const getAllAboutData = async (req, res) => {
       include: ['teamMembers']
     });
 
-    if (!existingData) {
-      return res.status(400).json({
-        message: "Add Hero Section First",
-      });
-    }
-
     return res.status(200).json({
       message: "AboutPage",
       _doc: transformAboutPage(existingData)

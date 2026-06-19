@@ -11,21 +11,21 @@ const remotePatterns = [
     protocol: apiUrl.protocol.replace(":", ""),
     hostname: apiUrl.hostname,
     ...(apiUrl.port ? { port: apiUrl.port } : {}),
-    pathname: "/uploads/**",
+    pathname: "/**",
   },
   {
     protocol: "https",
     hostname: "backend.realtemple.com",
-    pathname: "/uploads/**",
+    pathname: "/**",
   },{
   protocol: "https",
   hostname: "realtemple-backend.nuhvin.com",
-  pathname: "/uploads/**",
+  pathname: "/**",
 },
   {
     protocol: "http",
     hostname: "backend.realtemple.com",
-    pathname: "/uploads/**",
+    pathname: "/**",
   },
 ];
 

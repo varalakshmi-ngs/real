@@ -99,8 +99,11 @@ export default function MagazinePage() {
             const pdfUrl =
               `${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`;
 
-            const previewUrl =
-              `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
+            const isLocal = pdfUrl.includes("localhost") || pdfUrl.includes("127.0.0.1");
+
+            const previewUrl = isLocal
+              ? pdfUrl
+              : `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
 
             return (
 

@@ -83,96 +83,100 @@ export default function MagazinePage() {
        {/* CARDS */}
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
 
-  {magazines?.map((item) => (
+  {magazines?.map((item) => {
+    const pdfUrl = `${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`;
+    const isLocal = pdfUrl.includes("localhost") || pdfUrl.includes("127.0.0.1");
+    const previewUrl = isLocal
+      ? pdfUrl
+      : `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
 
-    <div
-      key={item.id}
-      className="w-full max-w-[360px] bg-white rounded-[18px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
-    >
+    return (
+      <div
+        key={item.id}
+        className="w-full max-w-[360px] bg-white rounded-[18px] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+      >
 
-      {/* IMAGE / PDF PREVIEW */}
-      <div className="relative h-[320px] overflow-hidden bg-[#ececec]">
+        {/* IMAGE / PDF PREVIEW */}
+        <div className="relative h-[320px] overflow-hidden bg-[#ececec]">
 
-        {/* PDF PREVIEW */}
-        <iframe
-  src={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(
-    `${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`
-  )}`}
-  className="w-full h-full pointer-events-none scale-[1.15]"
-  title={item.title}
-/>
-
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/10"></div>
-
-        {/* BADGE */}
-        <div className="absolute top-4 left-4">
-          <span className="bg-red-600 text-white text-[10px] font-semibold px-4 py-2 py- rounded-full uppercase tracking-wide">
-            Magazines
-          </span>
-        </div>
-
-        {/* OPEN ICON */}
-        <a
-          href={`${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-lg shadow-md transition"
-        >
-          <ExternalLink
-            size={16}
-            className="text-black"
+          {/* PDF PREVIEW */}
+          <iframe
+            src={previewUrl}
+            className="w-full h-full pointer-events-none scale-[1.15]"
+            title={item.title}
           />
-        </a>
 
-      </div>
+          {/* DARK OVERLAY */}
+          <div className="absolute inset-0 bg-black/10"></div>
 
-      {/* CONTENT */}
-      <div className="p-5">
-
-        {/* TITLE */}
-        <h2 className="text-[18px] md:text-[22px] font-bold text-[#001b5e] leading-snug line-clamp-1">
-          {item.title}
-        </h2>
-
-        {/* SUBTITLE */}
-        <p className="text-gray-500 text-[14px] mt-2 leading-relaxed line-clamp-2">
-          {item.subTitle}
-        </p>
-
-        {/* BOTTOM */}
-        <div className="flex items-center justify-between mt-5">
-
-          {/* DATE */}
-          <div className="flex items-center gap-2 text-gray-500 text-[13px]">
-
-            <Calendar size={15} />
-
-            {new Date(
-              item.createdAt
-            ).toLocaleDateString()}
-
+          {/* BADGE */}
+          <div className="absolute top-4 left-4">
+            <span className="bg-red-600 text-white text-[10px] font-semibold px-4 py-2 py- rounded-full uppercase tracking-wide">
+              Magazines
+            </span>
           </div>
 
-          {/* BUTTON */}
+          {/* OPEN ICON */}
           <a
-            href={`${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`}
+            href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-[13px] font-semibold flex items-center gap-2 transition"
+            className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-lg shadow-md transition"
           >
-
-            Read Now
-
-            <ArrowRight size={15} />
-
+            <ExternalLink
+              size={16}
+              className="text-black"
+            />
           </a>
 
         </div>
-      </div>
-    </div>
 
-  ))}
+        {/* CONTENT */}
+        <div className="p-5">
+
+          {/* TITLE */}
+          <h2 className="text-[18px] md:text-[22px] font-bold text-[#001b5e] leading-snug line-clamp-1">
+            {item.title}
+          </h2>
+
+          {/* SUBTITLE */}
+          <p className="text-gray-500 text-[14px] mt-2 leading-relaxed line-clamp-2">
+            {item.subTitle}
+          </p>
+
+          {/* BOTTOM */}
+          <div className="flex items-center justify-between mt-5">
+
+            {/* DATE */}
+            <div className="flex items-center gap-2 text-gray-500 text-[13px]">
+
+              <Calendar size={15} />
+
+              {new Date(
+                item.createdAt
+              ).toLocaleDateString()}
+
+            </div>
+
+            {/* BUTTON */}
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-[13px] font-semibold flex items-center gap-2 transition"
+            >
+
+              Read Now
+
+              <ArrowRight size={15} />
+
+            </a>
+
+          </div>
+        </div>
+      </div>
+    );
+  })}
 </div>
       </div>
     </div>

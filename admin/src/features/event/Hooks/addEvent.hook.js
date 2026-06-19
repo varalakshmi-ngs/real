@@ -32,9 +32,10 @@ export const useAddEventHook = ({
 
       let response;
 
-      if (initialData && initialData._id) {
+      const existingId = initialData?.id || initialData?._id;
+      if (initialData && existingId) {
         // Update mode
-        response = await updateEvent(initialData._id, formData);
+        response = await updateEvent(existingId, formData);
         setSuccess("Event updated successfully!");
       } else {
         // Create mode

@@ -47,3 +47,5 @@
 {"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:29:10.904Z"}
 {"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:30:29.421Z"}
 {"level":"error","message":"❌ Failed to Login admin@realtemple.com Error: secretOrPrivateKey must have a value","service":"auth-services","timestamp":"2026-05-14T12:31:21.141Z"}
+{"level":"error","message":"❌Failed to delete contact form : Truncated incorrect DOUBLE value: 'undefined'","service":"auth-services","timestamp":"2026-06-19T10:07:31.348Z"}
+{"level":"error","message":"❌Failed to delete contact form : Truncated incorrect DOUBLE value: 'undefined'","service":"auth-services","timestamp":"2026-06-19T10:08:49.238Z"}

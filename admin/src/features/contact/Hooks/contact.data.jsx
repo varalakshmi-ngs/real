@@ -59,7 +59,7 @@ export const useContactDataHook = ({
       width: "10%",
       render: (row) => (
         <button
-          onClick={() => deletContact(row?._id)}
+          onClick={() => deletContact(row?.id)}
           className="flex gap-1 items-center bg-[#FEE2E2] text-[#DC2626] p-2 rounded-md"
         >
           <X />
@@ -107,14 +107,14 @@ export const useContactDataHook = ({
       render: (row) => (
         <div className="w-full flex gap-4 items-center">
           <button
-            onClick={() => testApproved(row?._id)}
+            onClick={() => testApproved(row?.id)}
             className="flex gap-1 items-center bg-[#D1FAE5] text-[#059669] p-2 rounded-md"
           >
             <Check />
             Approved
           </button>
           <button
-            onClick={() => testiRejected(row._id)}
+            onClick={() => testiRejected(row.id)}
             className="flex gap-1 items-center bg-[#FEE2E2] text-[#DC2626] p-2 rounded-md"
           >
             <X />

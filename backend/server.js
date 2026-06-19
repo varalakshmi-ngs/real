@@ -22,7 +22,7 @@ import errorHandler from "./middlewares/errorHandle.js";
 
 const app = express();
 
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 
 // ================= CORS =================
 
@@ -85,16 +85,19 @@ app.use(
     crossOriginResourcePolicy: {
       policy: "cross-origin",
     },
+    frameguard: false,
+    contentSecurityPolicy: false,
   })
 );
 
 // ================= RATE LIMIT =================
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 1000, // Limit each IP to 1000 requests per 15 minutes
   message:
     "Too many requests from this IP, please try again later.",
+  skip: (req) => req.method === "GET" || req.method === "OPTIONS",
 });
 
 app.use(limiter);

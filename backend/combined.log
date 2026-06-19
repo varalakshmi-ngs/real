@@ -617,3 +617,94 @@
 {"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-15T09:40:49.860Z"}
 {"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-15T10:04:01.695Z"}
 {"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-05-15T10:31:54.958Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T06:11:53.949Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T06:12:32.249Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T06:12:48.185Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T06:14:03.439Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T06:59:56.323Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:00:24.188Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:00:36.705Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:03:02.388Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:04:40.969Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:05:30.560Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:16:56.293Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:25:36.555Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:25:41.435Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T07:25:50.920Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:42:46.289Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:48:02.055Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:48:22.649Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:50:32.026Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:51:51.172Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:51:51.177Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:53:40.956Z"}
+{"level":"info","message":"📦 Retrieved 0 services","service":"auth-services","timestamp":"2026-06-19T08:53:40.960Z"}
+{"level":"info","message":"✅ Service created: 1","service":"auth-services","timestamp":"2026-06-19T08:54:04.957Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-06-19T08:54:10.985Z"}
+{"date":"2026-04-23","description":"GFVE","endTime":"04:44","eventName":"enent1","eventType":"worship","level":"info","location":"NA","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"22:02","timestamp":"2026-06-19T09:29:14.868Z"}
+{"date":"2026-03-23","description":"na","endTime":"22:22","eventName":"enent1","eventType":"worship","level":"info","location":"NA","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"04:44","timestamp":"2026-06-19T09:34:17.170Z"}
+{"date":"2026-03-23T00:00:00.000Z","description":"na","endTime":"22:22","eventName":"enent1","eventType":"worship","image":"1","level":"info","location":"NA","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"04:44","timestamp":"2026-06-19T09:34:24.964Z"}
+{"date":"2027-03-31","description":"nfg","endTime":"03:03","eventName":"enent1","eventType":"worship","level":"info","location":"NA","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"03:33","timestamp":"2026-06-19T09:37:00.153Z"}
+{"date":"2027-02-03","description":"d","endTime":"11:22","eventName":"enent1","eventType":"worship","level":"info","location":"NA","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"02:22","timestamp":"2026-06-19T09:41:46.089Z"}
+{"date":"2026-06-17","description":"33","endTime":"04:04","eventName":"helo","eventType":"bbtf","level":"info","location":"bg bfcg","message":"ℹ️ EVENT API HIT","service":"auth-services","startTime":"03:03","timestamp":"2026-06-19T09:42:25.569Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:43:47.294Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:43:47.303Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:43:47.392Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:43:47.394Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"e","service":"auth-services","timestamp":"2026-06-19T09:43:49.694Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:43:49.695Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:44:03.306Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:44:03.311Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"eve","service":"auth-services","timestamp":"2026-06-19T09:44:05.962Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:44:05.964Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:44:16.168Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:44:16.170Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:44:16.241Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:44:16.242Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"eve","service":"auth-services","timestamp":"2026-06-19T09:44:19.394Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:44:19.396Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"even","service":"auth-services","timestamp":"2026-06-19T09:44:45.890Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:44:45.892Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:46:03.994Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:46:04.000Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:46:04.059Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:46:04.060Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"ev","service":"auth-services","timestamp":"2026-06-19T09:46:07.055Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:46:07.056Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:46:55.655Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:46:55.662Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:46:55.724Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:46:55.725Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"ev","service":"auth-services","timestamp":"2026-06-19T09:46:58.079Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:46:58.081Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"e","service":"auth-services","timestamp":"2026-06-19T09:47:01.042Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:01.044Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:47:03.882Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:03.883Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"he","service":"auth-services","timestamp":"2026-06-19T09:47:04.807Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:04.809Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:47:08.064Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:08.065Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"e","service":"auth-services","timestamp":"2026-06-19T09:47:08.982Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:08.982Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"enen","service":"auth-services","timestamp":"2026-06-19T09:47:12.048Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:12.049Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:47:22.658Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:22.668Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"","service":"auth-services","timestamp":"2026-06-19T09:47:22.902Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:22.904Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"b","service":"auth-services","timestamp":"2026-06-19T09:47:26.819Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:26.823Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"bg","service":"auth-services","timestamp":"2026-06-19T09:47:27.362Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:27.363Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"bgb","service":"auth-services","timestamp":"2026-06-19T09:47:28.554Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:28.555Z"}
+{"level":"info","limitNumber":10,"message":"ℹ️ getEvents called","pageNumber":1,"searchQuery":"bg","service":"auth-services","timestamp":"2026-06-19T09:47:31.065Z"}
+{"level":"debug","message":"getEvents - sequelize query","query":{},"service":"auth-services","timestamp":"2026-06-19T09:47:31.067Z"}
+{"email":"tanujamallipamu@gmail.com","firstName":"TANUJA","level":"info","message":"vvnnbbgbbnghbhvh","mobile":"6304812415","service":"auth-services","subject":"Hello","timestamp":"2026-06-19T09:56:05.738Z"}
+{"level":"error","message":"❌Failed to delete contact form : Truncated incorrect DOUBLE value: 'undefined'","service":"auth-services","timestamp":"2026-06-19T10:07:31.348Z"}
+{"level":"error","message":"❌Failed to delete contact form : Truncated incorrect DOUBLE value: 'undefined'","service":"auth-services","timestamp":"2026-06-19T10:08:49.238Z"}
+{"email":"tanujamallipamu@gmail.com","firstName":"TANU","level":"info","message":"dfwerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr","mobile":"6304812415","service":"auth-services","subject":"Checking","timestamp":"2026-06-19T10:11:09.319Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-06-19T11:22:39.683Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-06-19T11:22:44.006Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-06-19T11:22:45.301Z"}

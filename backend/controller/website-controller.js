@@ -332,17 +332,30 @@ export const getEvents = async (req, res) => {
   const searchQuery = search.trim().toLowerCase();
 
   try {
+    
     // Build search query on relevant fields
-    const query = searchQuery
-      ? {
-          [Op.or]: [
-            { eventName: { [Op.iLike]: `%${searchQuery}%` } },
-            { description: { [Op.iLike]: `%${searchQuery}%` } },
-            { eventType: { [Op.iLike]: `%${searchQuery}%` } },
-            { location: { [Op.iLike]: `%${searchQuery}%` } },
-          ],
-        }
-      : {};
+    let query = {};
+    if (searchQuery) {
+      // Use LOWER(column) LIKE '%search%' for case-insensitive search compatible with MySQL
+      // Note: DB uses underscored column names (see sequelize.define { underscored: true })
+      query = {
+        [Op.or]: [
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('event_name')), {
+            [Op.like]: `%${searchQuery}%`,
+          }),
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('description')), {
+            [Op.like]: `%${searchQuery}%`,
+          }),
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('event_type')), {
+            [Op.like]: `%${searchQuery}%`,
+          }),
+          sequelize.where(sequelize.fn('LOWER', sequelize.col('location')), {
+            [Op.like]: `%${searchQuery}%`,
+          }),
+        ],
+      };
+    }
+    
 
     const total = await Event.count({ where: query });
     const events = await Event.findAll({

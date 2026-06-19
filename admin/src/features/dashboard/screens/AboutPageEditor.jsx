@@ -15,13 +15,13 @@ export default function AboutPageEditor() {
   ];
 
   const refreshData = async () => {
-    const { data } = await apiRequest({
+    const res = await apiRequest({
       method: "get",
       url: "/about/",
     });
 
-    if (data) {
-      setData(data._doc);
+    if (res && res.data) {
+      setData(res.data._doc);
     }
   };
 
