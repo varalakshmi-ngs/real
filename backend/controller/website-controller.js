@@ -373,7 +373,7 @@ export const getEvents = async (req, res) => {
       currentPage: pageNumber,
     });
   } catch (err) {
-    console.error(`❌ Error fetching events: ${err.message}`);
+    console.error('❌ Error fetching events:', err);
     res
       .status(500)
       .json({ message: "Error fetching events", error: err.message });

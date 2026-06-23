@@ -79,6 +79,7 @@ export const useBlogHook = () => {
   };
 
   const deletEvent = async (id) => {
+    console.log('Deleting event with id:', id);
     const data = await deletEventApi({ id, token: "" });
     if (data?.status) {
       await refreshPrayerRequests();

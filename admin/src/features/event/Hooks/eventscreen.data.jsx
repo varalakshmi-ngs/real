@@ -54,7 +54,7 @@ export const useEventScreenDataHook = ({ deletEvent, editBlog }) => {
       render: (row) => (
         <div className="flex gap-3 items-center">
           <Edit onClick={() => editBlog(row)} />
-          <Trash2 onClick={() => deletEvent(row?.id)} />
+          <Trash2 onClick={() => deletEvent(row?.id ?? row?.eventId ?? row?._id)} />
         </div>
       ),
     },

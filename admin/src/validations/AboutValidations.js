@@ -7,7 +7,7 @@ export const heroSectionValidation = z.object({
 });
 
 export const pasterSectionValidation = z.object({
-  pastorName: basic3CharText,
+  pasterName: basic3CharText,
   title: basic3CharText,
   description: basic15CharText,
 });

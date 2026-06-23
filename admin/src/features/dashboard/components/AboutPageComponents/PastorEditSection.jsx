@@ -11,7 +11,7 @@ import { APIURL } from "../../../../Core/url";
 import { motion } from "framer-motion";
 import { User, FileText, Image as ImageIcon, Save } from "lucide-react";
 
-export default function PastorEditSection({ data }) {
+export default function PastorEditSection({ data, refreshData }) {
   const [imageFile, setImageFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -51,8 +51,11 @@ export default function PastorEditSection({ data }) {
         data: formDataToSend,
       });
 
-      if (response.success) {
+      if (response && response.success) {
         setSubmitStatus({ type: 'success', message: 'Pastor message updated successfully!' });
+        if (refreshData) {
+          await refreshData();
+        }
         setTimeout(() => setSubmitStatus(null), 3000);
       } else {
         setSubmitStatus({ type: 'error', message: 'Failed to update pastor message. Please try again.' });

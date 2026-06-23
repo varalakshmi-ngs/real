@@ -8,7 +8,7 @@ import OurCoreBelifs from "@/components/about/OurCoreBelifs";
 import OurHistory from "@/components/about/OurHistory";
 import OurLeaders from "@/components/about/OurLeaders";
 import OurVissionMissionCombine from "@/components/about/OurVissionMissionCombine";
-import Home_Pastor_Info from "@/components/HomeComponents/Home_Pastor_Info";
+import MessageFromPastor from "@/components/about/MessageFromPastor";
 import ImageComponent from "@/components/UtilComponents/ImageComponent";
 import { API, APIURL } from "@/Core/rl";
 import { useHomeDataHook } from "@/Hooks/HomeDataHook";
@@ -86,7 +86,7 @@ const AboutPage = () => {
       )}
 
       <motion.div variants={sectionVariant}>
-        <Home_Pastor_Info data={homeData?.pasterIntro || data?.pastarmessage} />
+        <MessageFromPastor data={data?.pastarmessage} />
       </motion.div>
 
       {/* Other Sections */}
