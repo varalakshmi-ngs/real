@@ -111,6 +111,9 @@ export const AboutPage = sequelize.define("AboutPage", {
   pastorTitle: { type: DataTypes.STRING },
   pastorDescription: { type: DataTypes.TEXT },
   pastorImage: { type: DataTypes.STRING },
+  familyTitle: { type: DataTypes.STRING },
+  familyDescription: { type: DataTypes.TEXT },
+  familyImage: { type: DataTypes.STRING },
 });
 
 export const TeamMember = sequelize.define("TeamMember", {

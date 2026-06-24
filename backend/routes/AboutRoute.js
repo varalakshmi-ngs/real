@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   updateHeroSection,
   updateMessageFromPaster,
+  updateFamilySection,
   getAllAboutData,
   deleteTeamMember,
   addTeamMember,
@@ -21,6 +22,12 @@ router.put(
   "/pastarmessage",
   handleMulterUpload(upload.single("image")),
   updateMessageFromPaster
+);
+
+router.put(
+  "/family",
+  handleMulterUpload(upload.single("image")),
+  updateFamilySection
 );
 
 router.post(

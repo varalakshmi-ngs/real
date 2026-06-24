@@ -17,6 +17,11 @@ const transformAboutPage = (data) => {
       description: json.pastorDescription,
       image: json.pastorImage
     },
+    family: {
+      title: json.familyTitle,
+      description: json.familyDescription,
+      image: json.familyImage
+    },
     teamMembers: json.teamMembers || []
   };
 };
@@ -127,6 +132,34 @@ export const deleteTeamMember = async (req, res) => {
     logger?.error(`❌ Failed to update About  Hero Section: ${error.message}`);
 
     return sendResponse(res, 500, "Failed to save About Hero", error);
+  }
+};
+
+export const updateFamilySection = async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const image = req.file?.path ? req.file.path.replace(/\\/g, "/") : undefined;
+
+    const updateData = {
+      id: 1,
+      familyTitle: title,
+      familyDescription: description,
+    };
+
+    if (image) {
+      updateData.familyImage = image;
+    }
+
+    const [aboutPage, created] = await AboutPage.upsert(updateData);
+
+    return res.status(200).json({
+      message: "Pastor Family Section Updated",
+      _doc: transformAboutPage(aboutPage)
+    });
+  } catch (error) {
+    logger?.error(`❌ Failed to update About Family Section: ${error.message}`);
+
+    return sendResponse(res, 500, "Failed to save About Family", error);
   }
 };
 

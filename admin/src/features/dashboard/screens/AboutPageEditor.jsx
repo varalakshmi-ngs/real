@@ -1,5 +1,6 @@
 import HeroForm from "../components/AboutPageComponents/HeroForm";
 import PastorEditSection from "../components/AboutPageComponents/PastorEditSection";
+import FamilyEditSection from "../components/AboutPageComponents/FamilyEditSection";
 import { Select } from "../../../components/UI/Form";
 import { apiRequest } from "../../../services/ApiCalls";
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ export default function AboutPageEditor() {
   const sections = [
     { value: "hero", label: "Hero Section" },
     { value: "pastorMessage", label: "Pastor Message" },
+    { value: "family", label: "Pastor Family Section" },
   ];
 
   const refreshData = async () => {
@@ -82,6 +84,11 @@ export default function AboutPageEditor() {
           {selectedSection === "pastorMessage" && (
             <motion.div variants={itemVariants}>
               <PastorEditSection data={data?.pastarmessage} refreshData={refreshData} />
+            </motion.div>
+          )}
+          {selectedSection === "family" && (
+            <motion.div variants={itemVariants}>
+              <FamilyEditSection data={data?.family} refreshData={refreshData} />
             </motion.div>
           )}
         </>

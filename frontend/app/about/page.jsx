@@ -9,6 +9,7 @@ import OurHistory from "@/components/about/OurHistory";
 import OurLeaders from "@/components/about/OurLeaders";
 import OurVissionMissionCombine from "@/components/about/OurVissionMissionCombine";
 import MessageFromPastor from "@/components/about/MessageFromPastor";
+import FamilySection from "@/components/about/FamilySection";
 import ImageComponent from "@/components/UtilComponents/ImageComponent";
 import { API, APIURL } from "@/Core/rl";
 import { useHomeDataHook } from "@/Hooks/HomeDataHook";
@@ -87,6 +88,10 @@ const AboutPage = () => {
 
       <motion.div variants={sectionVariant}>
         <MessageFromPastor data={data?.pastarmessage} />
+      </motion.div>
+
+      <motion.div variants={sectionVariant}>
+        <FamilySection data={data?.family} />
       </motion.div>
 
       {/* Other Sections */}

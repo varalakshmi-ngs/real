@@ -12,6 +12,11 @@ export const pasterSectionValidation = z.object({
   description: basic15CharText,
 });
 
+export const familySectionValidation = z.object({
+  title: basic3CharText,
+  description: basic15CharText,
+});
+
 export const addPersonValidation = z.object({
   name: basic3CharText,
   designation: basic3CharText,
