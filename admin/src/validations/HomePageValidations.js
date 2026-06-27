@@ -45,8 +45,7 @@ export const LastMessageValidation = z.object({
   heading: basic3CharText,
   description: basic15CharText,
   hostName: basic3CharText,
-  title: basic5CharText,
-  youtubeLink: basicUrl,
+  youtubeLink: z.string().url({ message: "Enter valid url" }).optional().or(z.literal("")),
 });
 
 export const GalleryValidation = z.object({

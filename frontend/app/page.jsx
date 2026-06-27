@@ -6,12 +6,13 @@ import Home_Events from "@/components/HomeComponents/Home_Events";
 import Home_HeroSection from "@/components/HomeComponents/Home_HeroSection";
 import Home_Pastor_Info from "@/components/HomeComponents/Home_Pastor_Info";
 import Home_Support_Mission from "@/components/HomeComponents/Home_Support_Mission";
-import Home_VideoList from "@/components/HomeComponents/Home_VideoList";
+import Home_latest_message from "@/components/HomeComponents/Home_latest_message";
 
 import { useHomeDataHook } from "@/Hooks/HomeDataHook";
 import dynamic from "next/dynamic";
 import { ClipLoader } from "react-spinners";
 import { motion } from "framer-motion";
+
 
 const MagazineCarousel = dynamic(
   () => import("@/components/HomeComponents/Magzinecomponent"),
@@ -66,11 +67,12 @@ export default function HomePage() {
           <Home_Pastor_Info data={data?.pasterIntro} />
         </motion.div>
 
-        {/* Watch Message (From the About Page, Fields has to take from the Admin panel) -- Only last updated 4 */}
-        <motion.div variants={sectionVariant}>
-          {/* <h1 className="text-3xl font-bold mb-4">Watch Message</h1> */}
-          <Home_VideoList data={data?.videos?.slice(0, 4)} />
-        </motion.div>
+        {/* Latest Message */}
+        {data?.latestMessages && data?.latestMessages.length > 0 && (
+          <motion.div variants={sectionVariant}>
+            <Home_latest_message data={data?.latestMessages} />
+          </motion.div>
+        )}
 
         
 

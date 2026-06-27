@@ -57,7 +57,7 @@ const FamilySection = ({ data }) => {
               <p className="text-white text-xs font-medium text-center tracking-wider">
                 దైవజనులు డి సురేష్ గారు మరియు వారి కుటుంబం
               </p>
-            </div>
+            </div>  
           </div>
         </motion.div>
 

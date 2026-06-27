@@ -1,248 +1,141 @@
 "use client";
 
 import { APIURL } from "@/Core/rl";
-import MainBtn from "@/utils/MainBtn";
 import React from "react";
 import { motion } from "framer-motion";
-import { PlayCircle, ArrowRight } from "lucide-react";
+import { PlayCircle, Share2, User } from "lucide-react";
+import Link from "next/link";
 
-export default function Home_latest_message({ data }) {
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#fff5f5] via-white to-red-50 px-4 py-16 sm:px-8 lg:px-14">
-      {/* BACKGROUND GLOW */}
-      <div className="absolute left-[-100px] top-[-100px] h-[250px] w-[250px] rounded-full bg-red-200/30 blur-3xl"></div>
+export default function Home_latest_message({ data = [] }) {
+  const [expandedIds, setExpandedIds] = React.useState([]);
 
-      <div className="absolute bottom-[-100px] right-[-100px] h-[300px] w-[300px] rounded-full bg-red-300/20 blur-3xl"></div>
+  if (!data || data.length === 0) return null;
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* SECTION TITLE */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="font-serif text-4xl font-bold md:text-5xl">
-            <span className="text-[#022147]">
-              Watch
-            </span>{" "}
-            <span className="text-red-600">
-              Latest Message
-            </span>
-          </h2>
+  const toggleExpand = (id) => {
+    setExpandedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
-          <div className="mt-4 h-1.5 w-28 rounded-full bg-red-600"></div>
-        </motion.div>
+  const handleWatchNow = (youtubeLink) => {
+    const watchLink = youtubeLink || "https://www.youtube.com/@REALTEMPLE";
+    window.open(watchLink, "_blank");
+  };
 
-        {/* MAIN CARD */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true }}
-          className="overflow-hidden rounded-[32px] bg-white shadow-[0_20px_80px_rgba(0,0,0,0.08)]"
-        >
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            {/* IMAGE SIDE */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative h-full"
-            >
-              {/* PLAY BUTTON */}
-              <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2">
-                <motion.button
-                  whileHover={{
-                    scale: 1.1,
-                  }}
-                  whileTap={{
-                    scale: 0.9,
-                  }}
-                  className="rounded-full bg-white/90 p-5 text-red-600 shadow-2xl backdrop-blur-lg"
-                  onClick={() =>
-                    window.open(data?.youtubeLink, "_blank")
-                  }
-                >
-                  <PlayCircle size={48} fill="currentColor" />
-                </motion.button>
-              </div>
-
-              {/* IMAGE OVERLAY */}
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
-
-              {/* IMAGE */}
-              <motion.img
-                src={`${APIURL}/${data?.thumbnailImage}`}
-                alt="Latest Message"
-                whileHover={{
-                  scale: 1.04,
-                }}
-                transition={{
-                  duration: 0.5,
-                }}
-                className="h-[320px] w-full object-cover md:h-[500px]"
-              />
-            </motion.div>
-
-            {/* CONTENT SIDE */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-6 px-6 py-8 md:px-10"
-            >
-              {/* BADGE */}
-              <div className="inline-flex rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-600">
-                Latest Sermon
-              </div>
-
-              {/* TITLE */}
-              <h2 className="font-serif text-3xl font-bold leading-tight text-[#022147] md:text-5xl">
-                {data?.heading}
-              </h2>
-
-              {/* DESCRIPTION */}
-              <p className="max-w-2xl text-justify text-base leading-relaxed text-gray-600">
-                {data?.description}
-              </p>
-
-              {/* HOST */}
-              <div className="flex items-center gap-4 rounded-2xl border border-gray-100 bg-gray-50 p-4">
-                <img
-                  src={`${APIURL}/${data?.thumbnailImage}`}
-                  className="h-[65px] w-[65px] rounded-full object-cover shadow-md"
-                  alt=""
-                />
-
-                <div>
-                  <p className="text-lg font-semibold text-[#022147]">
-                    {data?.hostName}
-                  </p>
-
-                  <p className="text-sm text-gray-500">
-                    {data?.title}
-                  </p>
-                </div>
-              </div>
-
-             {/* BUTTONS */}
-<div className="flex flex-col gap-4 pt-4 sm:flex-row">
-  
-  {/* WATCH BUTTON */}
-  <motion.button
-    whileHover={{
-      y: -3,
-      scale: 1.02,
-    }}
-    whileTap={{
-      scale: 0.97,
-    }}
-    onClick={() =>
-      window.open(
-        data?.youtubeLink,
-        "_blank"
-      )
+  const shareMessage = (message) => {
+    const detailLink = `${window.location.origin}/latest-message?id=${message.id}`;
+    if (navigator.share) {
+      navigator.share({
+        title: message.heading,
+        text: message.description,
+        url: detailLink,
+      }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(`${message.heading} - Read more at: ${detailLink}`);
+      alert("Link copied to clipboard!");
     }
-    className="
-      group
-      relative
-      overflow-hidden
-      rounded-2xl
-      bg-gradient-to-r
-      from-red-600
-      via-red-500
-      to-pink-500
-      px-7
-      py-4
-      font-semibold
-      text-white
-      shadow-[0_10px_30px_rgba(255,0,85,0.25)]
-      transition-all
-      duration-500
-      hover:shadow-[0_15px_40px_rgba(255,0,85,0.4)]
-    "
-  >
-    {/* SHINE */}
-    <span
-      className="
-        absolute
-        left-[-120%]
-        top-0
-        h-full
-        w-20
-        rotate-12
-        bg-white/40
-        blur-xl
-        transition-all
-        duration-700
-        group-hover:left-[130%]
-      "
-    />
+  };
 
-    <span className="relative z-10 flex items-center gap-3">
-      <PlayCircle size={22} />
-      Watch Full Sermon
-    </span>
-  </motion.button>
+  return (
+    <section className="px-6 sm:px-12 py-16 bg-gradient-to-b from-gray-50 to-gray-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10 items-center">
+        {/* SECTION TITLE */}
+        <div className="flex flex-col w-full gap-2 items-center text-center">
+          <h2 className="text-3xl sm:text-4xl font-serif text-gray-900 font-bold">
+            Latest <span className="text-red-600">Messages</span>
+          </h2>
+          <div className="h-1 bg-red-600 w-24 rounded-full mt-2" />
+        </div>
 
-  {/* BROWSE BUTTON */}
-  <motion.button
-    whileHover={{
-      y: -3,
-      scale: 1.02,
-    }}
-    whileTap={{
-      scale: 0.97,
-    }}
-    className="
-      group
-      relative
-      overflow-hidden
-      rounded-2xl
-      border
-      border-[#022147]/20
-      bg-white
-      px-7
-      py-4
-      font-semibold
-      text-[#022147]
-      shadow-md
-      transition-all
-      duration-500
-      hover:border-[#022147]
-      hover:shadow-xl
-    "
-  >
-    {/* HOVER BG */}
-    <span
-      className="
-        absolute
-        inset-0
-        origin-left
-        scale-x-0
-        bg-[#022147]
-        transition-transform
-        duration-500
-        group-hover:scale-x-100
-      "
-    />
+        {/* CARDS GRID (Centered) */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center justify-items-center">
+          {data.map((message) => {
+            const isExpanded = expandedIds.includes(message.id);
+            const isLong = message.description && message.description.length > 200;
+            const displayText = isLong && !isExpanded ? message.description.substring(0, 200) + "... " : message.description;
+            const imageSrc = message.thumbnailImage
+              ? (message.thumbnailImage.startsWith("http") ? message.thumbnailImage : `${APIURL}/${message.thumbnailImage}`)
+              : "/images/jesus-footer-image.png";
 
-    <span className="relative z-10 flex items-center gap-3 transition-colors duration-500 group-hover:text-white">
-      Browse All Sermons
-      <ArrowRight
-        size={18}
-        className="transition-transform duration-300 group-hover:translate-x-1"
-      />
-    </span>
-  </motion.button>
-</div>
-            </motion.div>
-          </div>
-        </motion.div>
+            return (
+              <motion.div
+                key={message.id}
+                className="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden w-full max-w-[320px] flex flex-col group hover:shadow-xl transition-all duration-500"
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Image Header with Play Button overlay */}
+                <div className="relative h-[180px] w-full overflow-hidden shrink-0 bg-slate-100">
+                  <img
+                    src={imageSrc}
+                    alt={message.heading}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Play overlay button */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-[2px]">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handleWatchNow(message.youtubeLink)}
+                      className="bg-red-600/90 rounded-full p-4 shadow-2xl backdrop-blur-md border border-red-500/50 text-white"
+                    >
+                      <PlayCircle className="w-10 h-10 drop-shadow-lg fill-current" />
+                    </motion.button>
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className="p-5 flex flex-col flex-1 gap-3 bg-white">
+                  <h3 className="text-lg font-serif font-bold text-gray-900 leading-snug group-hover:text-red-600 transition-colors line-clamp-2">
+                    {message.heading}
+                  </h3>
+
+                  {/* Host Name display */}
+                  {message.hostName && (
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wide bg-slate-50 p-2 rounded-lg border border-slate-100 self-start">
+                      <User size={13} className="text-slate-400" />
+                      <span>Host: {message.hostName}</span>
+                    </div>
+                  )}
+
+                  {/* Description & See More Inline */}
+                  <div className="text-xs leading-relaxed text-gray-600 flex-1">
+                    <span className="whitespace-pre-line">{displayText}</span>
+                    {isLong && (
+                      <button
+                        onClick={() => toggleExpand(message.id)}
+                        className="text-red-600 hover:text-red-700 font-bold transition-colors ml-1 inline text-xs cursor-pointer focus:outline-none"
+                      >
+                        {isExpanded ? "See Less" : "See More"}
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="mt-auto pt-3 border-t border-gray-100 flex items-center gap-2">
+                    <button
+                      onClick={() => handleWatchNow(message.youtubeLink)}
+                      className="rounded-full w-full h-9 hover:scale-[102%] duration-300 cursor-pointer text-xs bg-myblue text-white hover:bg-white hover:border-myblue hover:border hover:text-myblue font-semibold flex items-center justify-center gap-1"
+                    >
+                      <PlayCircle size={14} />
+                      Watch Now
+                    </button>
+                    <button
+                      onClick={() => shareMessage(message)}
+                      className="rounded-full w-full h-9 hover:scale-[102%] duration-300 cursor-pointer text-xs bg-white text-second border-main border hover:bg-main hover:text-white font-semibold flex items-center justify-center gap-1"
+                    >
+                      <Share2 size={14} />
+                      Share
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -5,7 +5,9 @@ import {
   addWeekendProgram,
   deleteVideo,
   deleteWeekendProgram,
+  addLatestMessage,
   updateLatestMessage,
+  deleteLatestMessage,
   updatePastorIntro,
   getAllHomeData,
   getAllLocalVideos,
@@ -34,11 +36,20 @@ router.delete("/deletevideo/:id", deleteVideo);
 router.post("/addweekendprogram", addWeekendProgram);
 router.delete("/deleteweekendprogram/:id", deleteWeekendProgram);
 
-router.put(
+router.post(
   "/latestmessage",
+  handleMulterUpload(upload.single("image")),
+  addLatestMessage
+);
+
+router.put(
+  "/latestmessage/:id",
   handleMulterUpload(upload.single("image")),
   updateLatestMessage
 );
+
+router.delete("/latestmessage/:id", deleteLatestMessage);
+
 
 router.get("/", getAllHomeData);
 router.get("/videos", getAllLocalVideos);

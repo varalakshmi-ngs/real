@@ -98,7 +98,7 @@ export default function HomepageEditor() {
           )}
           {selectedSection === "latestMessage" && (
             <motion.div variants={itemVariants}>
-              <LastMessage data={data?.latestMessage} refreshData={refreshData} />
+              <LastMessage data={data?.latestMessages} refreshData={refreshData} />
             </motion.div>
           )}
         </>

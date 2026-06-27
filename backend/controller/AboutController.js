@@ -32,12 +32,17 @@ export const updateHeroSection = async (req, res) => {
 
     const image = req.file?.path;
 
-    const [aboutPage, created] = await AboutPage.upsert({
+    const updateData = {
       id: 1,
       heroTitle: title,
       heroSubText: subText,
-      heroImage: image,
-    });
+    };
+
+    if (image) {
+      updateData.heroImage = image;
+    }
+
+    const [aboutPage, created] = await AboutPage.upsert(updateData);
 
     return res.status(created ? 201 : 200).json({
       message: `Hero Section ${created ? 'created' : 'updated'} successfully`,
@@ -54,22 +59,27 @@ export const updateMessageFromPaster = async (req, res) => {
   try {
     const { pasterName, title, description } = req.body;
     const image = req.file?.path;
-    const [aboutPage, created] = await AboutPage.upsert({
+    const updateData = {
       id: 1,
       pastorName: pasterName,
       pastorTitle: title,
       pastorDescription: description,
-      pastorImage: image,
-    });
+    };
+
+    if (image) {
+      updateData.pastorImage = image;
+    }
+
+    const [aboutPage, created] = await AboutPage.upsert(updateData);
 
     return res.status(200).json({
       message: "Pastor Message Updated",
       _doc: transformAboutPage(aboutPage)
     });
   } catch (error) {
-    logger?.error(`❌ Failed to update About  Hero Section: ${error.message}`);
+    logger?.error(`❌ Failed to update About Pastor Message Section: ${error.message}`);
 
-    return sendResponse(res, 500, "Failed to save About Hero", error);
+    return sendResponse(res, 500, "Failed to save Pastor Message", error);
   }
 };
 
@@ -107,9 +117,9 @@ export const addTeamMember = async (req, res) => {
       data: newMember.toJSON()
     });
   } catch (error) {
-    logger?.error(`❌ Failed to update About  Hero Section: ${error.message}`);
+    logger?.error(`❌ Failed to add Team Member: ${error.message}`);
 
-    return sendResponse(res, 500, "Failed to save About Hero", error);
+    return sendResponse(res, 500, "Failed to add Team Member", error);
   }
 };
 
@@ -129,9 +139,9 @@ export const deleteTeamMember = async (req, res) => {
       "Delete Team Member Success"
     );
   } catch (error) {
-    logger?.error(`❌ Failed to update About  Hero Section: ${error.message}`);
+    logger?.error(`❌ Failed to delete Team Member: ${error.message}`);
 
-    return sendResponse(res, 500, "Failed to save About Hero", error);
+    return sendResponse(res, 500, "Failed to delete Team Member", error);
   }
 };
 
@@ -174,9 +184,9 @@ export const getAllAboutData = async (req, res) => {
       _doc: transformAboutPage(existingData)
     });
   } catch (error) {
-    logger?.error(`❌ Failed to update About  Hero Section: ${error.message}`);
+    logger?.error(`❌ Failed to fetch About Page Data: ${error.message}`);
 
-    return sendResponse(res, 500, "Failed to save About Hero", error);
+    return sendResponse(res, 500, "Failed to fetch About Page Data", error);
   }
 };
 

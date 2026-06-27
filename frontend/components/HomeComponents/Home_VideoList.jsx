@@ -17,7 +17,7 @@ export default function Home_VideoList({ data }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl font-serif text-gray-900 font-bold">
-            Watch <span className="text-red-600">Latest Messages</span>
+            Watch <span className="text-red-600">Latest Videos</span>
           </h2>
           <div className="h-1 bg-red-600 w-24 rounded-full mt-2" />
         </motion.div>

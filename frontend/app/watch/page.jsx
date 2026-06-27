@@ -11,10 +11,10 @@ export default function page() {
     <div>
       <WatchOnlineHero />
       {recentVideos.length > 0 && (
-        <VideoCard videoData={recentVideos} sectionTitle="Recent Messages" />
+        <VideoCard videoData={recentVideos} sectionTitle="Recent Videos" />
       )}
       {popularVideos.length > 0 && (
-        <VideoCard videoData={popularVideos} sectionTitle="Popular Messages" />
+        <VideoCard videoData={popularVideos} sectionTitle="Popular Videos" />
       )}
     </div>
   );

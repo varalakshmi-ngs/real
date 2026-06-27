@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import OpenCloseLayout from "../../../../utils/OpenCloseLayout";
+import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import ImageEditContainer from "../../../../utils/ImageEditContainer";
+import { pastorIntro } from "../../../../validations/HomePageValidations";
 import CustomInput from "../../../../utils/CustomInput";
-import { zodResolver } from "@hookform/resolvers/zod";
-import FormBtn from "../../../../utils/FormBtn";
-import { pasterSectionValidation } from "../../../../validations/AboutValidations";
+import ImageEditContainer from "../../../../utils/ImageEditContainer";
+import OpenCloseLayout from "../../../../utils/OpenCloseLayout";
 import { apiRequest } from "../../../../services/ApiCalls";
 import { APIURL } from "../../../../Core/url";
 import { motion } from "framer-motion";
@@ -22,7 +21,7 @@ export default function PastorEditSection({ data, refreshData }) {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(pasterSectionValidation),
+    resolver: zodResolver(pastorIntro),
     defaultValues: data,
   });
 
@@ -95,7 +94,7 @@ export default function PastorEditSection({ data, refreshData }) {
               submitStatus.type === 'success'
                 ? 'bg-green-50 border-green-200 text-green-800'
                 : 'bg-red-50 border-red-200 text-red-800'
-            }`}
+              }`}
           >
             {submitStatus.message}
           </motion.div>
@@ -107,7 +106,7 @@ export default function PastorEditSection({ data, refreshData }) {
           <motion.div variants={itemVariants} className="space-y-6">
             <div className="flex items-center gap-3 mb-4">
               <User className="w-5 h-5 text-slate-600" />
-              <h3 className="text-lg font-semibold text-slate-800">Pastor Message</h3>
+              <h3 className="text-lg font-semibold text-slate-800">Pastor Details</h3>
             </div>
 
             <div className="space-y-4">
@@ -120,15 +119,6 @@ export default function PastorEditSection({ data, refreshData }) {
                 icon={<User className="w-4 h-4" />}
               />
 
-              <CustomInput
-                register={register}
-                name="title"
-                label="Message Title"
-                placeholder="Enter message title"
-                error={errors.title}
-                icon={<FileText className="w-4 h-4" />}
-              />
-
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-slate-700 flex items-center gap-2">
                   <FileText className="w-4 h-4" />
@@ -136,8 +126,8 @@ export default function PastorEditSection({ data, refreshData }) {
                 </label>
                 <textarea
                   {...register("description")}
-                  placeholder="Enter pastor's message or description"
-                  rows={6}
+                  placeholder="Enter pastor's introduction or message"
+                  rows={8}
                   className="w-full border border-slate-300 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-300 bg-white text-slate-900 shadow-sm"
                 />
                 {errors.description && (

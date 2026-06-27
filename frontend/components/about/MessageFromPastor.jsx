@@ -1,58 +1,71 @@
 import React from "react";
-import ImageComponent from "../UtilComponents/ImageComponent";
+import { motion } from "framer-motion";
 import { APIURL } from "@/Core/rl";
 
-const MessageFromPastor = ({ data }) => {
-  return (
-    <div className="w-full bg-second">
-      <h2 className="responsive-h2 text-end text-[36px] font-serif text-white p-5 ">
-        A Message From Our Pastor
-      </h2>
-      <div className="flex items-end justify-end mb-6">
-        <div className="w-[80%] bg-white h-1" />
-      </div>
-      <section className="px-4 sm:px-8 lg:px-16 py-10 flex flex-col lg:flex-row gap-6 items-start justify-center">
-        <ImageComponent
-          // imageUrl="/images/about-first-image.png"
-          imageUrl={
-            data?.image
-              ? `${APIURL}/${data?.image}`
-              : "/images/about-first-image.png"
-          }
-          className="h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px] object-cover rounded-xl shadow-lg"
-        />
-        <section className="w-full lg:w-[75%] flex flex-col gap-4 text-white">
-          <div className="flex items-center gap-4">
-            <div className="w-[55px] h-[55px] bg-gray-600 rounded-full overflow-hidden">
-              <img
-                src={`${APIURL}/${data?.image}`}
-                alt="Pastor"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <p className="font-serif tracking-wide font-medium">
-                {data?.pasterName}
-              </p>
-              <p className="primary-text-color font-medium font-sans">
-                {data?.title}
-              </p>
-            </div>
-          </div>
-          {data?.description?.split(".").map((text, idx) => (
-            <p
-              key={idx}
-              className={`text-[16px] sm:text-[18px] font-normal font-sans leading-relaxed ${
-                idx === 0 ? "mt-2" : ""
-              }`}
-            >
-              {text}
-            </p>
-          ))}
-        </section>
-      </section>
-    </div>
-  );
-};
+export default function MessageFromPastor({ data }) {
+  const pastorName = data?.pasterName || data?.pastorName || "Pastor";
+  const description = data?.description || data?.pastorDescription || "";
+  const imageSrc = data?.image ? `${APIURL}/${data.image}` : "/images/about-first-image.png";
 
-export default MessageFromPastor;
+  // Animation variants
+  const imageVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.3 } },
+  };
+
+  return (
+    <section
+      id="pastor-message"
+      className="bg-second px-4 sm:px-8 py-12 overflow-hidden w-full"
+    >
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
+        {/* Left Column - Image with Slide-in from Left */}
+        <motion.div
+          className="w-full md:w-1/2 flex justify-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={imageVariants}
+        >
+          <img
+            src={imageSrc}
+            alt={pastorName}
+            className="rounded-xl max-h-[auto] h-auto w-full object-cover object-top shadow-lg"
+          />
+        </motion.div>
+
+        {/* Right Column - Content with Slide-in from Right */}
+        <motion.div
+          className="w-full md:w-1/2 space-y-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={textVariants}
+        >
+          <div className="text-right">
+            <h2 className="text-3xl font-serif bg-white inline-block px-3 py-1">
+              {pastorName.split(" ").map((word, index) => (
+                <span
+                  key={index}
+                  className={index === 0 ? "text-second" : "text-main"}
+                >
+                  {word}{" "}
+                </span>
+              ))}
+            </h2>
+            <div className="h-1 bg-white mt-2 w-full" />
+          </div>
+
+          <div className="text-white text-sm sm:text-base leading-relaxed whitespace-pre-wrap font-sans">
+            {description}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

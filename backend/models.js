@@ -93,6 +93,14 @@ export const Video = sequelize.define("Video", {
   thumbnailImage: { type: DataTypes.STRING, allowNull: false },
 });
 
+export const LatestMessage = sequelize.define("LatestMessage", {
+  heading: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.TEXT, allowNull: false },
+  hostName: { type: DataTypes.STRING, allowNull: false },
+  youtubeLink: { type: DataTypes.STRING },
+  thumbnailImage: { type: DataTypes.STRING },
+});
+
 export const WeekendProgram = sequelize.define("WeekendProgram", {
   title: { type: DataTypes.STRING, allowNull: false },
   subText: { type: DataTypes.TEXT, allowNull: false },
@@ -149,6 +157,9 @@ GalleryImage.belongsTo(GalleryCategory, { foreignKey: { name: "categoryId", allo
 HomePage.hasMany(Video, { foreignKey: "homePageId", as: "videos" });
 Video.belongsTo(HomePage, { foreignKey: "homePageId", as: "homePage" });
 
+HomePage.hasMany(LatestMessage, { foreignKey: "homePageId", as: "latestMessages" });
+LatestMessage.belongsTo(HomePage, { foreignKey: "homePageId", as: "homePage" });
+
 HomePage.hasMany(WeekendProgram, { foreignKey: "homePageId", as: "weekendPrograms" });
 WeekendProgram.belongsTo(HomePage, { foreignKey: "homePageId", as: "homePage" });
 
@@ -172,4 +183,5 @@ export const databaseModels = {
   SocialLink,
   Magazine,
   Service,
+  LatestMessage,
 };

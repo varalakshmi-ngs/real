@@ -1,10 +1,16 @@
-import { HomePage, Video, WeekendProgram } from "../models.js";
+import { HomePage, Video, WeekendProgram, LatestMessage } from "../models.js";
 import logger from "../utils/logger.js";
 import { sendResponse } from "../utils/sendResponse.js";
 
 const transformHomePage = (data) => {
   if (!data) return null;
   const json = data.toJSON ? data.toJSON() : data;
+
+  const latestMessages = json.latestMessages 
+    ? [...json.latestMessages].sort((a, b) => b.id - a.id) 
+    : [];
+  const newestMsg = latestMessages[0] || {};
+
   return {
     hero: {
       title: json.heroTitle,
@@ -19,13 +25,22 @@ const transformHomePage = (data) => {
       image: json.pastorImage
     },
     latestMessage: {
-      heading: json.latestHeading,
-      description: json.latestDescription,
-      hostName: json.latestHostName,
-      title: json.latestTitle,
-      youtubeLink: json.latestYoutubeLink,
-      thumbnailImage: json.latestThumbnailImage
+      heading: newestMsg.heading || "",
+      description: newestMsg.description || "",
+      hostName: newestMsg.hostName || "",
+      title: "",
+      youtubeLink: newestMsg.youtubeLink || "",
+      thumbnailImage: newestMsg.thumbnailImage || ""
     },
+    latestMessages: latestMessages.map(m => ({
+      id: m.id,
+      heading: m.heading,
+      description: m.description,
+      hostName: m.hostName,
+      youtubeLink: m.youtubeLink,
+      thumbnailImage: m.thumbnailImage,
+      createdAt: m.createdAt
+    })),
     timings: {
       morningService: json.morningService,
       eveningService: json.eveningService,
@@ -219,54 +234,120 @@ export const deleteWeekendProgram = async (req, res) => {
   }
 };
 
-export const updateLatestMessage = async (req, res) => {
+export const addLatestMessage = async (req, res) => {
   try {
-    const { heading, description, hostName, title, youtubeLink } = req.body;
-
+    const { heading, description, hostName, youtubeLink } = req.body;
     const image = req.file?.path;
 
-    const latestMessage = {};
+    const homePage = await HomePage.findByPk(1);
+    if (!homePage) {
+      return res.status(400).json({
+        message: "Please add Hero Section First",
+      });
+    }
 
-    if (heading) latestMessage.heading = heading;
-    if (description) latestMessage.description = description;
-    if (hostName) latestMessage.hostName = hostName;
-    if (title) latestMessage.title = title;
+    if (!heading || !description || !hostName) {
+      return res.status(400).json({
+        message: "Please fill all required fields",
+      });
+    }
 
-    if (youtubeLink) latestMessage.youtubeLink = youtubeLink;
-    if (image) latestMessage.thumbnailImage = image;
-
-    const [homePage, created] = await HomePage.upsert({
-      id: 1,
-      latestHeading: heading,
-      latestDescription: description,
-      latestHostName: hostName,
-      latestTitle: title,
-      latestYoutubeLink: youtubeLink,
-      latestThumbnailImage: image,
+    const newMsg = await LatestMessage.create({
+      heading,
+      description,
+      hostName,
+      youtubeLink: youtubeLink || null,
+      thumbnailImage: image || null,
+      homePageId: 1,
     });
 
-    return res.status(200).json({
-      message: "Latest Message Updated",
-      _doc: transformHomePage(homePage)
+    return res.status(201).json({
+      message: "Latest Message Added successfully",
+      data: newMsg,
     });
   } catch (error) {
-    logger?.error(
-      `❌ Failed to update latest message at homepage: ${error.message}`
-    );
-
-    return sendResponse(
-      res,
-      500,
-      "Failed to update latest message section",
-      error
-    );
+    logger?.error(`❌ Failed to add latest message at homepage: ${error.message}`);
+    return sendResponse(res, 500, "Failed to add latest message", error);
   }
 };
+
+export const updateLatestMessage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { heading, description, hostName, youtubeLink } = req.body;
+    const image = req.file?.path;
+
+    if (!id) {
+      return res.status(400).json({
+        message: "Please Provide Message Id",
+      });
+    }
+
+    const msg = await LatestMessage.findByPk(id);
+    if (!msg) {
+      return res.status(404).json({
+        message: "Latest Message not found",
+      });
+    }
+
+    const updates = {
+      heading,
+      description,
+      hostName,
+      youtubeLink: youtubeLink || null,
+    };
+
+    if (image) {
+      updates.thumbnailImage = image;
+    } else if (req.body.deleteImage === "true") {
+      updates.thumbnailImage = null;
+    }
+
+    await msg.update(updates);
+
+    return res.status(200).json({
+      message: "Latest Message Updated successfully",
+      data: msg,
+    });
+  } catch (error) {
+    logger?.error(`❌ Failed to update latest message: ${error.message}`);
+    return sendResponse(res, 500, "Failed to update latest message", error);
+  }
+};
+
+export const deleteLatestMessage = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        message: "Please Provide Message Id",
+      });
+    }
+
+    const msg = await LatestMessage.findByPk(id);
+    if (!msg) {
+      return res.status(404).json({
+        message: "Latest Message not found",
+      });
+    }
+
+    await msg.destroy();
+
+    return res.status(200).json({
+      message: "Latest Message Deleted successfully",
+    });
+  } catch (error) {
+    logger?.error(`❌ Failed to delete latest message: ${error.message}`);
+    return sendResponse(res, 500, "Failed to delete latest message", error);
+  }
+};
+
 
 export const getAllHomeData = async (req, res) => {
   try {
     const existingData = await HomePage.findOne({
-      include: ['videos', 'weekendPrograms']
+      include: ['videos', 'weekendPrograms', 'latestMessages']
     });
     if (!existingData) {
       return res.status(200).json({
