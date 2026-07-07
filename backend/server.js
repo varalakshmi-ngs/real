@@ -167,6 +167,28 @@ const startServer = async () => {
 
     await sequelize.sync();
 
+    // Ensure family columns exist in about_pages table
+    try {
+      const queryInterface = sequelize.getQueryInterface();
+      const tableInfo = await queryInterface.describeTable("about_pages");
+      
+      if (!tableInfo.family_title) {
+        console.log("Adding family_title column to about_pages...");
+        await sequelize.query("ALTER TABLE about_pages ADD COLUMN family_title VARCHAR(255);");
+      }
+      if (!tableInfo.family_description) {
+        console.log("Adding family_description column to about_pages...");
+        await sequelize.query("ALTER TABLE about_pages ADD COLUMN family_description TEXT;");
+      }
+      if (!tableInfo.family_image) {
+        console.log("Adding family_image column to about_pages...");
+        await sequelize.query("ALTER TABLE about_pages ADD COLUMN family_image VARCHAR(255);");
+      }
+      console.log("✅ Verified and ensured family columns in about_pages table.");
+    } catch (dbErr) {
+      console.error("⚠️ Failed to ensure family columns exist in about_pages:", dbErr);
+    }
+
     const port = process.env.PORT || 4000;
 
     server.listen(port, "0.0.0.0", () => {
