@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { useHomeDataHook } from "@/Hooks/HomeDataHook";
 import { APIURL } from "@/Core/rl";
 import { ClipLoader } from "react-spinners";
@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function LatestMessagePage() {
+function LatestMessageContent() {
   const { data, loading, error } = useHomeDataHook();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -195,5 +195,19 @@ export default function LatestMessagePage() {
         </div>
       </div>
     </motion.div>
+  );
+}
+
+export default function LatestMessagePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-[70vh] items-center justify-center">
+          <ClipLoader color="red" size={50} />
+        </div>
+      }
+    >
+      <LatestMessageContent />
+    </Suspense>
   );
 }
