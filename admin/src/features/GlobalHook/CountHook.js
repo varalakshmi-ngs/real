@@ -9,6 +9,7 @@ export const useCountHook = () => {
     prayerrequests: 0,
     completedPrayer: 0,
     pendingPrayer: 0,
+    views: 0,
   });
 
   const getData = async () => {

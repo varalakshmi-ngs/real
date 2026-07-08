@@ -16,7 +16,11 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
+  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || "https://admin.realtemple.com/dashboard";
+  const adminLoginUrl = adminUrl.includes("localhost") ? `${adminUrl}/login` : adminUrl;
+
   const contactDetails = [
+
     {
       icon: <Mail size={20} />,
       title: "Email",
@@ -41,14 +45,14 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-black text-white">
-      
+
       {/* Background Glow */}
       <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-red-700/10 blur-3xl" />
 
       <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-pink-600/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-14">
-        
+
         {/* MAIN GRID */}
         <div className="grid grid-cols-1 gap-14 md:grid-cols-[1.1fr_0.8fr_0.8fr_1.6fr]">
 
@@ -70,19 +74,19 @@ export default function Footer() {
             <div className="mt-8 flex items-center gap-4">
 
               {[
-                
+
 
                 {
                   icon: Youtube,
                   bg: "bg-red-600",
                   link: "https://www.youtube.com/@REALTEMPLE",
                 },
-                
+
                 {
-  icon: FaWhatsapp,
-  bg: "bg-green-500",
-  link: "https://wa.me/917399993536",
-},
+                  icon: FaWhatsapp,
+                  bg: "bg-green-500",
+                  link: "https://wa.me/917399993536",
+                },
 
                 {
                   icon: Facebook,
@@ -176,6 +180,7 @@ export default function Footer() {
                 { name: "Magazines", href: "/magazines" },
                 { name: "Contact", href: "/contact" },
                 { name: "Contribution", href: "/contribution" },
+                { name: "Admin Login", href: adminLoginUrl },
               ].map((item) => (
                 <Link
                   key={item.name}

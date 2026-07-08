@@ -1,7 +1,7 @@
 import Razorpay from "razorpay";
 import { Op } from "sequelize";
 import { sequelize } from "../config/database.js";
-import { Contact, Event, PrayerRequest, Testimonial, Donation, GalleryImage } from "../models.js";
+import { Contact, Event, PrayerRequest, Testimonial, Donation, GalleryImage, VisitorStats } from "../models.js";
 import {
   createContact,
   createPrayerRequest,
@@ -565,7 +565,6 @@ export const verifyPayment = async (req, res) => {
 export const getAllCount = async (req, res) => {
   try {
     const galleryImageCount = await GalleryImage.count();
-
     const donations = await Donation.count();
 
     const completedPrayer = await PrayerRequest.count({
@@ -577,8 +576,13 @@ export const getAllCount = async (req, res) => {
     });
 
     const prayerRequestCount = pendingPrayer + completedPrayer;
-
     const eventCount = await Event.count();
+
+    let visitorStats = await VisitorStats.findOne({ where: { id: 1 } });
+    if (!visitorStats) {
+      visitorStats = await VisitorStats.create({ id: 1, views: 0 });
+    }
+    const totalViews = visitorStats.views;
 
     return res.status(200).send({
       images: galleryImageCount,
@@ -587,10 +591,27 @@ export const getAllCount = async (req, res) => {
       events: eventCount,
       completedPrayer,
       pendingPrayer,
+      views: totalViews,
     });
   } catch (error) {
     logger?.error(`❌ Get Count Error: ${error.message}`);
-    return sendResponse(res, 500, "Edit Event Error", err);
+    return res.status(500).json({ error: "Failed to get all counts" });
+  }
+};
+
+export const incrementViews = async (req, res) => {
+  try {
+    let stats = await VisitorStats.findOne({ where: { id: 1 } });
+    if (!stats) {
+      stats = await VisitorStats.create({ id: 1, views: 1 });
+    } else {
+      await stats.increment("views", { by: 1 });
+      await stats.reload();
+    }
+    return res.status(200).json({ success: true, views: stats.views });
+  } catch (error) {
+    logger?.error(`❌ Increment Views Error: ${error.message}`);
+    return res.status(500).json({ error: "Failed to increment views" });
   }
 };
 

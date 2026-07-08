@@ -22,6 +22,7 @@ import {
   getContributions,
   getNotifications,
   submitDonation,
+  incrementViews,
 } from "../controller/website-controller.js";
 import upload from "../middlewares/fileUpload.js";
 import { handleMulterUpload } from "../middlewares/handleMulterUpload.js";
@@ -64,5 +65,6 @@ router.get("/get-contributions", getContributions);
 
 router.get("/get-all-count", getAllCount);
 router.get("/get-notifications", getNotifications);
+router.post("/increment-views", incrementViews);
 
 export default router;

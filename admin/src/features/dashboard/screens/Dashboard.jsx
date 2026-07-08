@@ -10,7 +10,8 @@ import {
   Activity,
   CheckCircle2,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Users
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCountHook } from "../../GlobalHook/CountHook";
@@ -60,6 +61,16 @@ const Dashboard = () => {
       bgLight: "bg-amber-50",
       textColor: "text-amber-600",
       path: "/contribution"
+    },
+    {
+      title: "Total Website Views",
+      value: count.views || 0,
+      footer: "Website visitors",
+      icon: Users,
+      color: "from-teal-500 to-teal-600",
+      bgLight: "bg-teal-50",
+      textColor: "text-teal-600",
+      path: "/dashboard"
     }
   ];
 
@@ -98,16 +109,10 @@ const Dashboard = () => {
           <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Dashboard Overview</h1>
           <p className="mt-2 text-lg text-gray-500">Welcome back, Admin. Here is the latest activity for Real Temple.</p>
         </div>
-        <div className="flex items-center gap-3 px-4 py-2 bg-white rounded-2xl border border-gray-100 shadow-sm">
-          <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium text-gray-600">System Online</span>
-          <span className="text-gray-300">|</span>
-          <span className="text-xs text-gray-400">{new Date().toLocaleDateString()}</span>
-        </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
         {stats.map((stat, index) => (
           <motion.div
             key={stat.title}

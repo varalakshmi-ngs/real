@@ -4,7 +4,6 @@ import { Filter } from "lucide-react";
 import { useContactDataHook } from "./Hooks/contact.data";
 import { useContactHook } from "./Hooks/contact.hook";
 import Table from "../../utils/table/Table";
-import { useTestimonialHook } from "./Hooks/testimonial";
 import { motion } from "framer-motion";
 
 const ContactScreen = () => {
@@ -20,23 +19,8 @@ const ContactScreen = () => {
     searchContact,
   } = useContactHook();
 
-  const {
-    testHandlePageClick,
-    testLoading,
-    testError,
-    testimonial,
-    testiTotalPages,
-    testCurrentPage,
-    testiRejected,
-    testApproved,
-    searchTestimonial,
-    testSearchText, 
-  } = useTestimonialHook();
-
-  const { columns, commentColumns } = useContactDataHook({
+  const { columns } = useContactDataHook({
     deletContact,
-    testiRejected,
-    testApproved,
   });
 
   const containerVariants = {
@@ -87,39 +71,6 @@ const ContactScreen = () => {
               handlePageClick={handlePageClick}
               totalPages={totalPages}
               currentPage={currentPage}
-            />
-          )}
-        </div>
-      </motion.div>
-
-      {/* Testimonials Table */}
-      <motion.div variants={itemVariants} className="flex flex-col gap-4">
-        <HeaderWithActions
-          title="Comments"
-          subtitle="Manage and respond to Comments form submissions"
-          onSearch={searchTestimonial}
-          searchValue={testSearchText}
-          onFilterClick={() => {}}
-          filterButtonText="Filter"
-          FilterIcon={Filter}
-          btnWidth="w-[120px] bg-red-600 text-white hover:bg-red-700 transition-colors"
-        />
-        <div className="bg-white text-slate-900 rounded-xl shadow-sm border border-slate-200 p-2 overflow-hidden">
-          {testLoading ? (
-            <div className="w-full h-[300px] flex justify-center items-center">
-              <ClipLoader color="#E60023" size={30} />
-            </div>
-          ) : testError ? (
-            <div className="w-full h-[300px] flex justify-center items-center text-red-600 font-semibold">
-              {testError}
-            </div>
-          ) : (
-            <Table
-              totalPages={testiTotalPages}
-              columns={commentColumns}
-              data={testimonial}
-              currentPage={testCurrentPage}
-              handlePageClick={testHandlePageClick}
             />
           )}
         </div>

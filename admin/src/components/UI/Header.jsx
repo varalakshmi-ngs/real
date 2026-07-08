@@ -1,51 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  Bell,
   User,
   LogOut,
-  Settings,
   Church,
   Menu,
   X,
-  Clock,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { Link, useLocation } from "react-router-dom";
-import { API } from "../../Core/url";
-import { formatDistanceToNow } from "date-fns";
 
 const Header = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [notifications, setNotifications] = useState([]);
 
   const { user, logout } = useAuth();
   const location = useLocation();
 
-  const fetchNotifications = async () => {
-    try {
-      const resp = await API.get("/web/get-notifications");
-
-      if (resp.data) {
-        setNotifications(resp.data);
-      }
-    } catch (error) {
-      console.error("Failed to fetch notifications", error);
-    }
-  };
+  const profileRef = useRef(null);
 
   useEffect(() => {
-    fetchNotifications();
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileOpen(false);
+      }
+    };
 
-    const interval = setInterval(fetchNotifications, 120000);
-
-    return () => clearInterval(interval);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
-
-  const unreadCount = notifications.filter((n) => n.unread).length;
 
   const handleLogout = () => {
     logout();
@@ -67,7 +53,6 @@ const Header = () => {
 
   const closeMenus = () => {
     setIsProfileOpen(false);
-    setIsNotificationsOpen(false);
     setIsMobileMenuOpen(false);
   };
 
@@ -77,7 +62,7 @@ const Header = () => {
         initial={{ y: -60 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
-        className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-30 overflow-x-hidden"
+        className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-30"
       >
         {/* TOP HEADER */}
         <div className="w-full max-w-[1600px] mx-auto px-3 sm:px-6 md:px-8 border-b border-gray-100 flex items-center justify-between py-2 sm:py-3">
@@ -89,17 +74,22 @@ const Header = () => {
             />
           </Link>
 
-<h1 className="font-black tracking-tight text-[16px] xs:text-[16px] sm:text-[30px] md:text-[42px] lg:text-[45px] text-[#022147] whitespace-nowrap uppercase text-center flex-grow px-2 truncate">
+          <h1 className="hidden sm:block font-black tracking-tight sm:text-[30px] md:text-[42px] lg:text-[45px] text-[#022147] whitespace-nowrap uppercase text-center flex-grow px-2 truncate">
               Real Temple
           </h1>
 
-          {/* <Link to="/" className="flex-shrink-0">
-            <img
-              src="/logo2.png"
-              alt="Logo"
-              className="object-contain h-[38px] w-[42px] sm:h-[50px] sm:w-[60px]"
-            />
-          </Link> */}
+          {/* TOP-RIGHT INFO */}
+          <div className="flex flex-col items-end flex-shrink-0">
+            <span className="text-xs sm:text-[16px] font-black tracking-tight text-[#022147] uppercase">
+              Admin Panel
+            </span>
+            <div className="flex items-center gap-1.5 sm:gap-3 px-2 sm:px-3 py-0.5 sm:py-1 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-sm mt-0.5 sm:mt-1">
+              <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-[10px] sm:text-sm font-medium text-gray-600">System Online</span>
+              <span className="text-gray-300 text-xs">|</span>
+              <span className="text-[9px] sm:text-xs text-gray-400">{new Date().toLocaleDateString()}</span>
+            </div>
+          </div>
         </div>
 
         {/* NAVBAR */}
@@ -115,26 +105,8 @@ const Header = () => {
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
 
-              {/* LOGO */}
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-2"
-              >
-                <Church className="h-7 w-7 sm:h-8 sm:w-8 text-blue-600" />
-
-                <div className="hidden sm:flex flex-col md:flex-row md:items-baseline md:gap-2">
-                  <span className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">
-                    Real Temple
-                  </span>
-
-                  <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">
-                    Admin Panel
-                  </span>
-                </div>
-              </Link>
-
               {/* DESKTOP NAVIGATION */}
-              <nav className="hidden xl:flex items-center gap-1 ml-4 overflow-x-auto">
+              <nav className="hidden xl:flex items-center gap-1 overflow-x-auto">
                 {navigationItems.map((item) => (
                   <Link
                     key={item.path}
@@ -153,93 +125,11 @@ const Header = () => {
 
             {/* RIGHT */}
             <div className="flex items-center gap-2 sm:gap-4">
-              {/* NOTIFICATIONS */}
-              <div className="relative">
-                <button
-                  onClick={() => {
-                    setIsNotificationsOpen(!isNotificationsOpen);
-                    setIsProfileOpen(false);
-                  }}
-                  className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <Bell size={20} />
-
-                  {unreadCount > 0 && (
-                    <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
-                  )}
-                </button>
-
-                <AnimatePresence>
-                  {isNotificationsOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute right-0 mt-2 w-[90vw] max-w-[320px] sm:w-80 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden"
-                    >
-                      <div className="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-                        <h3 className="text-sm font-bold text-gray-900">
-                          Notifications
-                        </h3>
-
-                        {unreadCount > 0 && (
-                          <span className="text-[10px] px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-bold">
-                            {unreadCount} New
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="max-h-[400px] overflow-y-auto">
-                        {notifications.length === 0 ? (
-                          <div className="p-8 text-center text-gray-400">
-                            <Bell
-                              size={24}
-                              className="mx-auto mb-2 opacity-20"
-                            />
-
-                            <p className="text-xs">
-                              No new notifications
-                            </p>
-                          </div>
-                        ) : (
-                          notifications.map((notification) => (
-                            <div
-                              key={notification.id}
-                              className={`p-4 border-b border-gray-50 last:border-0 hover:bg-gray-50 transition-colors ${
-                                notification.unread
-                                  ? "bg-blue-50/30"
-                                  : ""
-                              }`}
-                            >
-                              <p className="text-sm text-gray-800 font-medium leading-snug">
-                                {notification.message}
-                              </p>
-
-                              <div className="flex items-center gap-1 mt-1 text-[10px] text-gray-400">
-                                <Clock size={10} />
-
-                                <span>
-                                  {formatDistanceToNow(
-                                    new Date(notification.time),
-                                    { addSuffix: true }
-                                  )}
-                                </span>
-                              </div>
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
               {/* PROFILE */}
-              <div className="relative">
+              <div className="relative" ref={profileRef}>
                 <button
                   onClick={() => {
                     setIsProfileOpen(!isProfileOpen);
-                    setIsNotificationsOpen(false);
                   }}
                   className="flex items-center gap-2 p-1 sm:p-2 text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
                 >
@@ -258,7 +148,7 @@ const Header = () => {
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute right-0 mt-2 w-[220px] sm:w-48 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden"
+                      className="absolute right-0 top-full mt-2 w-[220px] sm:w-48 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden"
                     >
                       <div className="px-4 py-3 bg-gray-50 border-b border-gray-100">
                         <div className="text-xs font-bold text-gray-500 uppercase tracking-tighter">
@@ -271,11 +161,6 @@ const Header = () => {
                       </div>
 
                       <div className="p-2">
-                        <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg flex items-center gap-2">
-                          <Settings size={16} />
-                          Settings
-                        </button>
-
                         <button
                           onClick={handleLogout}
                           className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg flex items-center gap-2"

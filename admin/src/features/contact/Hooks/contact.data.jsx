@@ -46,13 +46,15 @@ export const useContactDataHook = ({
       name: "Date",
       width: "10%",
       render: (row) => (
-        <p className="overflow-hidden line-clamp-1">{row.date?.slice(0, 10)}</p>
+        <p className="overflow-hidden line-clamp-1">{(row.createdAt || row.date)?.slice(0, 10)}</p>
       ),
     },
     {
       name: "Subject",
       width: "35%",
-      render: (row) => <p>{row.message}</p>,
+      render: (row) => (
+        <p className="break-all whitespace-normal">{row.message}</p>
+      ),
     },
     {
       name: "Action",

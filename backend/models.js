@@ -166,6 +166,10 @@ WeekendProgram.belongsTo(HomePage, { foreignKey: "homePageId", as: "homePage" })
 AboutPage.hasMany(TeamMember, { foreignKey: "aboutPageId", as: "teamMembers" });
 TeamMember.belongsTo(AboutPage, { foreignKey: "aboutPageId", as: "aboutPage" });
 
+export const VisitorStats = sequelize.define("VisitorStats", {
+  views: { type: DataTypes.INTEGER, defaultValue: 0, allowNull: false },
+});
+
 export const databaseModels = {
   User,
   Contact,
@@ -184,4 +188,5 @@ export const databaseModels = {
   Magazine,
   Service,
   LatestMessage,
+  VisitorStats,
 };

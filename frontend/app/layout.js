@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import { ToastContainer } from "react-toastify";
+import VisitorTracker from "../components/UtilComponents/VisitorTracker";
 
 // Define the fonts with CSS variables
 const inter = Inter({
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
           draggable
           pauseOnHover
         />
+        <VisitorTracker />
         <Header />
 <main className="pt-[70px] sm:pt-[80px] md:pt-[90px]">
             {children}
