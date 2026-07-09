@@ -272,7 +272,6 @@ export default function WatchEditor() {
               <motion.div
                 key={video.id || video._id}
                 variants={itemVariants}
-                layout
                 className="group relative bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Thumbnail */}
