@@ -8,6 +8,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 
 import Contribution from "./features/contribution/Contribution";
+import SocialSettings from "./features/social-settings/SocialSettings";
 import RequesrForPrayer from "./features/request-for-prayer/RequesrForPrayer";
 import ContactScreen from "./features/contact/ContactScreen";
 
@@ -45,6 +46,8 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
 
               <Route path="/contribution" element={<Contribution />} />
+              <Route path="/social-settings" element={<SocialSettings />} />
+              <Route path="/social_settings" element={<SocialSettings />} />
               <Route path="/watch" element={<WatchEditor />} />
               <Route path="/request-prayer" element={<RequesrForPrayer />} />
               <Route path="/contact" element={<ContactScreen />} />

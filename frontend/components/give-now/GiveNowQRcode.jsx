@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Building2, CreditCard, Landmark } from "lucide-react";
 
-export default function GiveNowQRcode() {
+export default function GiveNowQRcode({ data = {} }) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -145,7 +145,7 @@ export default function GiveNowQRcode() {
             break-words
           "
         >
-          D. SURESH
+          {data.bankAccountName}
         </h2>
       </div>
     </div>
@@ -192,7 +192,7 @@ export default function GiveNowQRcode() {
             break-all
           "
         >
-          50100286369360
+          {data.bankAccountNumber}
         </p>
       </div>
 
@@ -225,7 +225,7 @@ export default function GiveNowQRcode() {
             break-all
           "
         >
-          HDFC0001990
+          {data.bankIfsc}
         </p>
       </div>
 
@@ -256,7 +256,7 @@ export default function GiveNowQRcode() {
             text-white
           "
         >
-          HAYATNAGAR
+          {data.bankBranch}
         </p>
       </div>
     </div>

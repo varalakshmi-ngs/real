@@ -854,3 +854,25 @@
 {"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-09T04:31:05.944Z"}
 {"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-09T04:31:31.362Z"}
 {"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-09T04:31:32.234Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-09T04:47:17.218Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T09:49:16.207Z"}
+{"level":"error","message":"❌ Failed to Login chairman@pratyaksha.com Error: User not found","service":"auth-services","timestamp":"2026-07-10T09:53:56.504Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T09:56:15.895Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T09:57:34.956Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:02:18.294Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:08:05.884Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Unknown column 'latestMessages.pastor_name' in 'field list'","service":"auth-services","timestamp":"2026-07-10T10:13:26.455Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Unknown column 'latestMessages.pastor_name' in 'field list'","service":"auth-services","timestamp":"2026-07-10T10:13:26.482Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Unknown column 'latestMessages.pastor_name' in 'field list'","service":"auth-services","timestamp":"2026-07-10T10:13:42.702Z"}
+{"level":"error","message":"❌ Failed to update latest message at homepage: Unknown column 'latestMessages.pastor_name' in 'field list'","service":"auth-services","timestamp":"2026-07-10T10:14:00.532Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:14:41.034Z"}
+{"level":"error","message":"❌ Failed to add latest message at homepage: Column 'host_name' cannot be null","service":"auth-services","timestamp":"2026-07-10T10:17:00.117Z"}
+{"level":"error","message":"❌ Failed to add latest message at homepage: Column 'host_name' cannot be null","service":"auth-services","timestamp":"2026-07-10T10:17:11.118Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:18:28.450Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:24:01.068Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:24:12.895Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:28:56.290Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:29:32.211Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:30:24.892Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:32:00.326Z"}
+{"level":"info","message":"📦 Retrieved 1 services","service":"auth-services","timestamp":"2026-07-10T10:32:30.526Z"}

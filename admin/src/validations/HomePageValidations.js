@@ -44,7 +44,7 @@ export const ChruchServices = z.object({
 export const LastMessageValidation = z.object({
   heading: basic3CharText,
   description: basic15CharText,
-  hostName: basic3CharText,
+  pastorName: z.string().optional().or(z.literal("")),
   youtubeLink: z.string().url({ message: "Enter valid url" }).optional().or(z.literal("")),
 });
 

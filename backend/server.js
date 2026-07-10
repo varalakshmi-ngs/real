@@ -17,6 +17,8 @@ import AboutRoute from "./routes/AboutRoute.js";
 import GalleryRoute from "./routes/GalleryRoute.js";
 import MagazineRoute from "./routes/MagazineRoute.js";
 import ServiceRoute from "./routes/ServiceRoute.js";
+import ContributionRoute from "./routes/ContributionRoute.js";
+import SocialRoute from "./routes/SocialRoute.js";
 
 import errorHandler from "./middlewares/errorHandle.js";
 
@@ -151,6 +153,9 @@ app.use("/magazine", MagazineRoute);
 
 app.use("/services", ServiceRoute);
 
+app.use("/contribution", ContributionRoute);
+app.use("/social", SocialRoute);
+
 // ================= ERROR HANDLER =================
 
 app.use(errorHandler);
@@ -187,6 +192,76 @@ const startServer = async () => {
       console.log("✅ Verified and ensured family columns in about_pages table.");
     } catch (dbErr) {
       console.error("⚠️ Failed to ensure family columns exist in about_pages:", dbErr);
+    }
+
+    // Ensure pastorName column exists in LatestMessages table
+    try {
+      const queryInterface = sequelize.getQueryInterface();
+      let tableName = "LatestMessages";
+      const tables = await queryInterface.showAllTables();
+      if (tables.includes("latestmessages")) {
+        tableName = "latestmessages";
+      } else if (tables.includes("LatestMessages")) {
+        tableName = "LatestMessages";
+      } else if (tables.includes("latest_messages")) {
+        tableName = "latest_messages";
+      }
+      
+      const tableInfo = await queryInterface.describeTable(tableName);
+      if (!tableInfo.pastor_name) {
+        console.log(`Adding pastor_name column to ${tableName}...`);
+        await sequelize.query(`ALTER TABLE ${tableName} ADD COLUMN pastor_name VARCHAR(255);`);
+      }
+      if (tableInfo.host_name && tableInfo.host_name.allowNull === false) {
+        console.log(`Modifying host_name column in ${tableName} to allow NULL...`);
+        await sequelize.query(`ALTER TABLE ${tableName} MODIFY COLUMN host_name VARCHAR(255) NULL;`);
+      }
+      console.log(`✅ Verified and ensured pastor_name and host_name columns in ${tableName} table.`);
+    } catch (dbErr) {
+      console.error("⚠️ Failed to ensure pastor_name or host_name columns exist/allow NULL in LatestMessages:", dbErr);
+    }
+
+    // Ensure whatsapp and linkedin columns exist in SocialLinks table
+    try {
+      const queryInterface = sequelize.getQueryInterface();
+      let socialTableName = "social_links";
+      const tables = await queryInterface.showAllTables();
+      if (tables.includes("sociallinks")) {
+        socialTableName = "sociallinks";
+      } else if (tables.includes("SocialLinks")) {
+        socialTableName = "SocialLinks";
+      } else if (tables.includes("social_links")) {
+        socialTableName = "social_links";
+      }
+
+      const socialTableInfo = await queryInterface.describeTable(socialTableName);
+      if (!socialTableInfo.whatsapp) {
+        console.log(`Adding whatsapp column to ${socialTableName}...`);
+        await sequelize.query(`ALTER TABLE ${socialTableName} ADD COLUMN whatsapp VARCHAR(255);`);
+      }
+      if (!socialTableInfo.linkedin) {
+        console.log(`Adding linkedin column to ${socialTableName}...`);
+        await sequelize.query(`ALTER TABLE ${socialTableName} ADD COLUMN linkedin VARCHAR(255);`);
+      }
+      if (!socialTableInfo.email) {
+        console.log(`Adding email column to ${socialTableName}...`);
+        await sequelize.query(`ALTER TABLE ${socialTableName} ADD COLUMN email VARCHAR(255);`);
+      }
+      if (!socialTableInfo.phone) {
+        console.log(`Adding phone column to ${socialTableName}...`);
+        await sequelize.query(`ALTER TABLE ${socialTableName} ADD COLUMN phone VARCHAR(255);`);
+      }
+      if (!socialTableInfo.address) {
+        console.log(`Adding address column to ${socialTableName}...`);
+        await sequelize.query(`ALTER TABLE ${socialTableName} ADD COLUMN address TEXT;`);
+      }
+      if (!socialTableInfo.map_location) {
+        console.log(`Adding map_location column to ${socialTableName}...`);
+        await sequelize.query(`ALTER TABLE ${socialTableName} ADD COLUMN map_location VARCHAR(255);`);
+      }
+      console.log(`✅ Verified and ensured whatsapp, linkedin, email, phone, address, and map_location columns in ${socialTableName} table.`);
+    } catch (dbErr) {
+      console.error("⚠️ Failed to ensure whatsapp or linkedin columns in SocialLinks table:", dbErr);
     }
 
     const port = process.env.PORT || 4000;

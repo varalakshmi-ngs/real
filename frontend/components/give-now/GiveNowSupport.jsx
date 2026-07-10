@@ -1,9 +1,10 @@
 "use client";
-
 import React from "react";
 import { motion } from "framer-motion";
+import { APIURL } from "@/Core/rl";
 
 const HighlightLastWord = ({ text, className }) => {
+  if (!text) return null;
   const words = text.trim().split(" ");
   const lastWord = words.pop();
 
@@ -15,21 +16,14 @@ const HighlightLastWord = ({ text, className }) => {
   );
 };
 
-const GiveNowSupport = () => {
-  const sections = [
-    {
-      title: "Community Outreach",
-      text: "At Real Temple Church, every gift has purpose. Your faithful giving enables us to carry the light of Christ far and wide—touching lives, restoring hope, and building the Kingdom of God.",
-    },
-    {
-      title: "Global Missions",
-      text: "Support our missionaries as they build schools, dig wells, and share the Gospel across 12 nations. Every mission trip changes lives—both for those who go and those who receive.",
-    },
-    {
-      title: "Church Growth",
-      text: "Your support allows us to expand our ministries, maintain church facilities, and create life-changing worship experiences. You are helping others grow deeper in faith.",
-    },
-  ];
+const GiveNowSupport = ({ data = {} }) => {
+  const sections = data.supportItems || [];
+
+  const getImageUrl = (img) => {
+    if (!img) return "";
+    if (img.startsWith("/") || img.startsWith("http")) return img;
+    return `${APIURL}/${img}`;
+  };
 
   return (
     <section
@@ -138,7 +132,7 @@ const GiveNowSupport = () => {
                       "
                     >
                       <img
-                        src="/images/bible-icon.png"
+                        src={getImageUrl(section.icon)}
                         alt="icon"
                         className="w-8 h-8 filter brightness-200"
                       />
@@ -160,7 +154,7 @@ const GiveNowSupport = () => {
 
                   {/* Text */}
                   <p className="text-gray-300 leading-relaxed text-lg">
-                    {section.text}
+                    {section.description || section.text}
                   </p>
                 </div>
               </motion.div>
@@ -207,7 +201,7 @@ const GiveNowSupport = () => {
               "
             >
               <motion.img
-                src="/images/give-now-support.png"
+                src={getImageUrl(data.supportImage)}
                 alt="Support Matters"
                 initial={{ scale: 1.12 }}
                 whileInView={{ scale: 1 }}

@@ -55,7 +55,7 @@ export default function LastMessage({ data = [], refreshData }) {
     reset({
       heading: "",
       description: "",
-      hostName: "",
+      pastorName: "",
       youtubeLink: "",
     });
     setImageFile(null);
@@ -68,7 +68,7 @@ export default function LastMessage({ data = [], refreshData }) {
     reset({
       heading: message?.heading || "",
       description: message?.description || "",
-      hostName: message?.hostName || "",
+      pastorName: message?.pastorName || message?.hostName || "",
       youtubeLink: message?.youtubeLink || "",
     });
     setImageFile(null);
@@ -337,10 +337,10 @@ export default function LastMessage({ data = [], refreshData }) {
                         {message.heading || "No Title"}
                       </h3>
                     </div>
-                    {message.hostName && (
+                    {(message.pastorName || message.hostName) && (
                       <div className="flex items-center gap-1.5 pl-[22px] text-xs font-semibold text-slate-500">
                         <User size={13} className="text-slate-400" />
-                        <span>Host: {message.hostName}</span>
+                        <span>PASTOR: {message.pastorName || message.hostName}</span>
                       </div>
                     )}
                     <p className="text-xs text-slate-500 line-clamp-2 pl-[22px]">
@@ -450,21 +450,21 @@ export default function LastMessage({ data = [], refreshData }) {
                     )}
                   </div>
 
-                  {/* Host Name */}
+                  {/* Pastor Name */}
                   <div className="space-y-1.5">
                     <label className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
                       <User size={14} className="text-emerald-500" />
-                      Host Name
+                      Pastor Name (Optional)
                     </label>
                     <input
-                      {...register("hostName")}
+                      {...register("pastorName")}
                       placeholder="e.g. Pastor John"
                       className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all"
                     />
-                    {errors.hostName && (
+                    {errors.pastorName && (
                       <span className="flex items-center gap-1 text-xs text-red-500">
                         <AlertCircle size={12} />
-                        {errors.hostName.message}
+                        {errors.pastorName.message}
                       </span>
                     )}
                   </div>

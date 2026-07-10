@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSocialLinks } from "@/contexts/SocialContext";
 
 function WhatsappIcon() {
   return (
@@ -27,6 +28,7 @@ function WhatsappIcon() {
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const socialLinks = useSocialLinks();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showNav, setShowNav] = useState(true);
@@ -173,49 +175,55 @@ export default function Header() {
             {/* SOCIAL ICONS */}
             <div className="hidden items-center gap-2 lg:flex">
               {/* YOUTUBE */}
-              <a
-                href="https://www.youtube.com/@REALTEMPLE"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="YouTube"
-                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#FF0000] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#e10000]"
-              >
-                <Youtube className="h-4 w-4 transition duration-200 group-hover:scale-110" />
-              </a>
+              {socialLinks.youtube && (
+                <a
+                  href={socialLinks.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="YouTube"
+                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#FF0000] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#e10000]"
+                >
+                  <Youtube className="h-4 w-4 transition duration-200 group-hover:scale-110" />
+                </a>
+              )}
 
               {/* WHATSAPP */}
-              <a
-                href="https://wa.me/1234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="WhatsApp"
-                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#1aba4b]"
-              >
-                <WhatsappIcon />
-              </a>
+              {socialLinks.whatsapp && (
+                <a
+                  href={socialLinks.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#25D366] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#1aba4b]"
+                >
+                  <WhatsappIcon />
+                </a>
+              )}
               {/* FACEBOOK */}
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Facebook"
-                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1877F2] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#145dbf]"
-              >
-                <Facebook className="h-4 w-4 transition duration-200 group-hover:scale-110" />
-              </a>
+              {socialLinks.facebook && (
+                <a
+                  href={socialLinks.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Facebook"
+                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1877F2] text-white transition duration-200 hover:-translate-y-1 hover:bg-[#145dbf]"
+                >
+                  <Facebook className="h-4 w-4 transition duration-200 group-hover:scale-110" />
+                </a>
+              )}
 
               {/* X */}
-              <a
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="X"
-                className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white transition duration-200 hover:-translate-y-1 hover:bg-slate-900"
-              >
-                <X className="h-4 w-4 transition duration-200 group-hover:scale-110" />
-              </a>
-
-              
+              {socialLinks.twitter && (
+                <a
+                  href={socialLinks.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="X"
+                  className="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-black text-white transition duration-200 hover:-translate-y-1 hover:bg-slate-900"
+                >
+                  <X className="h-4 w-4 transition duration-200 group-hover:scale-110" />
+                </a>
+              )}
             </div>
           </nav>
         </div>

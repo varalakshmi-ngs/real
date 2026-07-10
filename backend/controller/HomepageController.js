@@ -27,7 +27,8 @@ const transformHomePage = (data) => {
     latestMessage: {
       heading: newestMsg.heading || "",
       description: newestMsg.description || "",
-      hostName: newestMsg.hostName || "",
+      hostName: newestMsg.hostName || newestMsg.pastorName || "",
+      pastorName: newestMsg.pastorName || newestMsg.hostName || "",
       title: "",
       youtubeLink: newestMsg.youtubeLink || "",
       thumbnailImage: newestMsg.thumbnailImage || ""
@@ -36,7 +37,8 @@ const transformHomePage = (data) => {
       id: m.id,
       heading: m.heading,
       description: m.description,
-      hostName: m.hostName,
+      hostName: m.hostName || m.pastorName || "",
+      pastorName: m.pastorName || m.hostName || "",
       youtubeLink: m.youtubeLink,
       thumbnailImage: m.thumbnailImage,
       createdAt: m.createdAt
@@ -236,7 +238,7 @@ export const deleteWeekendProgram = async (req, res) => {
 
 export const addLatestMessage = async (req, res) => {
   try {
-    const { heading, description, hostName, youtubeLink } = req.body;
+    const { heading, description, hostName, pastorName, youtubeLink } = req.body;
     const image = req.file?.path;
 
     const homePage = await HomePage.findByPk(1);
@@ -246,7 +248,7 @@ export const addLatestMessage = async (req, res) => {
       });
     }
 
-    if (!heading || !description || !hostName) {
+    if (!heading || !description) {
       return res.status(400).json({
         message: "Please fill all required fields",
       });
@@ -255,7 +257,8 @@ export const addLatestMessage = async (req, res) => {
     const newMsg = await LatestMessage.create({
       heading,
       description,
-      hostName,
+      hostName: hostName || pastorName || null,
+      pastorName: pastorName || hostName || null,
       youtubeLink: youtubeLink || null,
       thumbnailImage: image || null,
       homePageId: 1,
@@ -274,7 +277,7 @@ export const addLatestMessage = async (req, res) => {
 export const updateLatestMessage = async (req, res) => {
   try {
     const { id } = req.params;
-    const { heading, description, hostName, youtubeLink } = req.body;
+    const { heading, description, hostName, pastorName, youtubeLink } = req.body;
     const image = req.file?.path;
 
     if (!id) {
@@ -293,7 +296,8 @@ export const updateLatestMessage = async (req, res) => {
     const updates = {
       heading,
       description,
-      hostName,
+      hostName: hostName || pastorName || null,
+      pastorName: pastorName || hostName || null,
       youtubeLink: youtubeLink || null,
     };
 

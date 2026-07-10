@@ -48,12 +48,10 @@ function LatestMessageContent() {
     const detailLink = `${window.location.origin}/latest-message?id=${message.id}`;
     if (navigator.share) {
       navigator.share({
-        title: message.heading,
-        text: message.description,
         url: detailLink,
       }).catch(console.error);
     } else {
-      navigator.clipboard.writeText(`${message.heading} - Read more at: ${detailLink}`);
+      navigator.clipboard.writeText(detailLink);
       alert("Link copied to clipboard!");
     }
   };
@@ -114,9 +112,9 @@ function LatestMessageContent() {
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#022147] leading-tight">
                 {message.heading}
               </h1>
-              {message.hostName && (
+              {(message.pastorName || message.hostName) && (
                 <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
-                  Host: {message.hostName}
+                  PASTOR: {message.pastorName || message.hostName}
                 </p>
               )}
               <div className="h-1 bg-red-600 w-24 rounded-full" />

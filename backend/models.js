@@ -96,7 +96,8 @@ export const Video = sequelize.define("Video", {
 export const LatestMessage = sequelize.define("LatestMessage", {
   heading: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.TEXT, allowNull: false },
-  hostName: { type: DataTypes.STRING, allowNull: false },
+  hostName: { type: DataTypes.STRING, allowNull: true },
+  pastorName: { type: DataTypes.STRING, allowNull: true },
   youtubeLink: { type: DataTypes.STRING },
   thumbnailImage: { type: DataTypes.STRING },
 });
@@ -136,6 +137,12 @@ export const SocialLink = sequelize.define("SocialLink", {
   instagram: { type: DataTypes.STRING },
   youtube: { type: DataTypes.STRING },
   twitter: { type: DataTypes.STRING },
+  whatsapp: { type: DataTypes.STRING },
+  linkedin: { type: DataTypes.STRING },
+  email: { type: DataTypes.STRING },
+  phone: { type: DataTypes.STRING },
+  address: { type: DataTypes.TEXT },
+  mapLocation: { type: DataTypes.STRING },
 });
 
 export const Magazine = sequelize.define("Magazine", {
@@ -170,6 +177,58 @@ export const VisitorStats = sequelize.define("VisitorStats", {
   views: { type: DataTypes.INTEGER, defaultValue: 0, allowNull: false },
 });
 
+export const ContributionPage = sequelize.define("ContributionPage", {
+  heroHeadingLine1: { type: DataTypes.STRING },
+  heroHeadingHighlight: { type: DataTypes.STRING },
+  heroDescription: { type: DataTypes.TEXT },
+  heroButtonGiveNow: { type: DataTypes.STRING },
+  heroButtonLearnMore: { type: DataTypes.STRING },
+  
+  servingHeading: { type: DataTypes.STRING },
+  servingDescription: { type: DataTypes.TEXT },
+  servingImage: { type: DataTypes.STRING },
+  
+  supportImage: { type: DataTypes.STRING },
+  
+  waysLabel: { type: DataTypes.STRING },
+  waysHeading: { type: DataTypes.STRING },
+  
+  formImage: { type: DataTypes.STRING },
+  formLabel: { type: DataTypes.STRING },
+  formHeading: { type: DataTypes.STRING },
+  formDescription: { type: DataTypes.TEXT },
+  
+  bankAccountName: { type: DataTypes.STRING },
+  bankAccountNumber: { type: DataTypes.STRING },
+  bankIfsc: { type: DataTypes.STRING },
+  bankBranch: { type: DataTypes.STRING },
+});
+
+export const SupportItem = sequelize.define("SupportItem", {
+  title: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.TEXT, allowNull: false },
+  icon: { type: DataTypes.STRING },
+  order: { type: DataTypes.INTEGER, defaultValue: 0 },
+});
+
+export const DonationAmount = sequelize.define("DonationAmount", {
+  amount: { type: DataTypes.INTEGER, allowNull: false },
+});
+
+export const DonationPurpose = sequelize.define("DonationPurpose", {
+  name: { type: DataTypes.STRING, allowNull: false },
+  value: { type: DataTypes.STRING, allowNull: false },
+});
+
+ContributionPage.hasMany(SupportItem, { foreignKey: "contributionPageId", as: "supportItems", onDelete: "CASCADE" });
+SupportItem.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "contributionPage" });
+
+ContributionPage.hasMany(DonationAmount, { foreignKey: "contributionPageId", as: "donationAmounts", onDelete: "CASCADE" });
+DonationAmount.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "contributionPage" });
+
+ContributionPage.hasMany(DonationPurpose, { foreignKey: "contributionPageId", as: "donationPurposes", onDelete: "CASCADE" });
+DonationPurpose.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "contributionPage" });
+
 export const databaseModels = {
   User,
   Contact,
@@ -189,4 +248,8 @@ export const databaseModels = {
   Service,
   LatestMessage,
   VisitorStats,
+  ContributionPage,
+  SupportItem,
+  DonationAmount,
+  DonationPurpose,
 };

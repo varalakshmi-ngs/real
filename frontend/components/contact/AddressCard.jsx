@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import React from "react";
 import { motion } from "framer-motion";
+import { useSocialLinks } from "@/contexts/SocialContext";
 
 const AddressCard = () => {
+  const socialLinks = useSocialLinks();
   return (
     <section className="w-full bg-white py-16 px-6 sm:px-12 border-b border-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -111,10 +113,8 @@ const AddressCard = () => {
                   Our Location
                 </h3>
 
-                <p className="text-gray-600 font-sans leading-relaxed">
-                  123 Faith Avenue,
-                  <br />
-                  Spiritual City, SC 12345
+                <p className="text-gray-600 font-sans leading-relaxed whitespace-pre-line">
+                  {socialLinks.address || "123 Faith Avenue,\nSpiritual City, SC 12345"}
                 </p>
               </div>
             </motion.div>
@@ -210,10 +210,10 @@ const AddressCard = () => {
                 </h3>
 
                 <a
-                  href="mailto:info@realtemple.com"
+                  href={`mailto:${socialLinks.email || "info@realtemple.com"}`}
                   className="text-gray-600 hover:text-red-600 transition-colors"
                 >
-                  info@realtemple.com
+                  {socialLinks.email || "info@realtemple.com"}
                 </a>
 
                 <p className="text-gray-500 text-sm mt-1">
@@ -315,10 +315,10 @@ const AddressCard = () => {
                 </h3>
 
                 <a
-                  href="tel:+919898989898"
+                  href={`tel:${(socialLinks.phone || "+91 98989 89898").replace(/[^0-9+]/g, "")}`}
                   className="text-gray-700 font-medium text-lg hover:text-red-600 transition-colors"
                 >
-                  +91 98989 89898
+                  {socialLinks.phone || "+91 98989 89898"}
                 </a>
 
                 <p className="text-gray-500 text-sm mt-1">
@@ -382,17 +382,18 @@ const AddressCard = () => {
               </p>
 
               <div className="flex flex-wrap gap-4">
-
                 {[
-                  <Facebook size={28} />,
-                  <Twitter size={28} />,
-                  <Instagram size={28} />,
-                  <Linkedin size={28} />,
-                  <Youtube size={28} />,
-                ].map((icon, index) => (
+                  { icon: <Facebook size={28} />, link: socialLinks.facebook },
+                  { icon: <Twitter size={28} />, link: socialLinks.twitter },
+                  { icon: <Instagram size={28} />, link: socialLinks.instagram },
+                  { icon: <Linkedin size={28} />, link: socialLinks.linkedin },
+                  { icon: <Youtube size={28} />, link: socialLinks.youtube },
+                ].filter(item => item.link).map((item, index) => (
                   <motion.a
                     key={index}
-                    href="#"
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{
                       y: -8,
                       rotate: 6,
@@ -418,7 +419,7 @@ const AddressCard = () => {
   hover:border-white
 "
                   >
-                    {icon}
+                    {item.icon}
                   </motion.a>
                 ))}
               </div>

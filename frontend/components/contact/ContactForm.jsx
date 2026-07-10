@@ -7,9 +7,11 @@ import { API } from "@/Core/rl";
 import { errorMsgApi, successfully } from "@/Core/tosts";
 import { motion } from "framer-motion";
 import { Send, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { useSocialLinks } from "@/contexts/SocialContext";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const socialLinks = useSocialLinks();
 
   const schema = z.object({
     firstName: z.string().min(3, "Name must be at least 3 characters"),
@@ -167,7 +169,7 @@ export default function ContactForm() {
                 style={{ border: 0 }}
                 loading="lazy"
                 allowFullScreen
-                src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Real%20Temple%20Church+(The%20Real%20Church)&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+                src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(socialLinks.mapLocation || "Real Temple Church (The Real Church)")}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                 title="Church Location"
                 className="absolute inset-0 w-full h-full object-cover filter contrast-125 saturate-50"
               />
@@ -181,7 +183,9 @@ export default function ContactForm() {
                  </div>
                  <div>
                     <h3 className="font-bold text-gray-900 font-serif">Visit Us</h3>
-                    <p className="text-gray-600 text-sm">Main Branch Location<br />City, State, ZIP</p>
+                    <p className="text-gray-600 text-sm whitespace-pre-line">
+                      {socialLinks.address || "Real Temple Church, LB Nagar, Hyderabad, India"}
+                    </p>
                  </div>
                </div>
             </div>

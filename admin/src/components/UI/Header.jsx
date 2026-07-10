@@ -5,6 +5,7 @@ import {
   Church,
   Menu,
   X,
+  Settings,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../../contexts/AuthContext";
@@ -70,7 +71,7 @@ const Header = () => {
             <img
               src="/logo2.png"
               alt="Logo"
-              className="object-contain h-[38px] w-[42px] sm:h-[50px] sm:w-[60px]"
+              className="object-contain h-[38px] w-auto sm:h-[50px]"
             />
           </Link>
 
@@ -160,7 +161,16 @@ const Header = () => {
                         </div>
                       </div>
 
-                      <div className="p-2">
+                      <div className="p-2 space-y-1">
+                        <Link
+                          to="/social-settings"
+                          onClick={() => setIsProfileOpen(false)}
+                          className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-105 rounded-lg flex items-center gap-2"
+                        >
+                          <Settings size={16} />
+                          Social Media Settings
+                        </Link>
+
                         <button
                           onClick={handleLogout}
                           className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg flex items-center gap-2"

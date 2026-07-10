@@ -11,7 +11,7 @@ import {
   HandHeart,
 } from "lucide-react";
 
-import { API } from "@/Core/rl";
+import { API, APIURL } from "@/Core/rl";
 import ImageLoader from "@/utils/ImageLoader";
 
 const ManualDonationModal = ({
@@ -20,6 +20,7 @@ const ManualDonationModal = ({
   donorName,
   amount,
   onConfirm,
+  bankDetails = {},
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -146,7 +147,7 @@ const ManualDonationModal = ({
                             </span>
 
                             <span className="font-semibold text-gray-900">
-                              D. SURESH
+                              {bankDetails.bankAccountName}
                             </span>
                           </div>
 
@@ -156,7 +157,7 @@ const ManualDonationModal = ({
                             </span>
 
                             <span className="font-semibold text-gray-900">
-                              50100286369360
+                              {bankDetails.bankAccountNumber}
                             </span>
                           </div>
 
@@ -166,7 +167,7 @@ const ManualDonationModal = ({
                             </span>
 
                             <span className="font-semibold text-gray-900">
-                              HDFC0001990
+                              {bankDetails.bankIfsc}
                             </span>
                           </div>
 
@@ -176,7 +177,7 @@ const ManualDonationModal = ({
                             </span>
 
                             <span className="font-semibold text-gray-900">
-                              HAYATNAGAR
+                              {bankDetails.bankBranch}
                             </span>
                           </div>
                         </div>
@@ -256,7 +257,26 @@ const ManualDonationModal = ({
   );
 };
 
-export const GiveNowWaysToGive = () => {
+const HighlightLastWord = ({ text, className }) => {
+  if (!text) return null;
+  const words = text.trim().split(" ");
+  const lastWord = words.pop();
+
+  return (
+    <h2 className={className}>
+      {words.join(" ")}{" "}
+      <span className="text-red-600">{lastWord}</span>
+    </h2>
+  );
+};
+
+export const GiveNowWaysToGive = ({ data = {} }) => {
+  const getImageUrl = (img) => {
+    if (!img) return "";
+    if (img.startsWith("/") || img.startsWith("http")) return img;
+    return `${APIURL}/${img}`;
+  };
+
   const [formData, setFormData] = useState({
     purpose: "",
     fullName: "",
@@ -331,6 +351,7 @@ export const GiveNowWaysToGive = () => {
         donorName={successData.name}
         amount={successData.amount}
         onConfirm={handleConfirmDonation}
+        bankDetails={data}
       />
 
       <section
@@ -345,14 +366,17 @@ export const GiveNowWaysToGive = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="bg-red-50 text-red-600 px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-              <HandHeart size={16} />
-              Support With Love
-            </div>
+            {data.waysLabel && (
+              <div className="bg-red-50 text-red-600 px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+                <HandHeart size={16} />
+                {data.waysLabel}
+              </div>
+            )}
 
-            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-gray-900">
-              Ways to <span className="text-red-600">Give</span>
-            </h2>
+            <HighlightLastWord
+              text={data.waysHeading}
+              className="text-4xl sm:text-5xl font-serif font-bold text-gray-900"
+            />
 
             <div className="h-1 w-24 bg-red-600 rounded-full" />
           </motion.div>
@@ -405,17 +429,11 @@ export const GiveNowWaysToGive = () => {
                       Select Purpose
                     </option>
 
-                    <option value="community-outreach">
-                      Community Outreach
-                    </option>
-
-                    <option value="global-missions">
-                      Global Missions
-                    </option>
-
-                    <option value="church-growth">
-                      Church Growth
-                    </option>
+                    {(data.donationPurposes || []).map((p) => (
+                      <option key={p.id || p.value} value={p.value}>
+                        {p.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -477,31 +495,34 @@ export const GiveNowWaysToGive = () => {
                   </label>
 
                   <div className="flex flex-wrap gap-4 mt-4">
-                    {[50, 100, 200, 500, 2000].map((value) => (
-                      <motion.button
-                        whileHover={{
-                          y: -3,
-                        }}
-                        whileTap={{
-                          scale: 0.96,
-                        }}
-                        key={value}
-                        type="button"
-                        onClick={() =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            amount: value,
-                          }))
-                        }
-                        className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
-                          Number(formData.amount) === value
-                            ? "bg-red-600 text-white shadow-lg shadow-red-200"
-                            : "bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700"
-                        }`}
-                      >
-                        ₹{value}
-                      </motion.button>
-                    ))}
+                    {(data.donationAmounts || []).map((opt) => {
+                      const value = opt.amount;
+                      return (
+                        <motion.button
+                          whileHover={{
+                            y: -3,
+                          }}
+                          whileTap={{
+                            scale: 0.96,
+                          }}
+                          key={value}
+                          type="button"
+                          onClick={() =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              amount: value,
+                            }))
+                          }
+                          className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
+                            Number(formData.amount) === value
+                              ? "bg-red-600 text-white shadow-lg shadow-red-200"
+                              : "bg-gray-100 hover:bg-red-50 hover:text-red-600 text-gray-700"
+                          }`}
+                        >
+                          ₹{value}
+                        </motion.button>
+                      );
+                    })}
                   </div>
 
                   <div className="relative mt-5">
@@ -567,7 +588,7 @@ export const GiveNowWaysToGive = () => {
               <div className="absolute -top-20 -left-20 w-72 h-72 bg-red-500/30 blur-[120px] rounded-full z-10" />
 
               <motion.img
-                src="/images/GiveNowWaysToGive.png"
+                src={getImageUrl(data.formImage)}
                 alt="Donation"
                 initial={{
                   scale: 1.12,
@@ -583,17 +604,15 @@ export const GiveNowWaysToGive = () => {
 
               <div className="absolute bottom-10 left-10 z-20 max-w-md">
                 <p className="text-red-400 uppercase tracking-[4px] text-sm mb-4">
-                  Real Temple Church
+                  {data.formLabel}
                 </p>
 
                 <h3 className="text-5xl font-serif font-bold text-white leading-tight">
-                  Every Gift Changes Lives
+                  {data.formHeading}
                 </h3>
 
                 <p className="text-white/80 mt-5 text-lg leading-relaxed">
-                  Your generosity empowers missions, supports
-                  outreach, and brings hope to families around the
-                  world.
+                  {data.formDescription}
                 </p>
               </div>
             </motion.div>

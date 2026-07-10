@@ -14,32 +14,33 @@ import {
   MapPin,
   ArrowUpRight,
 } from "lucide-react";
+import { useSocialLinks } from "@/contexts/SocialContext";
 
 export default function Footer() {
+  const socialLinks = useSocialLinks();
   const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || "https://admin.realtemple.com/dashboard";
   const adminLoginUrl = adminUrl.includes("localhost") ? `${adminUrl}/login` : adminUrl;
 
   const contactDetails = [
-
     {
       icon: <Mail size={20} />,
       title: "Email",
-      value: "rgwm.withds@gmail.com",
-      href: "mailto:rgwm.withds@gmail.com",
+      value: socialLinks.email || "rgwm.withds@gmail.com",
+      href: `mailto:${socialLinks.email || "rgwm.withds@gmail.com"}`,
     },
 
     {
       icon: <Phone size={20} />,
       title: "Phone",
-      value: "+91 73999 93536",
-      href: "tel:+917399993536",
+      value: socialLinks.phone || "+91 73999 93536",
+      href: `tel:${(socialLinks.phone || "+91 73999 93536").replace(/[^0-9+]/g, "")}`,
     },
 
     {
       icon: <MapPin size={20} />,
       title: "Address",
-      value: "REAL TEMPLE, LB Nagar, Hyderabad, India",
-      href: "https://maps.google.com",
+      value: socialLinks.address || "REAL TEMPLE, LB Nagar, Hyderabad, India",
+      href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(socialLinks.address || "REAL TEMPLE, LB Nagar, Hyderabad, India")}`,
     },
   ];
 
@@ -74,33 +75,27 @@ export default function Footer() {
             <div className="mt-8 flex items-center gap-4">
 
               {[
-
-
                 {
                   icon: Youtube,
                   bg: "bg-red-600",
-                  link: "https://www.youtube.com/@REALTEMPLE",
+                  link: socialLinks.youtube,
                 },
-
                 {
                   icon: FaWhatsapp,
                   bg: "bg-green-500",
-                  link: "https://wa.me/917399993536",
+                  link: socialLinks.whatsapp,
                 },
-
                 {
                   icon: Facebook,
                   bg: "bg-blue-600",
-                  link: "https://facebook.com",
+                  link: socialLinks.facebook,
                 },
-
                 {
                   icon: Instagram,
                   bg: "bg-pink-500",
-                  link: "https://instagram.com",
+                  link: socialLinks.instagram,
                 },
-
-              ].map((item, index) => {
+              ].filter(item => item.link).map((item, index) => {
                 const Icon = item.icon;
 
                 return (
