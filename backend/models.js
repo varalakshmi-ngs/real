@@ -220,6 +220,10 @@ export const DonationPurpose = sequelize.define("DonationPurpose", {
   value: { type: DataTypes.STRING, allowNull: false },
 });
 
+export const YoutubeSetting = sequelize.define("YoutubeSetting", {
+  channelId: { type: DataTypes.STRING, allowNull: false },
+});
+
 ContributionPage.hasMany(SupportItem, { foreignKey: "contributionPageId", as: "supportItems", onDelete: "CASCADE" });
 SupportItem.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "contributionPage" });
 
@@ -227,7 +231,7 @@ ContributionPage.hasMany(DonationAmount, { foreignKey: "contributionPageId", as:
 DonationAmount.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "contributionPage" });
 
 ContributionPage.hasMany(DonationPurpose, { foreignKey: "contributionPageId", as: "donationPurposes", onDelete: "CASCADE" });
-DonationPurpose.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "contributionPage" });
+DonationPurpose.belongsTo(ContributionPage, { foreignKey: "contributionPageId", as: "donationPurposes" });
 
 export const databaseModels = {
   User,
@@ -252,4 +256,5 @@ export const databaseModels = {
   SupportItem,
   DonationAmount,
   DonationPurpose,
+  YoutubeSetting,
 };

@@ -39,6 +39,10 @@ export default function WatchEditor() {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
+  const [channelId, setChannelId] = useState("");
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [loadingSettings, setLoadingSettings] = useState(true);
+
   const {
     handleSubmit,
     formState: { errors },
@@ -70,9 +74,54 @@ export default function WatchEditor() {
     }
   }, []);
 
+  const fetchSettings = useCallback(async () => {
+    setLoadingSettings(true);
+    const token = localStorage.getItem("token");
+    try {
+      const response = await apiRequest({
+        method: "get",
+        url: "/api/youtube/settings",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response?.data?.channelId) {
+        setChannelId(response.data.channelId);
+      }
+    } catch (err) {
+      console.error("Failed to fetch settings", err);
+    } finally {
+      setLoadingSettings(false);
+    }
+  }, []);
+
+  const handleSettingsSubmit = async (e) => {
+    e.preventDefault();
+    setSavingSettings(true);
+    const token = localStorage.getItem("token");
+    try {
+      const response = await apiRequest({
+        method: "put",
+        url: "/api/youtube/settings",
+        data: { channelId },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response?.success) {
+        // apiRequest handles success toast
+      }
+    } catch (err) {
+      console.error("Failed to save settings", err);
+    } finally {
+      setSavingSettings(false);
+    }
+  };
+
   useEffect(() => {
     fetchVideos();
-  }, [fetchVideos]);
+    fetchSettings();
+  }, [fetchVideos, fetchSettings]);
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this video?")) return;
@@ -222,6 +271,62 @@ export default function WatchEditor() {
             <p className="text-xs text-slate-500">With Thumbnails</p>
           </div>
         </div>
+      </motion.div>
+
+      {/* YouTube Live Settings */}
+      <motion.div
+        variants={itemVariants}
+        className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-sm space-y-4"
+      >
+        <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
+          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-red-50">
+            <Youtube className="w-5 h-5 text-red-500" />
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-slate-900">
+              YouTube Live Stream Settings
+            </h3>
+            <p className="text-xs text-slate-500">
+              Configure the YouTube Channel ID for automatic live stream detection.
+            </p>
+          </div>
+        </div>
+
+        {loadingSettings ? (
+          <div className="flex items-center gap-2 text-sm text-slate-500 py-2">
+            <Loader2 className="w-4 h-4 animate-spin text-red-500" />
+            <span>Loading settings...</span>
+          </div>
+        ) : (
+          <form onSubmit={handleSettingsSubmit} className="space-y-4 max-w-xl">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
+              <div className="flex-1 space-y-1.5">
+                <label className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                  YouTube Channel ID
+                </label>
+                <input
+                  type="text"
+                  value={channelId}
+                  onChange={(e) => setChannelId(e.target.value)}
+                  placeholder="e.g. UC_x5XG1OV2P6uYZ5F9T4pBA"
+                  className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 focus:bg-white transition-all"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={savingSettings}
+                className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-xl font-semibold text-sm shadow-md hover:shadow-lg disabled:opacity-60 transition-all duration-200 mt-2 sm:mt-0"
+              >
+                {savingSettings && <Loader2 className="w-4 h-4 animate-spin" />}
+                Save Settings
+              </button>
+            </div>
+            <p className="text-[11px] text-slate-400 italic">
+              Note: The YouTube API Key is securely kept on the backend server environment variables.
+            </p>
+          </form>
+        )}
       </motion.div>
 
       {/* Video Grid */}

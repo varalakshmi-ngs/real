@@ -1,4 +1,5 @@
 import axios from "axios";
+import { YoutubeSetting } from "../models.js";
 
 const BASE_URL = "https://www.googleapis.com/youtube/v3/search";
 
@@ -309,5 +310,149 @@ export const getRecentVideos = async (req, res) => {
       message: "Failed to fetch recent videos from your channel.",
       details: error.response?.data?.error?.message || error.message,
     });
+  }
+};
+
+// Helper to seed/initialize default YouTube settings
+export const ensureDefaultYoutubeSettings = async () => {
+  try {
+    const setting = await YoutubeSetting.findByPk(1);
+    if (!setting) {
+      console.log("Seeding default YouTube settings...");
+      await YoutubeSetting.create({
+        id: 1,
+        channelId: process.env.YOUTUBE_CHANNEL_ID || "your_channel_id",
+      });
+      console.log("✅ Default YouTube settings seeded successfully!");
+    }
+  } catch (err) {
+    console.error("❌ Error seeding default YouTube settings:", err);
+  }
+};
+
+export const getLiveStatus = async (req, res) => {
+  try {
+    let channelId = process.env.YOUTUBE_CHANNEL_ID;
+    try {
+      const setting = await YoutubeSetting.findByPk(1);
+      if (setting && setting.channelId) {
+        channelId = setting.channelId;
+      }
+    } catch (dbError) {
+      console.error("Error reading YoutubeSetting from database:", dbError.message);
+    }
+
+    if (!channelId || channelId === "your_channel_id") {
+      console.warn("YOUTUBE_CHANNEL_ID is not configured or is the default placeholder. Returning offline status.");
+      return res.status(200).json({
+        isLive: false,
+        videoId: null,
+        message: "YouTube Channel ID not configured."
+      });
+    }
+
+    const apiKey = process.env.YOUTUBE_API_KEY;
+    if (apiKey && apiKey !== "your_api_key") {
+      try {
+        console.log("Checking live status via YouTube API...");
+        const response = await axios.get("https://www.googleapis.com/youtube/v3/search", {
+          params: {
+            part: "snippet",
+            channelId: channelId,
+            eventType: "live",
+            type: "video",
+            key: apiKey,
+          },
+        });
+
+        const items = response.data?.items || [];
+        if (items.length > 0) {
+          return res.status(200).json({
+            isLive: true,
+            videoId: items[0].id?.videoId || null,
+          });
+        }
+      } catch (apiError) {
+        console.error("Error checking live status via YouTube API, falling back to scraping:", apiError.response?.data || apiError.message);
+      }
+    }
+
+    // Fallback: Scrape the public live channel page
+    console.log("Checking live status via public channel live URL scraping...");
+    const url = `https://www.youtube.com/channel/${channelId}/live`;
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+      }
+    });
+
+    const html = response.data;
+    const canonicalMatch = html.match(/<link rel="canonical" href="([^"]+)">/);
+    
+    if (canonicalMatch && canonicalMatch[1]) {
+      const canonicalUrl = canonicalMatch[1];
+      const watchMatch = canonicalUrl.match(/youtube\.com\/watch\?v=([^"&?]+)/);
+      if (watchMatch && watchMatch[1]) {
+        // A live watch page contains "isLive":true or isLiveBroadcast:true
+        const isLive = html.includes('"isLive":true') || html.includes('"isLiveBroadcast":true') || html.includes('yt-live-label');
+        if (isLive) {
+          return res.status(200).json({
+            isLive: true,
+            videoId: watchMatch[1]
+          });
+        }
+      }
+    }
+
+    return res.status(200).json({
+      isLive: false,
+      videoId: null
+    });
+  } catch (error) {
+    console.error("Error checking YouTube Live Status:", error.message);
+    return res.status(200).json({
+      isLive: false,
+      videoId: null,
+      message: "Live stream status is currently unavailable.",
+      details: error.message,
+    });
+  }
+};
+
+export const getYoutubeSettings = async (req, res) => {
+  try {
+    let channelId = process.env.YOUTUBE_CHANNEL_ID || "";
+    const setting = await YoutubeSetting.findByPk(1);
+    if (setting) {
+      channelId = setting.channelId;
+    }
+    return res.status(200).json({ channelId });
+  } catch (error) {
+    console.error("Error fetching YouTube settings:", error);
+    return res.status(500).json({ message: "Failed to fetch YouTube settings" });
+  }
+};
+
+export const updateYoutubeSettings = async (req, res) => {
+  try {
+    const { channelId } = req.body;
+    if (!channelId) {
+      return res.status(400).json({ message: "Channel ID is required" });
+    }
+
+    const [setting, created] = await YoutubeSetting.upsert({
+      id: 1,
+      channelId: channelId,
+    });
+
+    return res.status(200).json({
+      message: "YouTube Settings updated successfully",
+      channelId: setting.channelId,
+    });
+  } catch (error) {
+    console.error("Error updating YouTube settings:", error);
+    return res.status(500).json({ message: "Failed to update YouTube settings" });
   }
 };

@@ -19,6 +19,8 @@ import MagazineRoute from "./routes/MagazineRoute.js";
 import ServiceRoute from "./routes/ServiceRoute.js";
 import ContributionRoute from "./routes/ContributionRoute.js";
 import SocialRoute from "./routes/SocialRoute.js";
+import YoutubeRoute from "./routes/YoutubeRoute.js";
+import { ensureDefaultYoutubeSettings } from "./controller/YoutubeController.js";
 
 import errorHandler from "./middlewares/errorHandle.js";
 
@@ -155,6 +157,7 @@ app.use("/services", ServiceRoute);
 
 app.use("/contribution", ContributionRoute);
 app.use("/social", SocialRoute);
+app.use("/api/youtube", YoutubeRoute);
 
 // ================= ERROR HANDLER =================
 
@@ -171,6 +174,9 @@ const startServer = async () => {
     console.log("✅ MySQL database connected successfully!");
 
     await sequelize.sync();
+
+    // Seed default YouTube Settings
+    await ensureDefaultYoutubeSettings();
 
     // Ensure family columns exist in about_pages table
     try {
