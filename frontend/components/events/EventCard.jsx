@@ -43,7 +43,7 @@ const EventCard = ({ event }) => {
         </div>
       </div>
       
-      <div className="p-6 flex flex-col flex-1 relative bg-white z-20">
+      <div className="p-6 flex flex-col flex-1 relative bg-white z-20 min-w-0">
         <h2 className="text-gray-900 text-2xl font-bold font-serif mb-4 group-hover:text-red-600 transition-colors line-clamp-2">
           {event?.eventType}
         </h2>
@@ -59,7 +59,10 @@ const EventCard = ({ event }) => {
           </div>
         </div>
 
-        <p className="text-gray-500 text-sm leading-relaxed font-sans line-clamp-3 mb-6 flex-1">
+        <p 
+          className="text-gray-500 text-sm leading-relaxed font-sans mb-6 flex-1 truncate"
+          style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+        >
           {event?.description}
         </p>
 

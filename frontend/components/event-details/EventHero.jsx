@@ -6,7 +6,7 @@ import React from "react";
 const EventHero = ({ singleEvent }) => {
   const { month, dayWithSuffix, year } = formatEventDate(singleEvent?.date);
   return (
-    <div className="p-[clamp(1rem,2vw,3rem)] w-full flex flex-col lg:flex-row justify-between items-end gap-6">
+    <div className="p-[clamp(1rem,2vw,3rem)] pt-[clamp(2.5rem,4vw,4rem)] w-full flex flex-col lg:flex-row justify-between items-end gap-6">
       <div className="w-full lg:w-[50%] flex flex-col gap-3 items-start">
         <h1 className="responsive-title">
           {singleEvent?.eventName}{" "}
@@ -46,7 +46,7 @@ const EventHero = ({ singleEvent }) => {
         <img
           src={`${APIURL}/uploads/${singleEvent?.image}`}
           alt="event-details"
-          className="w-full lg:w-[90%] h-[300px] rounded-md"
+          className="w-full lg:w-[90%] h-auto rounded-md shadow-md"
         />
       </div>
     </div>

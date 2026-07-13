@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 const ImageComponent = ({
   imageUrl,
   className = "h-[600px] w-full",
+  objectFit = "object-contain sm:object-cover",
+  bgClass = "bg-[#111]",
+  alt = "Dynamic image",
 }) => {
 
   // LOADING UI
@@ -25,7 +28,7 @@ const ImageComponent = ({
 
   return (
     <motion.div
-      className={`relative overflow-hidden rounded-lg bg-[#111] ${className}`}
+      className={`relative overflow-hidden rounded-lg ${bgClass} ${className}`}
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -33,9 +36,9 @@ const ImageComponent = ({
     >
       <Image
         src={imageUrl}
-        alt="Dynamic image"
+        alt={alt}
         fill
-        className="object-contain sm:object-cover object-center"
+        className={`${objectFit} object-center`}
       />
     </motion.div>
   );

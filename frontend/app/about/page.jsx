@@ -69,19 +69,10 @@ const AboutPage = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.2 }}
         >
-          <ImageComponent
-            imageUrl={`${APIURL}/${data.hero.image}`}
-            className="
-                        h-[280px]
-                        sm:h-[420px]
-                        md:h-[520px]
-                        lg:h-[700px]
-                        rounded-2xl
-                        shadow-xl
-                        w-full
-                        max-w-7xl
-                        mx-auto
-                        object-cover "
+          <img
+            src={`${APIURL}/${data.hero.image}`}
+            alt="About Hero Banner"
+            className="w-full h-auto rounded-2xl shadow-xl max-w-5xl mx-auto"
           />
         </motion.div>
       )}
