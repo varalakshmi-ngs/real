@@ -5,13 +5,18 @@ import {
   Calendar,
   ArrowRight,
   ExternalLink,
+  FileText,
 } from "lucide-react";
 
 export default function MagazinePage() {
   const [magazines, setMagazines] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     getMagazines();
+    if (typeof window !== "undefined") {
+      setIsMobile(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+    }
   }, []);
 
   const getMagazines = async () => {
@@ -85,10 +90,6 @@ export default function MagazinePage() {
 
   {magazines?.map((item) => {
     const pdfUrl = `${process.env.NEXT_PUBLIC_API_URL}${item.pdf}`;
-    const isLocal = pdfUrl.includes("localhost") || pdfUrl.includes("127.0.0.1");
-    const previewUrl = isLocal
-      ? pdfUrl
-      : `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
 
     return (
       <div
@@ -100,11 +101,21 @@ export default function MagazinePage() {
         <div className="relative h-[320px] overflow-hidden bg-[#ececec]">
 
           {/* PDF PREVIEW */}
-          <iframe
-            src={previewUrl}
-            className="w-full h-full pointer-events-none scale-[1.15]"
-            title={item.title}
-          />
+          {isMobile ? (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-red-50 to-red-100 p-6 text-center select-none">
+              <div className="p-4 bg-white rounded-full shadow-md mb-3 text-red-600">
+                <FileText size={36} />
+              </div>
+              <span className="text-[15px] font-bold text-[#001b5e] line-clamp-1">{item.title}</span>
+              <span className="text-[11px] text-gray-500 mt-1 uppercase tracking-wider font-semibold">Tap Read Now to Open</span>
+            </div>
+          ) : (
+            <iframe
+              src={pdfUrl}
+              className="w-full h-full pointer-events-none scale-[1.15]"
+              title={item.title}
+            />
+          )}
 
           {/* DARK OVERLAY */}
           <div className="absolute inset-0 bg-black/10"></div>

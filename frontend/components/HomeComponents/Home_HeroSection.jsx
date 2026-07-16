@@ -1,13 +1,43 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import MainBtn from "@/utils/MainBtn";
-import { ArrowUpRightFromCircle } from "lucide-react";
+import { ArrowUpRightFromCircle, Loader2, AlertCircle, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { APIURL } from "@/Core/rl";
+import { motion, AnimatePresence } from "framer-motion";
+import { API, APIURL } from "@/Core/rl";
 
 export default function Home_HeroSection({ data }) {
   const router = useRouter();
+  const [checkingLive, setCheckingLive] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
+  const handleWatchLive = async () => {
+    if (checkingLive) return;
+    setCheckingLive(true);
+    try {
+      const response = await API.get("/api/youtube/live-status");
+      if (response.data && response.data.isLive) {
+        router.push("/watch");
+      } else {
+        setShowToast(true);
+      }
+    } catch (error) {
+      console.error("Error checking live status:", error);
+      setShowToast(true);
+    } finally {
+      setCheckingLive(false);
+    }
+  };
 
   return (
     <motion.section
@@ -118,9 +148,10 @@ export default function Home_HeroSection({ data }) {
     />
   </button>
 
-  {/* CONTACT BUTTON */}
+  {/* WATCH LIVE BUTTON */}
   <button
-    onClick={() => router.push("/contact")}
+    disabled={checkingLive}
+    onClick={handleWatchLive}
     className="
       group
       relative
@@ -141,10 +172,18 @@ export default function Home_HeroSection({ data }) {
       hover:text-white
       hover:shadow-[0_0_30px_rgba(255,0,85,0.45)]
       active:scale-95
+      disabled:opacity-80
     "
   >
-    <span className="relative z-10">
-      Contact Us
+    <span className="relative z-10 flex items-center justify-center gap-2">
+      {checkingLive ? (
+        <>
+          <Loader2 className="w-5 h-5 animate-spin text-current" />
+          <span>Checking...</span>
+        </>
+      ) : (
+        <span>Watch Live</span>
+      )}
     </span>
 
     {/* Shine */}
@@ -239,6 +278,35 @@ export default function Home_HeroSection({ data }) {
   />
 </motion.div>
       </div>
+
+      {/* Toast Notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed top-5 right-5 z-50 flex items-center gap-3 bg-[#ef4444] text-white px-5 py-3.5 rounded-lg shadow-xl max-w-sm border border-red-500/30"
+          >
+            <AlertCircle className="w-5 h-5 flex-shrink-0 text-white animate-bounce" />
+            <div className="flex flex-col flex-grow select-none">
+              <span className="font-semibold text-sm leading-tight text-white">
+                No Live Streaming Currently
+              </span>
+              <span className="text-[11px] text-white/80 leading-normal mt-0.5">
+                Please check back later.
+              </span>
+            </div>
+            <button 
+              onClick={() => setShowToast(false)} 
+              className="text-white hover:text-red-100 transition-colors p-0.5 cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }
