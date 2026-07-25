@@ -102,6 +102,7 @@ const limiter = rateLimit({
   message:
     "Too many requests from this IP, please try again later.",
   skip: (req) => req.method === "GET" || req.method === "OPTIONS",
+  validate: { trustProxy: false },
 });
 
 app.use(limiter);

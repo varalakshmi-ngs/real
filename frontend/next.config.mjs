@@ -35,6 +35,15 @@ const nextConfig = {
   images: {
     remotePatterns,
   },
+
+  async rewrites() {
+    return [
+      {
+        source: "/backend-uploads/:path*",
+        destination: `${apiBaseUrl}/uploads/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
